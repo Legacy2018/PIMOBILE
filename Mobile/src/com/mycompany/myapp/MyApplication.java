@@ -9,6 +9,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
+import com.mycompany.Entite.DataBaseMobile;
 import com.mycompany.gui.HomeForm;
 import java.io.IOException;
 
@@ -36,6 +37,7 @@ public class MyApplication {
             current.show();
             return;
         }
+        DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
           HomeForm h = new HomeForm();
         h.getF().show();
     }

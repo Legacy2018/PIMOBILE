@@ -4,12 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.Entite;
-
-<<<<<<< HEAD:Mobile/src/Entity/Annonce_collocation.java
-import Entity.*;
-=======
->>>>>>> aba4b48089ef14321426473215ba82e0c06b24df:Mobile/src/com/mycompany/Entite/Annonce_collocation.java
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
