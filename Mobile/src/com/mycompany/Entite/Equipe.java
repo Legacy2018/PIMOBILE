@@ -106,4 +106,8 @@ public class Equipe {
     public Equipe() {
     }
 
+    public Equipe(String pays) {
+        this.pays = pays;
+    }
+
 }

@@ -5,7 +5,6 @@
  */
 package com.mycompany.Entite;
 
-import java.util.Objects;
 
 /**
  *
@@ -76,32 +75,6 @@ public class TicketRate {
         return hash;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TicketRate other = (TicketRate) obj;
-        if (this.idRate != other.idRate) {
-            return false;
-        }
-        if (!Objects.equals(this.nbRate, other.nbRate)) {
-            return false;
-        }
-        if (!Objects.equals(this.idUser, other.idUser)) {
-            return false;
-        }
-        if (!Objects.equals(this.idTicket, other.idTicket)) {
-            return false;
-        }
-        return true;
-    }
     
     
 }
