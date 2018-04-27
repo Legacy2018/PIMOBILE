@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity;
+package com.mycompany.Entite;
 
-import Entity.*;
 import java.util.Objects;
-import Entity.Ticket;
-import Entity.Fos_User;
+import com.mycompany.Entite.Ticket;
+import com.mycompany.Entite.Fos_User;
 /**
  *
  * @author BSS

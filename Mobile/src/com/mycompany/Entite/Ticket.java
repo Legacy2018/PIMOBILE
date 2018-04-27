@@ -1,9 +1,8 @@
-package Entity;
+package com.mycompany.Entite;
 
-import Entity.*;
-import Entity.Fos_User;
+import com.mycompany.Entite.Fos_User;
 import java.sql.Date;
-import Entity.match;
+import com.mycompany.Entite.match;
 import java.util.Objects;
 
 

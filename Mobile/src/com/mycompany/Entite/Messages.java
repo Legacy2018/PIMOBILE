@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity;
+package com.mycompany.Entite;
 
-import Entite.*;
 import java.sql.Date;
 
 
