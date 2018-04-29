@@ -1,9 +1,14 @@
 package com.mycompany.Entite;
 
 import com.mycompany.Entite.Fos_User;
+<<<<<<< HEAD
 import java.util.Date;
 import com.mycompany.Entite.match;
 //import java.util.Objects;
+=======
+import com.mycompany.Entite.match;
+import java.util.Date;
+>>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
 
 
 public class Ticket {
@@ -19,6 +24,7 @@ public class Ticket {
     public Date getHeurAjout() {
         return heurAjout;
     }
+    
 
     public void setHeurAjout(Date heurAjout) {
         this.heurAjout = heurAjout;
@@ -27,7 +33,21 @@ public class Ticket {
     public Ticket(int idTicket) {
         this.idTicket = idTicket;
     }
-    
+
+    public Ticket(String categories, Float prix, match idMatch) {
+        this.categories = categories;
+        this.prix = prix;
+        this.idMatch = idMatch;
+    }
+
+    public Ticket(int nbrTicket, String categories, Float prix, match idMatch) {
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+        this.idMatch = idMatch;
+    }
+
+   
 
     public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, match idMatch, Date heurAjout) {
         this.idTicket = idTicket;
@@ -58,6 +78,12 @@ public class Ticket {
         this.idUser = idUser;
         this.idMatch = idMatch;
     }
+
+    public Ticket(String categories, Float prix) {
+        this.categories = categories;
+        this.prix = prix;
+    }
+    
 
     public int getIdTicket() {
         return idTicket;
@@ -139,6 +165,15 @@ public class Ticket {
             return false;
         }
         return true;
+    }
+       public String AffIdMatch() {
+        return idMatch.getDateMatch()+"";
+    }
+
+    public Ticket(int nbrTicket, String categories, Float prix) {
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
     }
 
     

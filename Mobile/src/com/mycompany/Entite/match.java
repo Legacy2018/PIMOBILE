@@ -5,7 +5,10 @@
  */
 package com.mycompany.Entite;
 
+<<<<<<< HEAD
 import java.util.Date;
+=======
+>>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
 
 /**
  *
@@ -20,14 +23,29 @@ public class match {
     private String dateMatch;
     private String heureMatch;
     private stade stade;
-    private Equipe equipe1;
-    private Equipe equipe2;
+    private String equipe1;
+    private String equipe2;
     private String phase;
+
+    public match(String dateMatch) {
+        this.dateMatch = dateMatch;
+    }
+
+    public match(int idMatch, String dateMatch) {
+        this.idMatch = idMatch;
+        this.dateMatch = dateMatch;
+    }
+
+    public match(int idMatch, String equipe1, String equipe2) {
+        this.idMatch = idMatch;
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+    }
    
 
     
 
-    public match(String dateMatch, String heureMatch, Equipe equipe1,stade stade,Equipe  equipe2, String phase) {
+    public match(String dateMatch, String heureMatch, String equipe1,stade stade,String  equipe2, String phase) {
         this.dateMatch = dateMatch;
         this.heureMatch = heureMatch;
         this.stade = stade;
@@ -46,8 +64,12 @@ public class match {
         this.score2=score2;
     }
 
+   
+
     public match() {
     }
+
+    
 
     public match(stade  d) {
      this.stade=d;  
@@ -77,13 +99,9 @@ public class match {
         return stade;
     }
 
-    public Equipe getEquipe1() {
-        return equipe1;
-    }
+   
 
-    public Equipe getEquipe2() {
-        return equipe2;
-    }
+   
 
     public void setIdMatch(int idMatch) {
         this.idMatch = idMatch;
@@ -113,13 +131,20 @@ public class match {
         this.stade = stade;
     }
 
-    public void setEquipe1(Equipe equipe1) {
+    public String getEquipe1() {
+        return equipe1;
+    }
+
+    public void setEquipe1(String equipe1) {
         this.equipe1 = equipe1;
     }
 
-    public void setEquipe2(Equipe equipe2) {
+    public String getEquipe2() {
+        return equipe2;
+    }
+
+    public void setEquipe2(String equipe2) {
         this.equipe2 = equipe2;
-        
     }
 
     
@@ -143,6 +168,8 @@ public class match {
     public String toString() {
         return "Match{" + "idMatch=" + idMatch + ", nbButTot=" + nbButTot + ", score=" + score + ", dateMatch=" + dateMatch + ", heureMatch=" + heureMatch + ", stade=" + stade + ", equipe1=" + equipe1 + ", equipe2=" + equipe2 + ", phase=" + phase +'}';
     }
+        
+ 
 
     
 
