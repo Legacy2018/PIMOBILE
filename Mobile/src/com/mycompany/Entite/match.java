@@ -5,10 +5,7 @@
  */
 package com.mycompany.Entite;
 
-<<<<<<< HEAD
 import java.util.Date;
-=======
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
 
 /**
  *

@@ -5,10 +5,8 @@
  */
 package com.mycompany.Entite;
 
-<<<<<<< HEAD
 //import java.util.Objects;
-=======
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
+
 import com.mycompany.Entite.Ticket;
 import com.mycompany.Entite.Fos_User;
 /**
@@ -74,7 +72,6 @@ public class Commentaire {
         return hash;
     }
 
-<<<<<<< HEAD
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -101,8 +98,7 @@ public class Commentaire {
         }***/
         return true;
     }
-=======
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
+
 
     public Commentaire(int idCommentaire, String description, Ticket idticket, Fos_User idUser) {
         this.idCommentaire = idCommentaire;

@@ -5,10 +5,7 @@
  */
 package com.mycompany.Entite;
 
-<<<<<<< HEAD
 //import java.util.Objects;
-=======
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
 
 /**
  *
@@ -79,7 +76,6 @@ public class TicketRate {
         return hash;
     }
 
-<<<<<<< HEAD
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -106,8 +102,6 @@ public class TicketRate {
         }*/
         return true;
     }
-=======
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
-    
+
     
 }

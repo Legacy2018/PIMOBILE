@@ -9,12 +9,9 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
-<<<<<<< HEAD
 import com.mycompany.gui.afficherequipeGUI;
-=======
 import com.mycompany.Entite.DataBaseMobile;
 import com.mycompany.gui.HomeForm;
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
 import java.io.IOException;
 
 /**
@@ -41,14 +38,11 @@ public class MyApplication {
             current.show();
             return;
         }
-<<<<<<< HEAD
           afficherequipeGUI f = new afficherequipeGUI();
         f.getF().show();
-=======
-        DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
-          HomeForm h = new HomeForm();
-        h.getF().show();
->>>>>>> 6eb80bfd7f41e373b6d187e0868b410a3322f445
+    //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
+     //     HomeForm h = new HomeForm();
+    //    h.getF().show();
     }
 
     public void stop() {

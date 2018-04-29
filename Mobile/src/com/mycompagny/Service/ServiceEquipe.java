@@ -32,18 +32,7 @@ import java.util.List;
  * @author Emel
  */
 public class ServiceEquipe {
-         public void e() throws  IOException{
-      InputStream is = null;
-        OutputStream os = null;
-            is = new FileInputStream("C:/Users/Emel/AppData/Local/Temp/temp8255862222083205111..png");
-            os = new FileOutputStream(
-                    "C:/wamp64/www/PiWeb1/TeamFlags/mpmppp.png");
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-}
+        
     
 
     ArrayList<Equipe> listEquipe = new ArrayList<>();
