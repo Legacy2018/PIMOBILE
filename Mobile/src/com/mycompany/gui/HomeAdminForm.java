@@ -76,10 +76,10 @@ public class HomeAdminForm {
         f.add(c3);
 
       
-          f.getToolbar().addCommandToRightBar("Ajouter Equipe", null, (ev)->{AjouterEquipe h=new AjouterEquipe();
+          f.getToolbar().addCommandToOverflowMenu("Ajouter Equipe", null, (ev)->{AjouterEquipe h=new AjouterEquipe();
           h.getF().show();
           });
-          f.getToolbar().addCommandToRightBar("Gerer Equipe", null, (ev)->{gererEquipe h=new gererEquipe();
+          f.getToolbar().addCommandToOverflowMenu("Gerer Equipe", null, (ev)->{gererEquipe h=new gererEquipe();
           h.getF().show();
           });
     }

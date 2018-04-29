@@ -28,9 +28,7 @@ public class gererEquipe {
        
 
       
-          f.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
-          h.getF().show();
-          });
+         
     }
 
     public Form getF() {

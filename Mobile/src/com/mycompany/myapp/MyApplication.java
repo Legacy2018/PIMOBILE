@@ -12,6 +12,8 @@ import com.codename1.ui.Toolbar;
 import com.mycompany.gui.afficherequipeGUI;
 import com.mycompany.Entite.DataBaseMobile;
 import com.mycompany.gui.HomeForm;
+import com.mycompany.gui.HomeAdminForm;
+
 import java.io.IOException;
 
 /**
@@ -40,11 +42,12 @@ public class MyApplication {
         }
      //     afficherequipeGUI f = new afficherequipeGUI();
       //  f.getF().show();
-        
-        
+       
+        HomeAdminForm Admin = new HomeAdminForm();
+        Admin.getF().show();
     //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
-     //     HomeForm h = new HomeForm();
-    //    h.getF().show();
+    //     HomeForm h = new HomeForm();
+     //   h.getF().show();
     }
 
     public void stop() {

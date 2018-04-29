@@ -6,6 +6,7 @@
 package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.components.OnOffSwitch;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
@@ -13,6 +14,8 @@ import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.List;
+import com.codename1.ui.TextField;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -35,17 +38,20 @@ public class AjouterEquipe {
 
     Form f;
     SpanLabel lb;
-
+    Container c;
     public AjouterEquipe() {
 
         f = new Form();
+        c = new Container();
+        TextField pays,selec,point = new TextField();
 
-       
+          OnOffSwitch genre= new OnOffSwitch();
+        genre.setOff("IN");
+        genre.setOn("OUT");
+       Button aj = new Button("Ajouter");
 
       
-          f.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
-          h.getF().show();
-          });
+        
     }
 
     public Form getF() {
