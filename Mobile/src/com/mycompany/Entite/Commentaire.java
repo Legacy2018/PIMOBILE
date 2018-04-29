@@ -5,7 +5,7 @@
  */
 package com.mycompany.Entite;
 
-import java.util.Objects;
+//import java.util.Objects;
 import com.mycompany.Entite.Ticket;
 import com.mycompany.Entite.Fos_User;
 /**
@@ -86,7 +86,7 @@ public class Commentaire {
         if (this.idCommentaire != other.idCommentaire) {
             return false;
         }
-        if (!Objects.equals(this.description, other.description)) {
+       /* if (!Objects.equals(this.description, other.description)) {
             return false;
         }
         if (!Objects.equals(this.idticket, other.idticket)) {
@@ -94,7 +94,7 @@ public class Commentaire {
         }
         if (!Objects.equals(this.idUser, other.idUser)) {
             return false;
-        }
+        }***/
         return true;
     }
 

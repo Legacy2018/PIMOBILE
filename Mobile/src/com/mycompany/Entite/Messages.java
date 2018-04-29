@@ -5,7 +5,7 @@
  */
 package com.mycompany.Entite;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 

@@ -9,6 +9,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
+import com.mycompany.gui.afficherequipeGUI;
 import java.io.IOException;
 
 /**
@@ -30,14 +31,13 @@ public class MyApplication {
         // Log.bindCrashProtection(true);
     }
     
-    public void start() {
+    public void start() throws IOException {
         if(current != null){
             current.show();
             return;
         }
-        Form hi = new Form("Hi World");
-        hi.addComponent(new Label("Hi World"));
-        hi.show();
+          afficherequipeGUI f = new afficherequipeGUI();
+        f.getF().show();
     }
 
     public void stop() {

@@ -18,6 +18,56 @@ public class Joueur implements Comparable<Joueur>{
     String nationalite;
     int nbrBut;
     String position;
+    int cartr;
+    int cartj;
+
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(int idJoueur) {
+        this.idJoueur = idJoueur;
+    }
+
+    public String getNomJoueur() {
+        return nomJoueur;
+    }
+
+    public void setNomJoueur(String nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
+
+    public int getNbrBut() {
+        return nbrBut;
+    }
+
+    public void setNbrBut(int nbrBut) {
+        this.nbrBut = nbrBut;
+    }
+
+    public int getCartr() {
+        return cartr;
+    }
+
+    public void setCartr(int cartr) {
+        this.cartr = cartr;
+    }
+
+    public int getCartj() {
+        return cartj;
+    }
+
+    public void setCartj(int cartj) {
+        this.cartj = cartj;
+    }
+
+    public Equipe getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(Equipe idEquipe) {
+        this.idEquipe = idEquipe;
+    }
    
     Equipe idEquipe;
      

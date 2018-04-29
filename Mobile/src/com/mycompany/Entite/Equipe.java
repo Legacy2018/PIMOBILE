@@ -17,6 +17,16 @@ public class Equipe {
     String groupe; //A ou B ou C ou D ou E ou F ou G ou H 
     String selecteur;
     int point ;
+    String drapeau;
+
+    public String getDrapeau() {
+        return drapeau;
+    }
+
+    public void setDrapeau(String drapeau) {
+        this.drapeau = drapeau;
+    }
+    
     
    public String getSelecteur() {
         return selecteur;
@@ -48,6 +58,17 @@ public class Equipe {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public Equipe(String pays, int etat, String phase, String groupe, String selecteur, int point, String drapeau) {
+        this.pays = pays;
+        this.etat = etat;
+        this.phase = phase;
+        this.groupe = groupe;
+        this.selecteur = selecteur;
+        this.point = point;
+        this.drapeau = drapeau;
+    }
+    
 
     public Equipe(String pays, int etat, String phase, String groupe,  String selecteur) {
         this.pays = pays;
@@ -99,9 +120,10 @@ public class Equipe {
 
     @Override
     public String toString() {
-        return "equipe{" + "id_equipe=" + idEquipe + ", pays=" + pays + ", etat=" + etat + ", phase=" + phase + ", groupe=" + groupe + ", selecteur=" + selecteur + '}';
+        return "Equipe{" + "idEquipe=" + idEquipe + ", pays=" + pays + ", etat=" + etat + ", phase=" + phase + ", groupe=" + groupe + ", selecteur=" + selecteur + ", point=" + point + ", drapeau=" + drapeau + '}';
     }
 
+    
    
     public Equipe() {
     }

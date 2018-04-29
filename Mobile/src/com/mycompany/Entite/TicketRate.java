@@ -5,7 +5,7 @@
  */
 package com.mycompany.Entite;
 
-import java.util.Objects;
+//import java.util.Objects;
 
 /**
  *
@@ -91,7 +91,7 @@ public class TicketRate {
         if (this.idRate != other.idRate) {
             return false;
         }
-        if (!Objects.equals(this.nbRate, other.nbRate)) {
+      /*  if (!Objects.equals(this.nbRate, other.nbRate)) {
             return false;
         }
         if (!Objects.equals(this.idUser, other.idUser)) {
@@ -99,7 +99,7 @@ public class TicketRate {
         }
         if (!Objects.equals(this.idTicket, other.idTicket)) {
             return false;
-        }
+        }*/
         return true;
     }
     

@@ -1,9 +1,9 @@
 package com.mycompany.Entite;
 
 import com.mycompany.Entite.Fos_User;
-import java.sql.Date;
+import java.util.Date;
 import com.mycompany.Entite.match;
-import java.util.Objects;
+//import java.util.Objects;
 
 
 public class Ticket {

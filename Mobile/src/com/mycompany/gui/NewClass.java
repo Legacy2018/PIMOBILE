@@ -11,4 +11,5 @@ package com.mycompany.gui;
  */
 public class NewClass {
     
+    
 }
