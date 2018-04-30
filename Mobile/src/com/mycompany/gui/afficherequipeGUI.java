@@ -51,7 +51,7 @@ public class afficherequipeGUI {
     Fos_User u = new Fos_User(654);
     // setLayout(new BorderLayout());
     Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-Cursor c ;
+    Cursor c;
     Form f;
     SpanLabel lb;
 
@@ -75,66 +75,68 @@ Cursor c ;
             }
         });
         db = Database.openOrCreate("dbRussia2018");
-        c = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
-        while (c.next()) {
+        /* c = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
+         while (c.next()) {
 
-            Row r = c.getRow();
-            String a = r.getString(0);
+         Row r = c.getRow();
+         String a = r.getString(0);
 
-            String n = r.getString(1);
-            String pre = r.getString(2);
-        System.err.println("aaaaaa  "+c.getPosition());
+         String n = r.getString(1);
+         String pre = r.getString(2);
+         System.err.println("aaaaaa  " + c.getPosition());
 
-        }
-          //      System.err.println("count  "+c.getColumnCount);
+         }*/
+        //      System.err.println("count  "+c.getColumnCount);
 
-        c.getColumnCount();
+//        c.getColumnCount();
 //        c.first();
+        Cursor c1 = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
+//        c1.first();
         for (Equipe e : list) {
-           
-                   System.err.println("bb   "+c.getPosition());
+            if (c1.next()) {
+                if (e.getIdEquipe() == e.getIdEquipe()) {
+                    System.err.println("bb   " + c1.getPosition());
 
-          //  Row r = c.getRow();
-          //  Equipe eq = new Equipe();
-           // eq.setIdEquipe(Integer.parseInt(r.getString(1)));
-          //  db = Database.openOrCreate("dbRussia2018");
+                    Row r = c1.getRow();
+                    Equipe eq = new Equipe();
+                    eq.setIdEquipe(Integer.parseInt(r.getString(1)));
+                    db = Database.openOrCreate("dbRussia2018");
 
-            /* Cursor c = db.executeQuery("Select * from favoris where usr=" + u.getId() + " and eq=" + e.getIdEquipe() + ";");
-             while (c.next()) {
+                    /* Cursor c = db.executeQuery("Select * from favoris where usr=" + u.getId() + " and eq=" + e.getIdEquipe() + ";");
+                     while (c.next()) {
 
-             Row r = c.getRow();
-             String a = r.getString(0);
+                     Row r = c.getRow();
+                     String a = r.getString(0);
 
-             String n = r.getString(1);
-             String pre = r.getString(2);
-             eq.setIdEquipe(Integer.parseInt(pre));*/
-                   
-            if (e.getIdEquipe() != e.getIdEquipe()) {
-                EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-                System.err.println("drapea " + e.getDrapeau());
-                img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-                imgv1 = new ImageViewer(img1);
-                c3.add(imgv1);
-                Label nom = new Label();
-                nom.setText(e.getPays());
-                c3.add(nom);
-                Storage s = new Storage();
+                     String n = r.getString(1);
+                     String pre = r.getString(2);
+                     eq.setIdEquipe(Integer.parseInt(pre));*/
+                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    System.err.println("drapea " + e.getDrapeau());
+                    img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+                    imgv1 = new ImageViewer(img1);
+                    c3.add(imgv1);
+                    Label nom = new Label();
+                    nom.setText(e.getPays());
+                    c3.add(nom);
+                    Storage s = new Storage();
 
-                s.clearStorage();
-                fav = new Button("favoris");
-                Label liked = new Label("Liked");
-                c3.add(liked);
-                //   c3.add(fav);
-                fav.addActionListener(new ActionListener() {
+                    s.clearStorage();
+                    fav = new Button("favoris");
+                    Label liked = new Label("Liked");
+                    c3.add(liked);
+                    //   c3.add(fav);
+                    fav.addActionListener(new ActionListener() {
 
-                    @Override
-                    public void actionPerformed(ActionEvent evt) {
-                        //  Fos_User fu = new Fos_User(654);
-                        se.fav(e, u);
-                        //   System.out.println("id eq "+fu.getId());
+                        @Override
+                        public void actionPerformed(ActionEvent evt) {
+                            //  Fos_User fu = new Fos_User(654);
+                            se.fav(e, u);
+                            //   System.out.println("id eq "+fu.getId());
 
-                    }
-                });
+                        }
+                    });
+                }
             } else {
                 EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
                 System.err.println("drapea " + e.getDrapeau());
