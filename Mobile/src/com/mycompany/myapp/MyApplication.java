@@ -59,6 +59,7 @@ boolean created =false;
             return;
         }
          afficherequipeGUI f = new afficherequipeGUI();
+         
         f.getF().show();
        
        // HomeAdminForm Admin = new HomeAdminForm();

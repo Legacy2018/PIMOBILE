@@ -39,7 +39,7 @@ import java.util.ArrayList;
  * @author Emel
  */
 public class afficherequipeGUI {
-
+    
     EncodedImage enc;
     ImageViewer imgv, imgv1;
     Image img, img1;
@@ -54,10 +54,10 @@ public class afficherequipeGUI {
     Cursor c;
     Form f;
     SpanLabel lb;
-
+    
     public afficherequipeGUI() throws IOException {
         theme = UIManager.initFirstTheme("/theme");
-
+        
         f = new Form();
         //      lb = new SpanLabel("");
 
@@ -68,49 +68,25 @@ public class afficherequipeGUI {
         Button chart = new Button("stat");
         c3.add(chart);
         chart.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 se.createPieChartForm().show();
             }
         });
         db = Database.openOrCreate("dbRussia2018");
-        /* c = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
-         while (c.next()) {
-
-         Row r = c.getRow();
-         String a = r.getString(0);
-
-         String n = r.getString(1);
-         String pre = r.getString(2);
-         System.err.println("aaaaaa  " + c.getPosition());
-
-         }*/
-        //      System.err.println("count  "+c.getColumnCount);
-
-//        c.getColumnCount();
-//        c.first();
+       
         Cursor c1 = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
-//        c1.first();
         for (Equipe e : list) {
             if (c1.next()) {
-                if (e.getIdEquipe() == e.getIdEquipe()) {
-                    System.err.println("bb   " + c1.getPosition());
-
+                
                     Row r = c1.getRow();
                     Equipe eq = new Equipe();
                     eq.setIdEquipe(Integer.parseInt(r.getString(1)));
+                if (e.getIdEquipe() == e.getIdEquipe()) {
+                    System.err.println("bb   " + c1.getPosition());
+                    
                     db = Database.openOrCreate("dbRussia2018");
-
-                    /* Cursor c = db.executeQuery("Select * from favoris where usr=" + u.getId() + " and eq=" + e.getIdEquipe() + ";");
-                     while (c.next()) {
-
-                     Row r = c.getRow();
-                     String a = r.getString(0);
-
-                     String n = r.getString(1);
-                     String pre = r.getString(2);
-                     eq.setIdEquipe(Integer.parseInt(pre));*/
                     EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
                     System.err.println("drapea " + e.getDrapeau());
                     img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
@@ -120,19 +96,17 @@ public class afficherequipeGUI {
                     nom.setText(e.getPays());
                     c3.add(nom);
                     Storage s = new Storage();
-
+                    
                     s.clearStorage();
                     fav = new Button("favoris");
                     Label liked = new Label(theme.getImage("like.png"));
                     c3.add(liked);
                     //   c3.add(fav);
                     fav.addActionListener(new ActionListener() {
-
+                        
                         @Override
                         public void actionPerformed(ActionEvent evt) {
-                            //  Fos_User fu = new Fos_User(654);
                             se.fav(e, u);
-                            //   System.out.println("id eq "+fu.getId());
 
                         }
                     });
@@ -147,87 +121,35 @@ public class afficherequipeGUI {
                 nom.setText(e.getPays());
                 c3.add(nom);
                 Storage s = new Storage();
-
+                
                 s.clearStorage();
                 fav = new Button(theme.getImage("emptylike.png"));
+               // fav.set
                 c3.add(fav);
                 fav.addActionListener(new ActionListener() {
-
+                    
                     @Override
                     public void actionPerformed(ActionEvent evt) {
-                        
-                        //  Fos_User fu = new Fos_User(654);
+
                         fav.setIcon(theme.getImage("like.png"));
                         se.fav(e, u);
                         //   System.out.println("id eq "+fu.getId());
 
                     }
                 });
-
+                
             }
-  //Container cn = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-
-   //     cn.add(c3);
+  
         }
-          
-        /*  Button imaged = new Button("choisir drapeau");
-         imaged.addActionListener(new ActionListener() {
 
-         @Override
-         public void actionPerformed(ActionEvent evt) {
-         Display.getInstance().openImageGallery(new ActionListener() {
-         public void actionPerformed(ActionEvent ev) {
-         if (ev != null && ev.getSource() != null) {
-         //       Storage s = new Storage();
-         //
-
-         String filePath = (String) ev.getSource();
-         int fileNameIndex = filePath.lastIndexOf("/") + 1;
-         String fileName = filePath.substring(fileNameIndex);
-         System.out.println("image     : " + filePath);
-         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-         //catch (IOException ex) {
-         //}
-         //imgv1 = new ImageViewer(img1);
-         // c3.add(imgv1);
-         }
-         }
-         });
-         }
-         });
-         c3.add(imaged);*/
-
-//        f.add(cn);
-f.add(c3);
-        //  f.add(c1);
-        /*/
-         ConnectionRequest con = new ConnectionRequest();
-         con.setUrl("http://41.226.11.243:10004/tasks/");
-         NetworkManager.getInstance().addToQueue(con);
-         con.addResponseListener(new ActionListener<NetworkEvent>() {
-
-         @Override
-         public void actionPerformed(NetworkEvent evt) {
-         ServiceTask ser = new ServiceTask();
-         List<Task> list = ser.getListTask(new String(con.getResponseData()));
-         System.out.println("sana");
-         System.out.println(list);
-         lb.setText(list.toString());
-               
-         System.out.println(lb.getText());
-         f.refreshTheme();
-         }
-         });
-         //*/
-        /* f.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
-         h.getF().show();
-         });*/
+        f.add(c3);
+       
     }
-
+    
     public Form getF() {
         return f;
     }
-
+    
     public void setF(Form f) {
         this.f = f;
     }
