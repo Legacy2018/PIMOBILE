@@ -50,7 +50,7 @@ public class afficherequipeGUI {
     ServiceEquipe se = new ServiceEquipe();
     Fos_User u = new Fos_User(654);
     // setLayout(new BorderLayout());
-    Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+    Container cn;
     Cursor c;
     Form f;
     SpanLabel lb;
@@ -123,7 +123,7 @@ public class afficherequipeGUI {
 
                     s.clearStorage();
                     fav = new Button("favoris");
-                    Label liked = new Label("Liked");
+                    Label liked = new Label(theme.getImage("like.png"));
                     c3.add(liked);
                     //   c3.add(fav);
                     fav.addActionListener(new ActionListener() {
@@ -149,13 +149,15 @@ public class afficherequipeGUI {
                 Storage s = new Storage();
 
                 s.clearStorage();
-                fav = new Button("favoris");
+                fav = new Button(theme.getImage("emptylike.png"));
                 c3.add(fav);
                 fav.addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent evt) {
+                        
                         //  Fos_User fu = new Fos_User(654);
+                        fav.setIcon(theme.getImage("like.png"));
                         se.fav(e, u);
                         //   System.out.println("id eq "+fu.getId());
 
@@ -163,8 +165,11 @@ public class afficherequipeGUI {
                 });
 
             }
+  //Container cn = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
+   //     cn.add(c3);
         }
+          
         /*  Button imaged = new Button("choisir drapeau");
          imaged.addActionListener(new ActionListener() {
 
@@ -192,8 +197,8 @@ public class afficherequipeGUI {
          });
          c3.add(imaged);*/
 
-        f.add(c3);
-
+//        f.add(cn);
+f.add(c3);
         //  f.add(c1);
         /*/
          ConnectionRequest con = new ConnectionRequest();
