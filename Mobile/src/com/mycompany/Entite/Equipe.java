@@ -10,7 +10,8 @@ package com.mycompany.Entite;
  * @author admin
  */
 public class Equipe {
-    public int idEquipe ;
+    
+    public Integer idEquipe ;
     public String pays;
    int etat; //0 pour eliminée 1 pour encore dans la competition
     String phase; //1/8 ou 1/4 ou 1/2 ou 3éme place ou finale
@@ -78,11 +79,11 @@ public class Equipe {
         this.selecteur = selecteur;
     }
 
-    public int getIdEquipe() {
+    public Integer getIdEquipe() {
         return idEquipe;
     }
 
-    public void setIdEquipe(int id_equipe) {
+    public void setIdEquipe(Integer id_equipe) {
         this.idEquipe = id_equipe;
     }
 

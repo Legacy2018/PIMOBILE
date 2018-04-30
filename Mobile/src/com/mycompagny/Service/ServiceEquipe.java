@@ -101,6 +101,11 @@ public class ServiceEquipe {
                 Equipe e = new Equipe();
        //         e.setIdEquipe(Integer.parseInt(obj.get("idEquipe").toString().trim()));
               //  e.setIdEquipe((int) obj.get("idEquipe"));
+           
+                int ind = obj.get("idEquipe").toString().indexOf(".");
+                String id= obj.get("idEquipe").toString().substring(0, ind );
+                System.out.println(" id eqyupe  :"+id);
+               e.setIdEquipe(Integer.valueOf(id));
                 e.setPays(obj.get("pays").toString());
                 e.setPhase(obj.get("phase").toString());
          //       e.setEtat((int) obj.get("etat"));
