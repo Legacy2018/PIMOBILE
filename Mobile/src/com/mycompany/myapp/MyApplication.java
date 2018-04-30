@@ -40,9 +40,9 @@ boolean created =false;
     
     public void start() throws IOException {
         
-           created =Database.exists("Russia");
+           created =Database.exists("dbRussia2018");
         try {
-            db= Database.openOrCreate("Russia");
+            db= Database.openOrCreate("dbRussia2018");
             if (created ==false)
             {
             

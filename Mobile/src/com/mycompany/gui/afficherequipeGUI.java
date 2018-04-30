@@ -10,6 +10,7 @@ import com.codename1.components.SpanLabel;
 import com.codename1.db.Cursor;
 import com.codename1.db.Database;
 import com.codename1.db.Row;
+import com.codename1.facebook.User;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.io.Storage;
 import com.codename1.io.Util;
@@ -39,22 +40,22 @@ import java.util.ArrayList;
  */
 public class afficherequipeGUI {
 
-
     EncodedImage enc;
     ImageViewer imgv, imgv1;
     Image img, img1;
+    Database db;
     private Resources theme;
     EncodedImage encImg;
-    Button fav ;
+    Button fav;
     ServiceEquipe se = new ServiceEquipe();
-            
+    Fos_User u = new Fos_User(654);
     // setLayout(new BorderLayout());
     Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-
+Cursor c ;
     Form f;
     SpanLabel lb;
 
-    public afficherequipeGUI() {
+    public afficherequipeGUI() throws IOException {
         theme = UIManager.initFirstTheme("/theme");
 
         f = new Form();
@@ -73,85 +74,121 @@ public class afficherequipeGUI {
                 se.createPieChartForm().show();
             }
         });
-      
+        db = Database.openOrCreate("dbRussia2018");
+        c = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
+        while (c.next()) {
+
+            Row r = c.getRow();
+            String a = r.getString(0);
+
+            String n = r.getString(1);
+            String pre = r.getString(2);
+        System.err.println("aaaaaa  "+c.getPosition());
+
+        }
+          //      System.err.println("count  "+c.getColumnCount);
+
+        c.getColumnCount();
+//        c.first();
         for (Equipe e : list) {
            
-            EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);     
-            System.err.println("drapea " + e.getDrapeau());
-            img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-            imgv1 = new ImageViewer(img1);
-            c3.add(imgv1);
-            Label nom = new Label();
-            nom.setText(e.getPays());
-            c3.add(nom);
-              Storage s = new Storage();
-             
-             s.clearStorage();
-            fav = new Button("favoris");
-            c3.add(fav);
-            fav.addActionListener(new ActionListener() {
+                   System.err.println("bb   "+c.getPosition());
 
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    Fos_User fu = new Fos_User(654);
-                    //se.fav(e, fu);
-                     Database db ;
-                                      //   System.out.println("id eq "+fu.getId());
+          //  Row r = c.getRow();
+          //  Equipe eq = new Equipe();
+           // eq.setIdEquipe(Integer.parseInt(r.getString(1)));
+          //  db = Database.openOrCreate("dbRussia2018");
 
-        try {
-            db= Database.openOrCreate("Russia");
-            
+            /* Cursor c = db.executeQuery("Select * from favoris where usr=" + u.getId() + " and eq=" + e.getIdEquipe() + ";");
+             while (c.next()) {
 
-                    db.execute("insert into  favoris  (id ,usr , eq ) values ("+fu.getId()+","+fu.getId()+","+e.getIdEquipe()+");");
-                    System.out.println("ok fav");
-                     Cursor c= db.executeQuery("Select * from favoris ;");
-                    while ( c.next())
-                    {
-                        Row r = c.getRow();
-                                                String a =r.getString(0);
+             Row r = c.getRow();
+             String a = r.getString(0);
 
-                        String n =r.getString(1);
-                        String pre = r.getString(2);
-                      
-                                            System.out.println("id user :"+n +"ideq :"+pre +"id :"+a);
+             String n = r.getString(1);
+             String pre = r.getString(2);
+             eq.setIdEquipe(Integer.parseInt(pre));*/
+                   
+            if (e.getIdEquipe() != e.getIdEquipe()) {
+                EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                System.err.println("drapea " + e.getDrapeau());
+                img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+                imgv1 = new ImageViewer(img1);
+                c3.add(imgv1);
+                Label nom = new Label();
+                nom.setText(e.getPays());
+                c3.add(nom);
+                Storage s = new Storage();
 
-                      
-                    
-            }
-            
-        } catch (IOException ex) {
-         
-        }
-                }
-            });
-            
-        }
-      /*  Button imaged = new Button("choisir drapeau");
-        imaged.addActionListener(new ActionListener() {
+                s.clearStorage();
+                fav = new Button("favoris");
+                Label liked = new Label("Liked");
+                c3.add(liked);
+                //   c3.add(fav);
+                fav.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                Display.getInstance().openImageGallery(new ActionListener() {
-                    public void actionPerformed(ActionEvent ev) {
-                        if (ev != null && ev.getSource() != null) {
-                            //       Storage s = new Storage();
-//
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        //  Fos_User fu = new Fos_User(654);
+                        se.fav(e, u);
+                        //   System.out.println("id eq "+fu.getId());
 
-                            String filePath = (String) ev.getSource();
-                            int fileNameIndex = filePath.lastIndexOf("/") + 1;
-                            String fileName = filePath.substring(fileNameIndex);
-                            System.out.println("image     : " + filePath);
-                            EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-                            //catch (IOException ex) {
-                            //}
-                            //imgv1 = new ImageViewer(img1);
-                            // c3.add(imgv1);
-                        }
                     }
                 });
+            } else {
+                EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                System.err.println("drapea " + e.getDrapeau());
+                img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+                imgv1 = new ImageViewer(img1);
+                c3.add(imgv1);
+                Label nom = new Label();
+                nom.setText(e.getPays());
+                c3.add(nom);
+                Storage s = new Storage();
+
+                s.clearStorage();
+                fav = new Button("favoris");
+                c3.add(fav);
+                fav.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        //  Fos_User fu = new Fos_User(654);
+                        se.fav(e, u);
+                        //   System.out.println("id eq "+fu.getId());
+
+                    }
+                });
+
             }
-        });
-        c3.add(imaged);*/
+
+        }
+        /*  Button imaged = new Button("choisir drapeau");
+         imaged.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent evt) {
+         Display.getInstance().openImageGallery(new ActionListener() {
+         public void actionPerformed(ActionEvent ev) {
+         if (ev != null && ev.getSource() != null) {
+         //       Storage s = new Storage();
+         //
+
+         String filePath = (String) ev.getSource();
+         int fileNameIndex = filePath.lastIndexOf("/") + 1;
+         String fileName = filePath.substring(fileNameIndex);
+         System.out.println("image     : " + filePath);
+         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+         //catch (IOException ex) {
+         //}
+         //imgv1 = new ImageViewer(img1);
+         // c3.add(imgv1);
+         }
+         }
+         });
+         }
+         });
+         c3.add(imaged);*/
 
         f.add(c3);
 
