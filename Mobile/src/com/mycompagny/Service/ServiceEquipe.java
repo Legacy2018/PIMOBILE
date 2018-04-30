@@ -11,15 +11,20 @@ import com.codename1.charts.renderers.DefaultRenderer;
 import com.codename1.charts.renderers.SimpleSeriesRenderer;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.charts.views.PieChart;
+import com.codename1.db.Cursor;
+import com.codename1.db.Database;
+import com.codename1.db.Row;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.Form;
+import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.mycompany.Entite.Equipe;
+import com.mycompany.Entite.Fos_User;
 import com.mycompany.Entite.Joueur;
 import java.io.*;
 
@@ -188,5 +193,35 @@ protected CategorySeries buildCategoryDataset(String title, double[] values) {
     return f;
 
 }
+    public void fav(Equipe e , Fos_User u)
+    {   Database db ;
+        boolean created =Database.exists("Russie");
+        try {
+            db= Database.openOrCreate("Russie");
+            if (created ==false)
+            {
+           
+                    db.execute("insert into  fav (usr , eq ) values ("+u.getId()+","+e.getIdEquipe()+");");
+                    System.out.println("ok fav");
+                     Cursor c= db.executeQuery("Select * fav ;");
+                    while ( c.next())
+                    {
+                        Row r = c.getRow();
+                        String n =r.getString(1);
+                        String pre = r.getString(2);
+                      
+                                            System.out.println("id user :"+n +"ideq :"+pre);
+
+                      
+                    }
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+    //return true ;
+    }
+
+  
     
 }

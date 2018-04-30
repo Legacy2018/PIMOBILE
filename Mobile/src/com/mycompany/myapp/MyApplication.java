@@ -40,15 +40,14 @@ boolean created =false;
     
     public void start() throws IOException {
         
-           created =Database.exists("Russie");
+           created =Database.exists("Russia");
         try {
-            db= Database.openOrCreate("Russie");
+            db= Database.openOrCreate("Russia");
             if (created ==false)
             {
-            db.execute("create TABLE user (id int, login text , pwd text , nom text );");
-            db.execute("create TABLE fav (id int, login text , pays text , date text );");
-               db.execute("insert into user (login, pwd ,nom ) values ('aa','bb','cc');");
-                    System.out.println("ok  ahahaha     ");
+            
+            db.execute("create table favoris (id int, usr int , eq int,  PRIMARY KEY (id,usr,eq));");
+            System.out.println("ok  ahahaha     ");
             }
             
         } catch (IOException ex) {
@@ -59,11 +58,11 @@ boolean created =false;
             current.show();
             return;
         }
-     //     afficherequipeGUI f = new afficherequipeGUI();
-      //  f.getF().show();
+         afficherequipeGUI f = new afficherequipeGUI();
+        f.getF().show();
        
-        HomeAdminForm Admin = new HomeAdminForm();
-        Admin.getF().show();
+       // HomeAdminForm Admin = new HomeAdminForm();
+      //  Admin.getF().show();
     //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
     //     HomeForm h = new HomeForm();
      //   h.getF().show();

@@ -7,7 +7,9 @@ package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
+import com.codename1.db.Cursor;
 import com.codename1.db.Database;
+import com.codename1.db.Row;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.io.Storage;
 import com.codename1.io.Util;
@@ -26,6 +28,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompagny.Service.ServiceEquipe;
 import com.mycompany.Entite.Equipe;
+import com.mycompany.Entite.Fos_User;
 import java.io.*;
 
 import java.util.ArrayList;
@@ -42,7 +45,9 @@ public class afficherequipeGUI {
     Image img, img1;
     private Resources theme;
     EncodedImage encImg;
-
+    Button fav ;
+    ServiceEquipe se = new ServiceEquipe();
+            
     // setLayout(new BorderLayout());
     Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
@@ -75,16 +80,50 @@ public class afficherequipeGUI {
             System.err.println("drapea " + e.getDrapeau());
             img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
             imgv1 = new ImageViewer(img1);
-
             c3.add(imgv1);
-
             Label nom = new Label();
             nom.setText(e.getPays());
             c3.add(nom);
-            //  Storage s = new Storage();
-              
-             //s.clearCache();
-            Button fav = new Button("favoris");
+              Storage s = new Storage();
+             
+             s.clearStorage();
+            fav = new Button("favoris");
+            c3.add(fav);
+            fav.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    Fos_User fu = new Fos_User(654);
+                    //se.fav(e, fu);
+                     Database db ;
+                                      //   System.out.println("id eq "+fu.getId());
+
+        try {
+            db= Database.openOrCreate("Russia");
+            
+
+                    db.execute("insert into  favoris  (id ,usr , eq ) values ("+fu.getId()+","+fu.getId()+","+e.getIdEquipe()+");");
+                    System.out.println("ok fav");
+                     Cursor c= db.executeQuery("Select * from favoris ;");
+                    while ( c.next())
+                    {
+                        Row r = c.getRow();
+                                                String a =r.getString(0);
+
+                        String n =r.getString(1);
+                        String pre = r.getString(2);
+                      
+                                            System.out.println("id user :"+n +"ideq :"+pre +"id :"+a);
+
+                      
+                    
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+                }
+            });
             
         }
       /*  Button imaged = new Button("choisir drapeau");
