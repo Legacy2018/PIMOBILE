@@ -7,6 +7,7 @@ package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
+import com.codename1.db.Database;
 import com.codename1.io.FileSystemStorage;
 import com.codename1.io.Storage;
 import com.codename1.io.Util;
@@ -36,7 +37,6 @@ import java.util.ArrayList;
 public class afficherequipeGUI {
 
 
-    
     EncodedImage enc;
     ImageViewer imgv, imgv1;
     Image img, img1;
@@ -84,6 +84,8 @@ public class afficherequipeGUI {
             //  Storage s = new Storage();
               
              //s.clearCache();
+            Button fav = new Button("favoris");
+            
         }
       /*  Button imaged = new Button("choisir drapeau");
         imaged.addActionListener(new ActionListener() {

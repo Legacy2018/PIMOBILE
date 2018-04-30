@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 
+import com.codename1.db.Database;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Dialog;
@@ -25,6 +26,8 @@ public class MyApplication {
     private Form current;
     private Resources theme;
 
+     Database db;
+boolean created =false;
     public void init(Object context) {
         theme = UIManager.initFirstTheme("/theme");
 
@@ -36,6 +39,22 @@ public class MyApplication {
     }
     
     public void start() throws IOException {
+        
+           created =Database.exists("Russie");
+        try {
+            db= Database.openOrCreate("Russie");
+            if (created ==false)
+            {
+            db.execute("create TABLE user (id int, login text , pwd text , nom text );");
+            db.execute("create TABLE fav (id int, login text , pays text , date text );");
+               db.execute("insert into user (login, pwd ,nom ) values ('aa','bb','cc');");
+                    System.out.println("ok  ahahaha     ");
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+        
         if(current != null){
             current.show();
             return;

@@ -35,6 +35,36 @@ public class ServiceEquipe {
         
     
 
+    public void ajouterEquipe(Equipe eq) {
+        ConnectionRequest con = new ConnectionRequest();
+        
+        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/addEq?"+
+                "pays="+eq.getPays()+
+                "&etat="+eq.getEtat()+
+                "&groupe="+eq.getGroupe()+
+                "&phase="+eq.getPhase()+
+                "&point="+eq.getPoint()+
+                "&selecteur="+eq.getSelecteur() ;
+        
+        con.setUrl(Url);
+
+        System.out.println("tt");
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+//            if (str.trim().equalsIgnoreCase("OK")) {
+//                f2.setTitle(tlogin.getText());
+//             f2.show();
+//            }
+//            Dialog.show("error", "login ou pwd invalid", "ok", null);
+//            else{
+//            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
+
     ArrayList<Equipe> listEquipe = new ArrayList<>();
     
     public ArrayList<Equipe> getList2(){       

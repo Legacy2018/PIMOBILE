@@ -31,7 +31,7 @@ import java.util.ArrayList;
  *
  * @author Emel
  */
-public class AjouterEquipe {
+public class ModifierEquipe {
   
 
     // setLayout(new BorderLayout());
@@ -40,7 +40,7 @@ public class AjouterEquipe {
     Form f;
     SpanLabel lb;
     Container c;
-    public AjouterEquipe() {
+    public ModifierEquipe() {
 
         f = new Form();
         c = new Container();
@@ -60,13 +60,6 @@ public class AjouterEquipe {
             etat=0;
        Button aj = new Button("Ajouter");
 
-     
-        aj.addActionListener((e) -> {
-            ServiceEquipe ser = new ServiceEquipe();
-            Equipe eq = new Equipe("pays", 1, "phase", "K", "selecteur", 55, "drapeau");
-            ser.ajouterEquipe(eq);
-        });
-        c.add(aj);
       f.add(c);
         
     }
