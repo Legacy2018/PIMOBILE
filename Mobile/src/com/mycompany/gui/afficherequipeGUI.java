@@ -48,7 +48,7 @@ public class afficherequipeGUI {
     EncodedImage encImg;
     Button fav;
     ServiceEquipe se = new ServiceEquipe();
-    Fos_User u = new Fos_User(654);
+    Fos_User u = new Fos_User(22);
     // setLayout(new BorderLayout());
     Container cn;
     Cursor c;
@@ -74,8 +74,10 @@ public class afficherequipeGUI {
                 se.createPieChartForm().show();
             }
         });
+        
+        
+        
         db = Database.openOrCreate("dbRussia2018");
-       
         Cursor c1 = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
         for (Equipe e : list) {
             if (c1.next()) {
@@ -83,7 +85,7 @@ public class afficherequipeGUI {
                     Row r = c1.getRow();
                     Equipe eq = new Equipe();
                     eq.setIdEquipe(Integer.parseInt(r.getString(1)));
-                if (e.getIdEquipe() == e.getIdEquipe()) {
+                if (e.getIdEquipe() == eq.getIdEquipe()) {
                     System.err.println("bb   " + c1.getPosition());
                     
                     db = Database.openOrCreate("dbRussia2018");
@@ -106,10 +108,36 @@ public class afficherequipeGUI {
                         
                         @Override
                         public void actionPerformed(ActionEvent evt) {
-                            se.fav(e, u);
+                         se.fav(e, u);
 
                         }
                     });
+                }else
+                {  EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                System.err.println("drapea " + e.getDrapeau());
+                img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+                imgv1 = new ImageViewer(img1);
+                c3.add(imgv1);
+                Label nom = new Label();
+                nom.setText(e.getPays());
+                c3.add(nom);
+                Storage s = new Storage();
+                
+                s.clearStorage();
+                fav = new Button(theme.getImage("emptylike.png"));
+               // fav.set
+                c3.add(fav);
+                fav.addActionListener(new ActionListener() {
+                    
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+
+                        fav.setIcon(theme.getImage("like.png"));
+                        se.fav(e, u);
+                        //   System.out.println("id eq "+fu.getId());
+
+                    }
+                });
                 }
             } else {
                 EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);

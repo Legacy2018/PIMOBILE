@@ -38,7 +38,9 @@ boolean created =false;
         // Log.bindCrashProtection(true);
     }
     
-    public void start() throws IOException {
+    public void start() 
+            //throws IOException 
+    {
         
            created =Database.exists("dbRussia2018");
         try {
@@ -58,9 +60,14 @@ boolean created =false;
             current.show();
             return;
         }
-         afficherequipeGUI f = new afficherequipeGUI();
+         afficherequipeGUI f;
+        try {
+            f = new afficherequipeGUI();
+                    f.getF().show();
+
+        } catch (IOException ex) {
+        }
          
-        f.getF().show();
        
        // HomeAdminForm Admin = new HomeAdminForm();
       //  Admin.getF().show();
