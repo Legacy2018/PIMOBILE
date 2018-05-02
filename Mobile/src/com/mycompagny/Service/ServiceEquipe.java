@@ -213,6 +213,31 @@ public class ServiceEquipe {
 
         }
     }
+     public void nofav(Equipe e, Fos_User u) {
+        Database db;
+        //   System.out.println("id eq "+fu.getId());
+
+        try {
+            db = Database.openOrCreate("dbRussia2018");
+
+            db.execute("delete from favoris   where usr="+u.getId()+" and eq="+e.getIdEquipe()+";");
+            System.out.println("ok nofav");
+            Cursor c = db.executeQuery("Select * from favoris ;");
+            while (c.next()) {
+                Row r = c.getRow();
+                String a = r.getString(0);
+
+                String n = r.getString(1);
+                String pre = r.getString(2);
+
+               System.out.println("no more  : id user :" + n + "ideq :" + pre + "id :" + a);
+
+            }
+
+        } catch (IOException ex) {
+
+        }
+    }
 }
     //return true ;
 

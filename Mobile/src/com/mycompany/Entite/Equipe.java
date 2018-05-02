@@ -5,6 +5,7 @@
  */
 package com.mycompany.Entite;
 
+
 /**
  *
  * @author admin
@@ -133,4 +134,29 @@ public class Equipe {
         this.pays = pays;
     }
 
+   
+    
+ /*@Override
+    public int compareTo(Equipe o) {
+   return this.idEquipe -o.idEquipe;
+    }*/
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      
+        if (obj instanceof Equipe && obj != null) {
+            Equipe e = (Equipe) obj;
+            if (e.getIdEquipe() == this.getIdEquipe() )
+            return true;
+        }
+       
+        return false;
+    }
+    
 }
