@@ -57,6 +57,8 @@ public class afficherequipeGUI {
     // setLayout(new BorderLayout());
     Container cn;
     Cursor c;
+    Container c3;
+
     Form f;
     SpanLabel lb;
 
@@ -64,16 +66,13 @@ public class afficherequipeGUI {
         theme = UIManager.initFirstTheme("/theme");
 
         f = new Form();
-        //      lb = new SpanLabel("");
 
         ServiceEquipe se = new ServiceEquipe();
-        // lb.setText(se.getList2().toString());
         ArrayList<Equipe> list = se.getList2();
         ArrayList<Equipe> list2 = se.getList2();
 
-        Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Button chart = new Button("stat");
-        c3.add(chart);
+        //  c.add(chart);
         chart.addActionListener(new ActionListener() {
 
             @Override
@@ -83,10 +82,10 @@ public class afficherequipeGUI {
         });
 
         db = Database.openOrCreate("dbRussia2018");
-        Cursor c1 = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
+        Cursor cr = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
         ArrayList<Integer> EqL = new ArrayList();
-        while (c1.next()) {
-            Row r = c1.getRow();
+        while (cr.next()) {
+            Row r = cr.getRow();
             Equipe equipe = new Equipe();
             equipe.setIdEquipe(Integer.parseInt(r.getString(2)));
             // EqL.add(equipe);
@@ -96,89 +95,28 @@ public class afficherequipeGUI {
         for (Equipe e : list2) {
             list3.add(e.getIdEquipe());
         }
-        //      ArrayList<Equipe> EqNL = new ArrayList<>(Collection.subtract(list, EqL));
-        //new ArrayList<>(CollectionUtils.subtract(a, b))
-
         boolean tr = false;
-        // EqNL=list.removeAll(EqL);
-        //   EqNL=Collection
 
         list3.removeAll(EqL);
 
-        System.out.println("like");
-        System.out.println(EqL.size());
-        System.out.println("sans like");
-        System.out.println(list3.size());
+        /*   System.out.println("like");
+         System.out.println(EqL.size());
+         System.out.println("sans like");
+         System.out.println(list3.size());
+         System.out.println("all like");
+         System.out.println(list.size());*/
+        Container c = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
-        System.out.println("all like");
-        System.out.println(list.size());
-        for (int i : list3) {
-            for (Equipe e : list) {
+      for (int i : list3) {
+
+           for (Equipe e : list) {
+                c3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+
                 if (e.getIdEquipe() == i) {
-                    System.out.println("eq sans like = " + e);
-                    db = Database.openOrCreate("dbRussia2018");
-                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-                    System.err.println("drapea " + e.getDrapeau());
-                    img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-                    imgv1 = new ImageViewer(img1);
-                    //  c3.add(imgv1);
-                    Label nom = new Label();
-                    Label dr = new Label(img1);
-                    //c3.add(dr);
-                    nom.setText(e.getPays());
-                    c3.add(nom);
-                    Storage s = new Storage();
-
-                    s.clearStorage();
-                    fav = new Button(theme.getImage("emptylike.png"));
-                    // Label liked = new Label(theme.getImage("like.png"));
-                    // c3.add(liked);
-                    nofav = new Button(theme.getImage("like.png"));
-
-                    c3.add(fav);
-                    c3.add(nofav);
-                    nofav.setVisible(false);
-                    // c3.setVisible(false);
-                    fav.addActionListener(new ActionListener() {
-
-                        @Override
-                        public void actionPerformed(ActionEvent evt) {
-                            Dialog.show("Favoris", "A present l'equipe :" + e.getPays() + " Fait partie de vos coup de coeurs de la coupe du monde", "OK", null);
-
-// d.show(top, bottom, left, right),
-                            //     d.showPopupDialog(fav).;
-                            //    popupBody.
-                            //    d.showPopupDialog();
-                            se.fav(e, u);
-                            // se.fav(null, u);
-                            //   fav.setVisible(false);
-                            // c3.add(nofav);
-                            //  nofav.setVisible(true);
-
-                            try {
-                                afficherequipeGUI af = new afficherequipeGUI();
-                                af.getF().show();
-                            } catch (IOException ex) {
-                            }
-                        }
-                    });
-                    /*   nofav.addActionListener(new ActionListener() {
-
-                     @Override
-                     public void actionPerformed(ActionEvent evt) {
-                     // se.nofav(e, u);
-                     nofav.setVisible(false);
-                     fav.setVisible(true);
-                     }
-                     });*/
-                }
-
-            }
-        }
-        for (int i : EqL) {
-            for (Equipe e : list) {
-                if (e.getIdEquipe() == i) {
-
+                    
+                    Container c1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                    Container c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                    Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                     System.out.println("eq sans like = " + e);
                     db = Database.openOrCreate("dbRussia2018");
                     EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
@@ -187,49 +125,33 @@ public class afficherequipeGUI {
                     imgv1 = new ImageViewer(img1);
                     // c3.add(imgv1);
                     Label dr = new Label(img1);
-                    c3.add(dr);
-
                     Label nom = new Label();
+                    Label lb = new Label("hahah");
                     nom.setText(e.getPays());
-
-                    c3.add(nom);
+                    c1.add(dr);
+                    c1.add(c2);
+                    c2.add(nom);
+                    c3.add(c1);
+                   
+                    //  f.add(c1);
+                   // c.setLeadComponent(nom);
                     Storage s = new Storage();
 
                     s.clearStorage();
-                    //  fav = new Button(theme.getImage("emptylike.png"));
-                    // Label liked = new Label(theme.getImage("like.png"));
-                    // c3.add(liked);
-                    nofav = new Button(theme.getImage("like.png"));
+                    fav = new Button(theme.getImage("emptylike.png"));
 
-                    // c3.add(fav);
-                    c3.add(nofav);
-                    //   nofav.setVisible(false);
-                    // c3.setVisible(false);
-                  /*  nofav.addActionListener(new ActionListener() {
+                  //  nofav = new Button(theme.getImage("like.png"));
 
-                     @Override
-                     public void actionPerformed(ActionEvent evt) {
-                     se.fav(e, u);
-                     // se.fav(null, u);
-                     fav.setVisible(false);
-                     // c3.add(nofav);
-                     nofav.setVisible(true);
-                     try {
-                     afficherequipeGUI af=new  afficherequipeGUI();
-                     af.getF().show();
-                     } catch (IOException ex) {
-                     }
-                     }
-                     });*/
-                    nofav.addActionListener(new ActionListener() {
+                   c2.add(fav);
+                    fav.addActionListener(new ActionListener() {
 
                         @Override
                         public void actionPerformed(ActionEvent evt) {
-                            Dialog.show("Favoris", "A present l'equipe : " + e.getPays() + " a été retiré de votre liste de favoris !", "OK", null);
+                            Dialog.show("Favoris", "A present l'equipe : " + e.getPays()
+                                    + " Fait partie de vos coup de coeurs de la coupe du monde", "OK", null);
+                            System.out.println("here fav");
+                            se.fav(e, u);
 
-                            se.nofav(e, u);
-                            //  nofav.setVisible(false);
-                            // fav.setVisible(true);
                             try {
                                 afficherequipeGUI af = new afficherequipeGUI();
                                 af.getF().show();
@@ -237,165 +159,69 @@ public class afficherequipeGUI {
                             }
                         }
                     });
+                                         f.add(c3);
+
+
+                }
+
+            }
+        }
+        for (int i : EqL) {
+
+            for (Equipe e : list) {
+                c3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                if (e.getIdEquipe() == i) {
+
+                    Container c1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                    Container c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                    Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+                    System.out.println("eq sans like = " + e);
+                    db = Database.openOrCreate("dbRussia2018");
+                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    System.err.println("drapea " + e.getDrapeau());
+                    img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+                    imgv1 = new ImageViewer(img1);
+                    // c3.add(imgv1);
+                    Label dr = new Label(img1);
+                    Label nom = new Label();
+                    Label lb = new Label("hahah");
+                    nom.setText(e.getPays());
+                    c1.add(dr);
+                    c1.add(c2);
+                    c2.add(nom);
+                    c3.add(c1);
+                    //  f.add(c1);
+                  //  c1.setLeadComponent(nom);
+
+                    Storage s = new Storage();
+
+                    s.clearStorage();
+
+                    nofav = new Button(theme.getImage("like.png"));
+
+                    c2.add(nofav);
+
+                    nofav.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent evt) {
+                            Dialog.show("Favoris", "A present l'equipe : " + e.getPays() + " a été retiré de votre liste de favoris !", "OK", null);
+
+                            se.nofav(e, u);
+                                                        System.out.println("here no fav");
+
+                            try {
+                                afficherequipeGUI af = new afficherequipeGUI();
+                                af.getF().show();
+                            } catch (IOException ex) {
+                            }
+                        }
+                    });
+                                        f.add(c3);
 
                 }
             }
         }
-
-
-        /*     if (EqL.size() == 0) {
-
-         for (Equipe e : list) {
-         EqNL.add(e);
-         }
-         } else {
-
-         for (Equipe e : list) {
-         int i=0;
-
-         System.out.println("trouve1   " + tr);
-
-         // for (Equipe e2 : EqL)
-         //   tr=false;
-                
-         while(i<EqL.size() || ( tr== true))
-         {
-         Equipe e2=EqL.get(i);
-         // tr =false;
-         System.out.println("trouve2   " + tr);
-         System.out.print("eq1 =   " + e.getIdEquipe());
-         System.out.println("eq2 =   " + e2.getIdEquipe());
-
-         if (e.getIdEquipe() == e2.getIdEquipe()) {
-
-         tr = true;
-         System.out.println("trouve3   " + tr);
-
-         }
-         // else 
-         //    tr = false;
-         i++;
-         }
-         if (tr == false) {
-         System.out.println("trouve if false   " + tr);
-
-         EqNL.add(e);
-         // tr=true;
-         }
-         tr= false;
-         // tr = true;
-         }
-         // tr = false;
-
-         }
-         /*   for (Equipe e : list) {
-         //     while(list.|| tr==true)
-         {
-         if (!EqL.isEmpty()) {
-         for (Equipe e2 : EqL) {
-         if (e.getIdEquipe() == e2.getIdEquipe()) {
-         tr = true;
-         }
-         }
-         if (tr == false) {
-         EqNL.add(e);
-         }
-         } else {
-         EqNL.add(e);
-         }
-
-         }
-         }*/
-        /*    if (c1.next()) {
-                
-         Row r = c1.getRow();
-         Equipe eq = new Equipe();
-         eq.setIdEquipe(Integer.parseInt(r.getString(1)));
-         if (e.getIdEquipe() == e.getIdEquipe()) {
-         System.err.println("bb   " + c1.getPosition());
-                    
-         db = Database.openOrCreate("dbRussia2018");
-         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-         System.err.println("drapea " + e.getDrapeau());
-         img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-         imgv1 = new ImageViewer(img1);
-         c3.add(imgv1);
-         Label nom = new Label();
-         nom.setText(e.getPays());
-         c3.add(nom);
-         Storage s = new Storage();
-                    
-         s.clearStorage();
-         fav = new Button("favoris");
-         Label liked = new Label(theme.getImage("like.png"));
-         c3.add(liked);
-         //   c3.add(fav);
-         fav.addActionListener(new ActionListener() {
-                        
-         @Override
-         public void actionPerformed(ActionEvent evt) {
-         se.fav(e, u);
-
-         }
-         });
-         }else
-         {  EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-         System.err.println("drapea " + e.getDrapeau());
-         img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-         imgv1 = new ImageViewer(img1);
-         c3.add(imgv1);
-         Label nom = new Label();
-         nom.setText(e.getPays());
-         c3.add(nom);
-         Storage s = new Storage();
-                
-         s.clearStorage();
-         fav = new Button(theme.getImage("emptylike.png"));
-         // fav.set
-         c3.add(fav);
-         fav.addActionListener(new ActionListener() {
-                    
-         @Override
-         public void actionPerformed(ActionEvent evt) {
-
-         fav.setIcon(theme.getImage("like.png"));
-         se.fav(e, u);
-         //   System.out.println("id eq "+fu.getId());
-
-         }
-         });
-         }
-         }*/
-        /*  else {
-         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
-         System.err.println("drapea " + e.getDrapeau());
-         img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
-         imgv1 = new ImageViewer(img1);
-         c3.add(imgv1);
-         Label nom = new Label();
-         nom.setText(e.getPays());
-         c3.add(nom);
-         Storage s = new Storage();
-                
-         s.clearStorage();
-         fav = new Button(theme.getImage("emptylike.png"));
-         // fav.set
-         c3.add(fav);
-         fav.addActionListener(new ActionListener() {
-                    
-         @Override
-         public void actionPerformed(ActionEvent evt) {
-
-         fav.setIcon(theme.getImage("like.png"));
-         se.fav(e, u);
-         //   System.out.println("id eq "+fu.getId());
-
-         }
-         });
-                
-         }*/
-        //   }
-        f.add(c3);
 
     }
 
