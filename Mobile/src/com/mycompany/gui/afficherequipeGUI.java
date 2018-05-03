@@ -32,6 +32,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.ui.util.UIBuilder;
 import com.mycompagny.Service.ServiceEquipe;
+import com.mycompagny.Service.ServiceJoueur;
 import com.mycompany.Entite.Equipe;
 import com.mycompany.Entite.Fos_User;
 import java.io.*;
@@ -61,8 +62,10 @@ public class afficherequipeGUI {
 
     Form f;
     SpanLabel lb;
-
+    ServiceJoueur sj =new ServiceJoueur();
     public afficherequipeGUI() throws IOException {
+        se.getChar();
+        sj.getList2(63);
         theme = UIManager.initFirstTheme("/theme");
 
         f = new Form();
@@ -70,9 +73,10 @@ public class afficherequipeGUI {
         ServiceEquipe se = new ServiceEquipe();
         ArrayList<Equipe> list = se.getList2();
         ArrayList<Equipe> list2 = se.getList2();
-
+            cn = new Container();
         Button chart = new Button("stat");
-        //  c.add(chart);
+         cn.add(chart);
+         f.add(cn);
         chart.addActionListener(new ActionListener() {
 
             @Override
@@ -222,6 +226,7 @@ public class afficherequipeGUI {
                 }
             }
         }
+      
 
     }
 

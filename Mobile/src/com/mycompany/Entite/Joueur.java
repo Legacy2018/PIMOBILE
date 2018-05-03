@@ -108,14 +108,7 @@ public class Joueur implements Comparable<Joueur>{
         this.idJoueur = id_joueur;
     }
 
-    public String getNom_joueur() {
-        return nomJoueur;
-    }
-
-    public void setNom_joueur(String nom_joueur) {
-        this.nomJoueur = nom_joueur;
-    }
-
+   
     public String getNationalite() {
         return nationalite;
     }

@@ -29,6 +29,7 @@ import com.mycompany.Entite.Joueur;
 import java.io.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
@@ -37,10 +38,10 @@ import java.util.List;
  * @author Emel
  */
 public class ServiceEquipe {
-
+    
     public void ajouterEquipe(Equipe eq) {
         ConnectionRequest con = new ConnectionRequest();
-
+        
         String Url = "http://localhost/PiWeb1/web/app_dev.php/api/addEq?"
                 + "pays=" + eq.getPays()
                 + "&etat=" + eq.getEtat()
@@ -48,34 +49,29 @@ public class ServiceEquipe {
                 + "&phase=" + eq.getPhase()
                 + "&point=" + eq.getPoint()
                 + "&selecteur=" + eq.getSelecteur();
-
+        
         con.setUrl(Url);
-
+        
         System.out.println("tt");
-
+        
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
             System.out.println(str);
-//            if (str.trim().equalsIgnoreCase("OK")) {
-//                f2.setTitle(tlogin.getText());
-//             f2.show();
-//            }
-//            Dialog.show("error", "login ou pwd invalid", "ok", null);
-//            else{
-//            }
+            
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
-
+    
     ArrayList<Equipe> listEquipe = new ArrayList<>();
-
+    Map<String, Integer> listechart = new HashMap<>();
+    
     public ArrayList<Equipe> getList2() {
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/showall");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-
+                
                 ServiceEquipe ser = new ServiceEquipe();
                 listEquipe = ser.getList(new String(con.getResponseData()));
                 System.out.println("lise        !!" + listEquipe);
@@ -84,24 +80,79 @@ public class ServiceEquipe {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listEquipe;
     }
-
+    String pourcentage;
+    Map<String, Integer> stat;
+    
+    public Map<String, Integer> getChar() {
+        // String  pourcentage = null;
+        ConnectionRequest con = new ConnectionRequest();
+        stat= new HashMap<>();
+        con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/chartEq/63");
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                
+                ServiceEquipe ser = new ServiceEquipe();
+                //     listechart = ser.getChart(new String(con.getResponseData()));
+                try {
+                    String pourcentage = new String(con.getResponseData(), "utf-8");
+                    System.out.println("pour !!" + pourcentage);
+                    int ind = pourcentage.indexOf("totr");
+                    int ind1 = pourcentage.indexOf(",");
+                    
+                    String id = pourcentage.toString().substring(ind + 6, ind1);
+                    System.out.println("tot r !" + id);
+                  stat.put("totr",Integer.parseInt(id));
+                    //
+                    int ind2 = pourcentage.indexOf("totj");
+                    int ind21 = pourcentage.indexOf(",\"r");
+                    
+                    String id2 = pourcentage.toString().substring(ind2+6, ind21);
+                    System.out.println("tot j !" + id2);
+                    stat.put("totj",Integer.parseInt(id2));
+                    //
+                     int ind3 = pourcentage.indexOf("\"rouge\":");
+                    int ind31 = pourcentage.indexOf(",\"j");
+                    
+                    String id3 = pourcentage.toString().substring(ind3+8, ind31);
+                    System.out.println("rouge !" + id3);
+                    stat.put("rouge",Integer.parseInt(id3));
+                    //
+                     int ind4 = pourcentage.indexOf("\"jaune\":");
+                    int ind41 = pourcentage.indexOf("}");
+                    
+                    String id4 = pourcentage.toString().substring(ind4+8, ind41);
+                    System.out.println("jaune !" + id4);
+                    stat.put("jaune",Integer.parseInt(id4));
+                    //
+                    
+                } catch (UnsupportedEncodingException ex) {
+                }
+                
+            }
+        });
+        
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return stat;
+    }
+    
     public ArrayList<Equipe> getList(String json) {
-
+        
         ArrayList<Equipe> listEquipe = new ArrayList<>();
-
+        
         try {
             System.out.println(json);
             JSONParser j = new JSONParser();
-
+            
             Map<String, Object> equipe = j.parseJSON(new CharArrayReader(json.toCharArray()));
             System.out.println(equipe);
-
+            
             List<Map<String, Object>> list = (List<Map<String, Object>>) equipe.get("root");
-
+            
             for (Map<String, Object> obj : list) {
                 System.out.println("lise        !!");
                 Equipe e = new Equipe();
-       //         e.setIdEquipe(Integer.parseInt(obj.get("idEquipe").toString().trim()));
+                //         e.setIdEquipe(Integer.parseInt(obj.get("idEquipe").toString().trim()));
                 //  e.setIdEquipe((int) obj.get("idEquipe"));
 
                 int ind = obj.get("idEquipe").toString().indexOf(".");
@@ -115,15 +166,48 @@ public class ServiceEquipe {
                 e.setDrapeau((String) obj.get("liendrapeau"));
                 System.out.println(e);
                 listEquipe.add(e);
-
+                
             }
-
+            
         } catch (IOException ex) {
         }
         System.out.println(listEquipe);
         return listEquipe;
     }
+    
+    public Map<String, Integer> getChart(String json) {
+        
+        ArrayList<Equipe> listEquipe = new ArrayList<>();
+        Map<String, Integer> liste = new HashMap<String, Integer>();
+        try {
+            System.out.println(json);
+            JSONParser j = new JSONParser();
+            
+            Map<String, Object> ch = j.parseJSON(new CharArrayReader(json.toCharArray()));
+            System.out.println("aaa" + ch);
+            List<Map<String, Object>> list = (List<Map<String, Object>>) ch.get("root");
 
+            //  for (Map<String, Object> obj : list) {
+            System.out.println("lise        !!");
+            
+            int totr = (int) list.get(0).get("totr");
+            int totj = (int) list.get(0).get("totj");
+            
+            int ro = (int) list.get(0).get("rouge");
+            int jo = (int) list.get(0).get("jaune");
+            
+            liste.put("totr", totr);
+            liste.put("totj", totj);
+            liste.put("rouge", ro);
+            liste.put("jaune", jo);
+
+            // }
+        } catch (IOException ex) {
+        }
+        System.out.println(listEquipe);
+        return liste;
+    }
+    
     private DefaultRenderer buildCategoryRenderer(int[] colors) {
         DefaultRenderer renderer = new DefaultRenderer();
         renderer.setLabelsTextSize(15);
@@ -136,20 +220,20 @@ public class ServiceEquipe {
         }
         return renderer;
     }
-
+    
     protected CategorySeries buildCategoryDataset(String title, double[] values) {
         CategorySeries series = new CategorySeries(title);
         int k = 0;
         for (double value : values) {
             series.add("Project " + ++k, value);
         }
-
+        
         return series;
     }
-
+    
     public Form createPieChartForm( //List<Joueur> l
             ) {
-    // Generate the values
+        // Generate the values
 
         /*int totr = 0 ;
          int totj = 0;
@@ -158,7 +242,13 @@ public class ServiceEquipe {
          totr = j.getCartr()+totr;
          totj=j.getCartj()+totj;
          }*/
-        double[] values = new double[]{12, 14, 11, 10, 19};
+        Map<String ,Integer> st= new HashMap<>();
+        st=getChar();
+        int totr=st.get("totr");
+        int totj=st.get("totj");
+        int  rouge=st.get("rouge");
+        int jaune=st.get("jaune");
+        double[] values = new double[]{totr, totj, rouge, jaune};
 
         // Set up the renderer
         int[] colors = new int[]{ColorUtil.BLUE, ColorUtil.GREEN, ColorUtil.MAGENTA, ColorUtil.YELLOW, ColorUtil.CYAN};
@@ -175,67 +265,68 @@ public class ServiceEquipe {
         r.setHighlighted(true);
 
         // Create the chart ... pass the values and renderer to the chart object.
-        PieChart chart = new PieChart(buildCategoryDataset("Project budget", values), renderer);
+        PieChart chart = new PieChart(buildCategoryDataset("C   arton rouge et jaune", values), renderer);
 
         // Wrap the chart in a Component so we can add it to a form
         ChartComponent c = new ChartComponent(chart);
 
         // Create a form and show it.
-        Form f = new Form("Budget", new BorderLayout());
+        Form f = new Form("Carton", new BorderLayout());
         f.add(BorderLayout.CENTER, c);
-
+        
         return f;
-
+        
     }
-
+    
     public void fav(Equipe e, Fos_User u) {
         Database db;
         //   System.out.println("id eq "+fu.getId());
 
         try {
             db = Database.openOrCreate("dbRussia2018");
-
+            
             db.execute("insert into  favoris   (id ,usr , eq ) values (" + u.getId() + "," + u.getId() + "," + e.getIdEquipe() + ");");
             System.out.println("ok fav");
             Cursor c = db.executeQuery("Select * from favoris ;");
             while (c.next()) {
                 Row r = c.getRow();
                 String a = r.getString(0);
-
+                
                 String n = r.getString(1);
                 String pre = r.getString(2);
-
+                
                 System.out.println("id user :" + n + "ideq :" + pre + "id :" + a);
-
+                
             }
-
+            
         } catch (IOException ex) {
-
+            
         }
     }
-     public void nofav(Equipe e, Fos_User u) {
+    
+    public void nofav(Equipe e, Fos_User u) {
         Database db;
         //   System.out.println("id eq "+fu.getId());
 
         try {
             db = Database.openOrCreate("dbRussia2018");
-
-            db.execute("delete from favoris   where usr="+u.getId()+" and eq="+e.getIdEquipe()+";");
+            
+            db.execute("delete from favoris   where usr=" + u.getId() + " and eq=" + e.getIdEquipe() + ";");
             System.out.println("ok nofav");
             Cursor c = db.executeQuery("Select * from favoris ;");
             while (c.next()) {
                 Row r = c.getRow();
                 String a = r.getString(0);
-
+                
                 String n = r.getString(1);
                 String pre = r.getString(2);
-
-               System.out.println("no more  : id user :" + n + "ideq :" + pre + "id :" + a);
-
+                
+                System.out.println("no more  : id user :" + n + "ideq :" + pre + "id :" + a);
+                
             }
-
+            
         } catch (IOException ex) {
-
+            
         }
     }
 }

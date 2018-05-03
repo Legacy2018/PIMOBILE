@@ -45,15 +45,21 @@ public class AjouterEquipe {
         f = new Form();
         c = new Container();
         int etat ;
-        TextField pays,selec,point = new TextField();
+        TextField pays = new TextField();
+        TextField selec = new TextField();
+        TextField point = new TextField();;
         ComboBox<String> cb= new ComboBox(
-                "A","B","C"
+                "A","B","C","D","E","F","G","H"
         ) ;
+        c.add(pays);
+        
         c.add(cb);
           OnOffSwitch genre= new OnOffSwitch();
         genre.setOff("IN");
         genre.setOn("OUT");
            c.add(genre);
+           c.add(selec);
+                   c.add(point);
         if(genre.isValue())
             etat=1;
         else 
@@ -63,7 +69,8 @@ public class AjouterEquipe {
      
         aj.addActionListener((e) -> {
             ServiceEquipe ser = new ServiceEquipe();
-            Equipe eq = new Equipe("pays", 1, "phase", "K", "selecteur", 55, "drapeau");
+            Equipe eq = new Equipe(pays.getText(), etat, "phase", cb.getSelectedItem(), selec.toString(), Integer.parseInt(point.toString())
+                    , null);
             ser.ajouterEquipe(eq);
         });
         c.add(aj);
