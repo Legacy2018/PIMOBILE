@@ -10,8 +10,6 @@ import com.codename1.components.SpanLabel;
 import com.codename1.db.Cursor;
 import com.codename1.db.Database;
 import com.codename1.db.Row;
-import com.codename1.facebook.User;
-import com.codename1.io.FileSystemStorage;
 import com.codename1.io.Storage;
 import com.codename1.io.Util;
 import com.codename1.ui.Button;

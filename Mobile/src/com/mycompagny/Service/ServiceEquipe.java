@@ -62,6 +62,46 @@ public class ServiceEquipe {
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
     
+     public void UpdateEquipe(Equipe eq) {
+        ConnectionRequest con = new ConnectionRequest();
+         String Url = "http://localhost/PiWeb1/web/app_dev.php/api/EdittEq/"+eq.getIdEquipe()
+                + "?pays=" + eq.getPays()
+                + "&etat=" + eq.getEtat()
+                + "&groupe=" + eq.getGroupe()
+                + "&phase=" + eq.getPhase()
+                + "&point=" + eq.getPoint()
+                + "&selecteur=" + eq.getSelecteur();
+        
+        con.setUrl(Url);
+        
+        System.out.println("tt");
+        
+       /* con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });*/
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+     public void DeleteEquipe(Equipe eq) {
+        ConnectionRequest con = new ConnectionRequest();
+        
+        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/DeleteEq/"
+                + eq.getIdEquipe();
+        
+        con.setUrl(Url);
+        
+        System.out.println("equipe id "+eq.getIdEquipe());
+        
+       /* con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });*/
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
     ArrayList<Equipe> listEquipe = new ArrayList<>();
     Map<String, Integer> listechart = new HashMap<>();
     
@@ -157,12 +197,16 @@ public class ServiceEquipe {
 
                 int ind = obj.get("idEquipe").toString().indexOf(".");
                 String id = obj.get("idEquipe").toString().substring(0, ind);
+                 int ind1 = obj.get("etat").toString().indexOf("etat");
+                String et = obj.get("etat").toString().substring(ind1+1, ind1+2);
+                System.err.println("etat    :"+et);
                 System.out.println(" id eqyupe  :" + id);
                 e.setIdEquipe(Integer.valueOf(id));
                 e.setPays(obj.get("pays").toString());
                 e.setPhase(obj.get("phase").toString());
-                //       e.setEtat((int) obj.get("etat"));
-                e.setPhase(obj.get("phase").toString());
+                e.setEtat(Integer.valueOf(et));
+                e.setGroupe(obj.get("groupe").toString());
+                e.setSelecteur(obj.get("selecteur").toString());
                 e.setDrapeau((String) obj.get("liendrapeau"));
                 System.out.println(e);
                 listEquipe.add(e);

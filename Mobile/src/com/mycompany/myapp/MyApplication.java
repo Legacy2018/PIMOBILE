@@ -63,18 +63,25 @@ boolean created =false;
             current.show();
             return;
         }
-         afficherequipeGUI f;
+        /* afficherequipeGUI f;
         try {
             f = new afficherequipeGUI();
                     f.getF().show();
 
         } catch (IOException ex) {
-        }
+        }*/
          
+<<<<<<< HEAD
        */
         Login l=new Login();
     // HomeAdminForm Admin = new HomeAdminForm();
     //  Admin.getF().show();
+=======
+       
+        HomeAdminForm Admin = new HomeAdminForm();
+       Admin.getF().show();
+    //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
+>>>>>>> e476704933d3781b87718f911ca2f93c57e4110b
     //     HomeForm h = new HomeForm();
     //   h.getF().show();
     }

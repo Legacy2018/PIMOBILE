@@ -40,6 +40,7 @@ public class AjouterEquipe {
     Form f;
     SpanLabel lb;
     Container c;
+    
     public AjouterEquipe() {
 
         f = new Form();
