@@ -31,12 +31,12 @@ public class TicketService {
         ArrayList<Ticket> listTicket = new ArrayList<>();
 
         try {
-            System.out.println(json);
+            //System.out.println(json);
             JSONParser j = new JSONParser();
 
             Map<String, Object> tickets = j.parseJSON(new CharArrayReader(json.toCharArray()));
             Map<String, Object> match = j.parseJSON(new CharArrayReader(json.toCharArray()));
-            System.out.println(tickets);
+           // System.out.println("aaaaaaaa"+tickets);
 
             List<Map<String, Object>> list = (List<Map<String, Object>>) tickets.get("root");
 
@@ -66,23 +66,26 @@ public class TicketService {
                 int fin = obj.get("idmatch").toString().indexOf(",");
                 String tmp = obj.get("idmatch").toString().substring(debut + 1, fin );
                 match tmpMatch = new match((int) Float.parseFloat(tmp));
-                int debut1 = obj.get("idmatch").toString().indexOf("=", 42);
+            /*  int debut1 = obj.get("idmatch").toString().indexOf("=", 42);
                 int fin1 = obj.get("idmatch").toString().indexOf(",", 42);
                 String tmp1 = obj.get("idmatch").toString().substring(debut1 + 1, (fin1) );
                 int debut2 = obj.get("idmatch").toString().indexOf("=", 66);
                 int fin2 = obj.get("idmatch").toString().indexOf(",", 66);
                 String tmp2 = obj.get("idmatch").toString().substring(debut2 + 1, (fin2) );
                 tmpMatch.setEquipe1(tmp1);
-                tmpMatch.setEquipe2(tmp2);
+                tmpMatch.setEquipe2(tmp2);*/
+                                float nbr = Float.parseFloat(obj.get("nbticket").toString());
+    float id = Float.parseFloat(obj.get("idTicket").toString());
+                  // match mt=new match(obj.get("idmatch").toString());
                 // obj.get("date").toString();
-                listTicket.add(new Ticket(obj.get("categories").toString(), Float.parseFloat(obj.get("prix").toString()), tmpMatch));
+                listTicket.add(new Ticket((int)id,(int) nbr,obj.get("categories").toString(), Float.parseFloat(obj.get("prix").toString()),tmpMatch.getIdMatch() ,Float.parseFloat(obj.get("moyenne").toString())));
 
             }
 
         } catch (IOException ex) {
         }
-        System.out.println("-_______________________________-");
-        System.out.println(listTicket);
+       // System.out.println("-_______________________________-");
+       // System.out.println(listTicket);
         return listTicket;
 
     }
@@ -107,11 +110,11 @@ public class TicketService {
         ArrayList<match> listmatch = new ArrayList<>();
 
         try {
-            System.out.println(json);
+           // System.out.println(json);
             JSONParser j = new JSONParser();
 
             Map<String, Object> matchs = j.parseJSON(new CharArrayReader(json.toCharArray()));
-            System.out.println(matchs);
+           // System.out.println(matchs);
 
             List<Map<String, Object>> list = (List<Map<String, Object>>) matchs.get("root");
 
@@ -139,15 +142,17 @@ public class TicketService {
                 //System.out.println(e);
                 // float nbr = Float.parseFloat(obj.get("nbticket").toString());
                 // System.out.println("foufou"+(obj.get("idmatch").toString()));
-                System.out.println("bibi" + obj.get("idMatch").toString());
-                System.out.println("mimou" + obj);
+              //  System.out.println("bibi" + obj.get("idMatch").toString());
+              //  System.out.println("mimou" + obj);
+               
+      float id = Float.parseFloat(obj.get("idMatch").toString());
 
-                listmatch.add(new match(obj.get("idMatch").toString(), obj.get("date").toString()));
+                listmatch.add(new match((int)id, obj.get("nomEquipe1").toString(),obj.get("nomEquipe2").toString()));
             }
 
         } catch (IOException ex) {
         }
-        System.out.println(listmatch);
+      //  System.out.println(listmatch);
         return listmatch;
 
     }
@@ -166,23 +171,71 @@ public class TicketService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listTaskss;
-    }/*
-     ArrayList<Ticket> listTasksss = new ArrayList<>();
-     public ArrayList<Ticket> getList23(){       
+    }
+    
+    
+    
+    
+    
+      public void ajoutTask(Ticket ta) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/afficher/");  
-        con.addResponseListener(new ActionListener<NetworkEvent>() {
-            @Override
-            public void actionPerformed(NetworkEvent evt) {
-                TicketService ser = new TicketService();
-                
-                listTasksss = ser.getListTicket(new String(con.getResponseData()));
-               
-            }
+        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/ticket/new" + ta.getPrix() + "/" + ta.getCategories();
+        con.setUrl(Url);
+
+       // System.out.println("tt");
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+        //    System.out.println(str);
+//            if (str.trim().equalsIgnoreCase("OK")) {
+//                f2.setTitle(tlogin.getText());
+//             f2.show();
+//            }
+//            else{
+//            Dialog.show("error", "login ou pwd invalid", "ok", null);
+//            }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
-        return listTasksss;
-    }*/
+    }
 
+ public void reserverticket(Ticket ta) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/reserverTicket?idTicket="+ta.getIdTicket()+"&nbticket="+ta.getNbrTicket();
+        con.setUrl(Url);
+
+    
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+//            if (str.trim().equalsIgnoreCase("OK")) {
+//                f2.setTitle(tlogin.getText());
+//             f2.show();
+//            }
+//            else{
+//            Dialog.show("error", "login ou pwd invalid", "ok", null);
+//            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+
+ public void moyenneticket(Ticket ta) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/moyenneTicket?idTicket="+ta.getIdTicket()+"&moyenne="+ta.getMoyenne();
+        con.setUrl(Url);
+
+    
+
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+//            if (str.trim().equalsIgnoreCase("OK")) {
+//                f2.setTitle(tlogin.getText());
+//             f2.show();
+//            }
+//            else{
+//            Dialog.show("error", "login ou pwd invalid", "ok", null);
+//            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
 
 }

@@ -12,11 +12,33 @@ public class Ticket {
     private String categories;
     private Float prix;
     private Fos_User idUser;
-    private match idMatch;
+    private int idMatch;
     private Date heurAjout;
+    private float moyenne;
 
     public Date getHeurAjout() {
         return heurAjout;
+    }
+
+    public Ticket(int idTicket, int nbrTicket) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+    }
+
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+    }
+    
+
+    public float getMoyenne() {
+        return moyenne;
+    }
+
+    public void setMoyenne(float moyenne) {
+        this.moyenne = moyenne;
     }
     
 
@@ -28,22 +50,13 @@ public class Ticket {
         this.idTicket = idTicket;
     }
 
-    public Ticket(String categories, Float prix, match idMatch) {
-        this.categories = categories;
-        this.prix = prix;
-        this.idMatch = idMatch;
-    }
+ 
 
-    public Ticket(int nbrTicket, String categories, Float prix, match idMatch) {
-        this.nbrTicket = nbrTicket;
-        this.categories = categories;
-        this.prix = prix;
-        this.idMatch = idMatch;
-    }
+ 
 
    
 
-    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, match idMatch, Date heurAjout) {
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, int idMatch, Date heurAjout) {
         this.idTicket = idTicket;
         this.nbrTicket = nbrTicket;
         this.categories = categories;
@@ -53,7 +66,7 @@ public class Ticket {
         this.heurAjout = heurAjout;
     }
 
-    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, match idMatch) {
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, int idMatch) {
         this.idTicket = idTicket;
         this.nbrTicket = nbrTicket;
         this.categories = categories;
@@ -65,17 +78,17 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int nbrTicket, String categories, Float prix, Fos_User idUser, match idMatch) {
-        this.nbrTicket = nbrTicket;
-        this.categories = categories;
-        this.prix = prix;
-        this.idUser = idUser;
-        this.idMatch = idMatch;
-    }
 
     public Ticket(String categories, Float prix) {
         this.categories = categories;
         this.prix = prix;
+    }
+
+    public Ticket(int idTicket, int nbrTicket, Float prix, int idMatch) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.prix = prix;
+        this.idMatch = idMatch;
     }
     
 
@@ -119,20 +132,34 @@ public class Ticket {
         this.idUser = idUser;
     }
 
+    public Ticket(int nbrTicket, String categories, Float prix, int idMatch, float moyenne) {
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+        this.idMatch = idMatch;
+        this.moyenne = moyenne;
+    }
+
+   
+
+
+
+
   
-    public match getIdMatch() {
+    public int getIdMatch() {
         return idMatch;
     }
 
-    public void setIdMatch(match idMatch) {
+    public void setIdMatch(int idMatch) {
         this.idMatch = idMatch;
     }
 
     @Override
     public String toString() {
-        return "Ticket{" + "idTicket=" + idTicket + ", nbrTicket=" + nbrTicket + ", categories=" + categories + ", prix=" + prix + ", idUser=" + idUser + ", idMatch=" + idMatch + ", heurAjout=" + heurAjout + '}';
+        return "Ticket{" + "idTicket=" + idTicket + ", nbrTicket=" + nbrTicket + ", categories=" + categories + ", prix=" + prix + ", idUser=" + idUser + ", idMatch=" + idMatch + ", heurAjout=" + heurAjout + ", moyenne=" + moyenne + '}';
     }
 
+  
    
     
 
@@ -160,14 +187,37 @@ public class Ticket {
         }
         return true;
     }
-       public String AffIdMatch() {
+      /* public String AffIdMatch() {
         return idMatch.getDateMatch()+"";
-    }
+    }*/
 
     public Ticket(int nbrTicket, String categories, Float prix) {
         this.nbrTicket = nbrTicket;
         this.categories = categories;
         this.prix = prix;
+    }
+
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, int idMatch, float moyenne) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+        this.idMatch = idMatch;
+        this.moyenne = moyenne;
+    }
+
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, int idMatch) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+        this.idMatch = idMatch;
+    }
+
+    public Ticket(int idTicket, int nbrTicket, float moyenne) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.moyenne = moyenne;
     }
 
     
