@@ -10,11 +10,13 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
+import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.gui.afficherequipeGUI;
 import com.mycompany.Entite.DataBaseMobile;
+import com.mycompany.Entite.Utilisateur;
 import com.mycompany.gui.HomeForm;
 import com.mycompany.gui.HomeAdminForm;
-
+import com.mycompany.gui.Login;
 import java.io.IOException;
 
 /**
@@ -42,6 +44,7 @@ boolean created =false;
             //throws IOException 
     {
         
+        
            created =Database.exists("dbRussia2018");
         try {
             db= Database.openOrCreate("dbRussia2018");
@@ -56,7 +59,7 @@ boolean created =false;
          
         }
         
-        if(current != null){
+        /*if(current != null){
             current.show();
             return;
         }
@@ -68,12 +71,12 @@ boolean created =false;
         } catch (IOException ex) {
         }
          
-       
-       // HomeAdminForm Admin = new HomeAdminForm();
-      //  Admin.getF().show();
-    //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
+       */
+        Login l=new Login();
+    // HomeAdminForm Admin = new HomeAdminForm();
+    //  Admin.getF().show();
     //     HomeForm h = new HomeForm();
-     //   h.getF().show();
+    //   h.getF().show();
     }
 
     public void stop() {

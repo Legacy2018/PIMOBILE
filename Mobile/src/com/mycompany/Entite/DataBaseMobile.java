@@ -16,7 +16,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @author Katouchi
  */
-public class DataBaseMobile extends Thread {
+public class DataBaseMobile {
     
     private String DataBaseName;
     private String UserName;
@@ -97,7 +97,7 @@ public class DataBaseMobile extends Thread {
         return true;
     }
     
-    public String Executeselect(String table, String where) {
+    public static String Executeselect(String table, String where) {
         
         
         Query = "Select * from " + table + " ";
@@ -105,20 +105,10 @@ public class DataBaseMobile extends Thread {
             Query = Query + where;
         }
         Query = Query + " ;";
-        
-       
-        this.start();
-        return arrayjson;
-    }
-
-    @Override
-    public void run() {
         ConnectionRequest cr = new ConnectionRequest("http://localhost/mobile/PiServices/Select.php");
         cr.setPost(false);
         cr.addArgument("Query", Query);
-        
-        //NetworkManager.getInstance().addToQueueAndWait(cr);
-        
+        cr.setPriority(ConnectionRequest.PRIORITY_CRITICAL);
         cr.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -126,14 +116,19 @@ public class DataBaseMobile extends Thread {
                 try {
                     message = new String(cr.getResponseData(), "utf-8");
                     arrayjson = message;
-                    System.out.println("Hetha Dekhel el fn "+arrayjson);
+                    //System.out.println("Hetha Dekhel el fn "+arrayjson);
                 } catch (UnsupportedEncodingException ex) {
                     
                 }
             }
         });
-        NetworkManager.getInstance().addToQueue(cr);
+        NetworkManager.getInstance().addToQueueAndWait(cr);
+       
+       
+        return arrayjson;
     }
+
+    
     
     
 }
