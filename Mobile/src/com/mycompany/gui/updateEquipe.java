@@ -5,53 +5,40 @@
  */
 package com.mycompany.gui;
 
-import com.codename1.components.ImageViewer;
 import com.codename1.components.OnOffSwitch;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Container;
-import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
-import com.codename1.ui.Image;
-import com.codename1.ui.Label;
-import com.codename1.ui.List;
 import com.codename1.ui.TextField;
-import com.codename1.ui.URLImage;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.plaf.UIManager;
-import com.codename1.ui.util.Resources;
 import com.mycompagny.Service.ServiceEquipe;
 import com.mycompany.Entite.Equipe;
-import java.util.ArrayList;
 
 /**
  *
  * @author Emel
  */
-public class AjouterEquipe {
-  
-
-    // setLayout(new BorderLayout());
-    Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+public class updateEquipe {
+      Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
     Form f;
     SpanLabel lb;
     Container c;
     
-    public AjouterEquipe() {
+    public updateEquipe(Equipe equ) {
 
         f = new Form();
         c = new Container();
         int etat ;
-        TextField pays = new TextField();
-        TextField selec = new TextField();
-        TextField point = new TextField();;
+        TextField pays = new TextField(equ.getPays());
+        TextField selec = new TextField(equ.getSelecteur());
+        TextField point = new TextField(equ.getPoint());;
         ComboBox<String> cb= new ComboBox(
                 "A","B","C","D","E","F","G","H"
         ) ;
+        cb.setSelectedItem(equ.getGroupe());
         c.add(pays);
         
         c.add(cb);
@@ -61,18 +48,31 @@ public class AjouterEquipe {
            c.add(genre);
            c.add(selec);
                    c.add(point);
-        if(genre.isValue())
-            etat=1;
+        if(equ.getEtat()==1)
+        
+        {genre.isValue();
+        etat=1;
+        }
         else 
-            etat=0;
-       Button aj = new Button("Ajouter");
+        {genre.invalidate();
+        etat=0;
+        }
+        
+       Button aj = new Button("Modifier");
 
      
         aj.addActionListener((e) -> {
             ServiceEquipe ser = new ServiceEquipe();
-            Equipe eq = new Equipe(pays.getText(), etat, "phase", cb.getSelectedItem(), selec.toString(), Integer.parseInt(point.toString())
-                    , null);
-            ser.ajouterEquipe(eq);
+           // Equipe eq = new Equipe(pays.getText(), etat, "phase", cb.getSelectedItem().toString() ,"aa", 5
+              //      , null);
+            equ.setEtat(etat);
+            equ.setGroupe(cb.getSelectedItem().toString());
+            equ.setPays(pays.getText());
+            equ.setPoint(5);
+            equ.setSelecteur(selec.getText());
+            ser.UpdateEquipe(equ);
+            HomeAdminForm h= new HomeAdminForm();
+            h.getF().show();
         });
         c.add(aj);
       f.add(c);

@@ -48,18 +48,13 @@ public class HomeAdminForm {
         // lb.setText(se.getList2().toString());
         ArrayList<Equipe> list = se.getList2();
         Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        Button chart = new Button("stat");
-        c3.add(chart);
-        chart.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                se.createPieChartForm().show();
-            }
-        });
+       // Button chart = new Button("stat");
+     //   c3.add(chart);
+        Button modif ;
+        Button supp;
       
         for (Equipe e : list) {
-           
+           ServiceEquipe ser = new ServiceEquipe();
             EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);     
             System.err.println("drapea " + e.getDrapeau());
             img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
@@ -69,6 +64,28 @@ public class HomeAdminForm {
 
             Label nom = new Label();
             nom.setText(e.getPays());
+            supp=new Button("Supprimer");
+            modif= new Button("modifier");
+            supp.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    ser.DeleteEquipe(e);
+                    HomeAdminForm h= new HomeAdminForm();
+                    h.getF().show();
+                }
+            });
+             modif.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    updateEquipe up = new updateEquipe(e);
+                    up.getF().show();
+                }
+            });
+             c3.add(modif);
+             c3.add(supp);
+             
             c3.add(nom);
          
         }

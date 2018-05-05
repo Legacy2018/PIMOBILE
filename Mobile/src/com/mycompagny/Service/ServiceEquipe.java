@@ -62,6 +62,46 @@ public class ServiceEquipe {
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
     
+     public void UpdateEquipe(Equipe eq) {
+        ConnectionRequest con = new ConnectionRequest();
+         String Url = "http://localhost/PiWeb1/web/app_dev.php/api/EdittEq/"+eq.getIdEquipe()
+                + "?pays=" + eq.getPays()
+                + "&etat=" + eq.getEtat()
+                + "&groupe=" + eq.getGroupe()
+                + "&phase=" + eq.getPhase()
+                + "&point=" + eq.getPoint()
+                + "&selecteur=" + eq.getSelecteur();
+        
+        con.setUrl(Url);
+        
+        System.out.println("tt");
+        
+       /* con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });*/
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
+     public void DeleteEquipe(Equipe eq) {
+        ConnectionRequest con = new ConnectionRequest();
+        
+        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/DeleteEq/"
+                + eq.getIdEquipe();
+        
+        con.setUrl(Url);
+        
+        System.out.println("equipe id "+eq.getIdEquipe());
+        
+       /* con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+            
+        });*/
+        NetworkManager.getInstance().addToQueueAndWait(con);
+    }
+    
     ArrayList<Equipe> listEquipe = new ArrayList<>();
     Map<String, Integer> listechart = new HashMap<>();
     
