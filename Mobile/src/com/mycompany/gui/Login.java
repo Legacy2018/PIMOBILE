@@ -21,7 +21,7 @@ import com.mycompany.Entite.Utilisateur;
  */
 public class Login {
     Form f;
-
+    static public Utilisateur u=null;
     public Login() {
         f=new Form(BoxLayout.y());
         
@@ -33,7 +33,7 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 String Message=null;
-                Utilisateur u=UtilisateurServices.FindUserBymailorid(Login.getText());
+                u=UtilisateurServices.FindUserBymailorid(Login.getText());
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
