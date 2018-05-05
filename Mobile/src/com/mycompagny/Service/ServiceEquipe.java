@@ -197,12 +197,16 @@ public class ServiceEquipe {
 
                 int ind = obj.get("idEquipe").toString().indexOf(".");
                 String id = obj.get("idEquipe").toString().substring(0, ind);
+                 int ind1 = obj.get("etat").toString().indexOf("etat");
+                String et = obj.get("etat").toString().substring(ind1+1, ind1+2);
+                System.err.println("etat    :"+et);
                 System.out.println(" id eqyupe  :" + id);
                 e.setIdEquipe(Integer.valueOf(id));
                 e.setPays(obj.get("pays").toString());
                 e.setPhase(obj.get("phase").toString());
-                //       e.setEtat((int) obj.get("etat"));
-                e.setPhase(obj.get("phase").toString());
+                e.setEtat(Integer.valueOf(et));
+                e.setGroupe(obj.get("groupe").toString());
+                e.setSelecteur(obj.get("selecteur").toString());
                 e.setDrapeau((String) obj.get("liendrapeau"));
                 System.out.println(e);
                 listEquipe.add(e);

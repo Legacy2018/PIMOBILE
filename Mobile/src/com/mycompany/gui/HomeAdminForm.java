@@ -79,6 +79,8 @@ public class HomeAdminForm {
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
+                                        System.out.println("edit "+e);
+
                     updateEquipe up = new updateEquipe(e);
                     up.getF().show();
                 }
