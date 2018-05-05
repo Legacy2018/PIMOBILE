@@ -5,6 +5,8 @@
  */
 package com.mycompany.Entite;
 
+//import java.util.Objects;
+
 import com.mycompany.Entite.Ticket;
 import com.mycompany.Entite.Fos_User;
 /**
@@ -68,6 +70,33 @@ public class Commentaire {
         int hash = 5;
         
         return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Commentaire other = (Commentaire) obj;
+        if (this.idCommentaire != other.idCommentaire) {
+            return false;
+        }
+       /* if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.idticket, other.idticket)) {
+            return false;
+        }
+        if (!Objects.equals(this.idUser, other.idUser)) {
+            return false;
+        }***/
+        return true;
     }
 
 

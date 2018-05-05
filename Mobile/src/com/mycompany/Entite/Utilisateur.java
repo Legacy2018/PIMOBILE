@@ -21,6 +21,10 @@ public class Utilisateur extends Fos_User{
     private int num_confirm;
     public Utilisateur() {
     }
+    public Utilisateur(Fos_User fu)
+    {
+        super(fu.id, fu.username, fu.email, fu.password, fu.enabled, fu.confirmation_token, fu.role);
+    }
     public Utilisateur(int id){
         this.id=id;
     }

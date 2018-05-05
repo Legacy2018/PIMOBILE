@@ -1,6 +1,7 @@
 package com.mycompany.myapp;
 
 
+import com.codename1.db.Database;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Dialog;
@@ -9,7 +10,13 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
+import com.mycompagny.Service.UtilisateurServices;
+import com.mycompany.gui.afficherequipeGUI;
+import com.mycompany.Entite.DataBaseMobile;
+import com.mycompany.Entite.Utilisateur;
 import com.mycompany.gui.HomeForm;
+import com.mycompany.gui.HomeAdminForm;
+import com.mycompany.gui.Login;
 import java.io.IOException;
 
 /**
@@ -21,6 +28,8 @@ public class MyApplication {
     private Form current;
     private Resources theme;
 
+     Database db;
+boolean created =false;
     public void init(Object context) {
         theme = UIManager.initFirstTheme("/theme");
 
@@ -31,13 +40,48 @@ public class MyApplication {
         // Log.bindCrashProtection(true);
     }
     
-    public void start() {
-        if(current != null){
+    public void start() 
+            //throws IOException 
+    {
+        
+        
+           created =Database.exists("dbRussia2018");
+        try {
+            db= Database.openOrCreate("dbRussia2018");
+            if (created ==false)
+            {
+            
+            db.execute("create table favoris (id int, usr int , eq int,  PRIMARY KEY (id,usr,eq));");
+            System.out.println("ok  ahahaha     ");
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+        
+        /*if(current != null){
             current.show();
             return;
         }
-          HomeForm h = new HomeForm();
-        h.getF().show();
+        /* afficherequipeGUI f;
+        try {
+            f = new afficherequipeGUI();
+                    f.getF().show();
+
+        } catch (IOException ex) {
+        }*/
+         
+
+        Login l=new Login();
+    // HomeAdminForm Admin = new HomeAdminForm();
+    //  Admin.getF().show();
+
+      // HomeAdminForm Admin = new HomeAdminForm();
+      // Admin.getF().show();
+    //    DataBaseMobile.Execute("insert into reclamation values(null,'1','1','2018-1-1','faza','faza okhra');");
+
+    //     HomeForm h = new HomeForm();
+    //   h.getF().show();
     }
 
     public void stop() {
