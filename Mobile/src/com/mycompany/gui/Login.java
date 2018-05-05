@@ -37,7 +37,7 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
-                       new HomeForm().getF().show();
+                       new homeFormTicket().getF().show();
                     else
                         Message="Login ou mot de passe erroné";
                         

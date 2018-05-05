@@ -44,7 +44,7 @@ public class Affichage {
             }
         });
         //*/
-          f.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
+          f.getToolbar().addCommandToRightBar("back", null, (ev)->{homeFormTicket h=new homeFormTicket();
           h.getF().show();
           });
     }

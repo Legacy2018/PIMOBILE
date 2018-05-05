@@ -21,7 +21,7 @@ import com.codename1.ui.util.Resources;
  *
  * @author sana
  */
-public class HomeForm {
+public class homeFormTicket {
    
     
     Form f,f1,f2;
@@ -29,7 +29,7 @@ public class HomeForm {
     TextField prix;
     Button btnajout,btnaff,btnaff1,mesticket,mesabonnement;
   private Resources theme;
-    public HomeForm() {
+    public homeFormTicket() {
         f = new Form("home");
             f.setUIID("AbonnementsForm");
      theme = UIManager.initFirstTheme("/theme");
