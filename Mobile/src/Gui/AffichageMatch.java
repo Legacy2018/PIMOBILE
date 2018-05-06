@@ -35,7 +35,7 @@ public class AffichageMatch {
     Container cont;
     Container c1;
     Container c2;
-   private final com.codename1.ui.list.MultiList gui_MultiList = new com.codename1.ui.list.MultiList();
+
     public AffichageMatch() throws ParseException {
           LocalNotification n = new LocalNotification();
 n.setId("ok");

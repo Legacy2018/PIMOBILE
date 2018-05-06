@@ -29,13 +29,11 @@ public class HomeForm {
 
     public HomeForm() {
         f = new Form("Russie 2018");
-        tnom = new TextField();
-        tetat = new TextField();
+     
         btnajout = new Button("Affichage Matchs");
         FontImage.setMaterialIcon(btnajout, FontImage.MATERIAL_HOME);
         btnaff=new Button("Affichage Stade");
-        f.add(tnom);
-        f.add(tetat);
+        FontImage.setMaterialIcon(btnaff, FontImage.MATERIAL_ACCOUNT_CIRCLE);
         f.add(btnajout);
         f.add(btnaff);
                    

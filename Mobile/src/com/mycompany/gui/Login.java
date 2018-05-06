@@ -5,6 +5,8 @@
  */
 package com.mycompany.gui;
 
+import Gui.AffichageMatch;
+import Gui.AffichageUserMatch;
 import com.codename1.ui.Button;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -14,7 +16,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.Entite.Utilisateur;
-import java.io.IOException;
+import java.text.ParseException;
 
 
 /**
@@ -44,15 +46,19 @@ public class Login {
                         if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
                         {
                              try {
-                                new afficherequipeGUI().getF().show();
-                        } catch (IOException ex) {
-                           
-                        }
+                                new AffichageUserMatch().getF().show();
+                        }   catch (ParseException ex) {
+                               
+                            }
                         }
                            
                         else//Houni el admin
                         {
-                            new HomeAdminForm().getF().show();
+                            try {
+                                new AffichageMatch().getF().show();
+                            } catch (ParseException ex) {
+                               
+                            }
                         }
                         
                        
