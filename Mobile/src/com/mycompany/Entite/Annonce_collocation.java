@@ -5,6 +5,10 @@
  */
 package com.mycompany.Entite;
 
+<<<<<<< HEAD
+import com.mycompany.Entite.*;
+=======
+>>>>>>> 3c9bedef4e4af5af26ac93139b208db45ed03d64
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,7 @@ private  float tarif;
 private String adresse;
 private Date datedebut;
 private Date datefin;
-private List<UploadImage> ui=new ArrayList<>();
+//private List<UploadImage> ui=new ArrayList<>();
 
     public Annonce_collocation() {
     }
@@ -103,7 +107,7 @@ private List<UploadImage> ui=new ArrayList<>();
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-
+/*
     public List<UploadImage> getUi() {
         return ui;
     }
@@ -116,6 +120,6 @@ private List<UploadImage> ui=new ArrayList<>();
     public String toString() {
         return "Annonce_collocation{" + "id_annonceur=" + id_annonceur + ", id_annonce=" + id_annonce + ", titre_annonce=" + titre_annonce + ", Description=" + description + ", tarif=" + tarif + ", adresse=" + adresse + ", ui=" + ui+ '}';
     }
-    
+   */ 
     
 }

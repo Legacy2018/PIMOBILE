@@ -37,6 +37,7 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
+<<<<<<< HEAD
                     {
                         
                         if(u.getRole().equals("user"))
@@ -49,6 +50,9 @@ public class Login {
                        
                     }
                        
+=======
+                       new homeFormTicket().getF().show();
+>>>>>>> 3f6d73b81cc43a58ea1c6020a59844de36220e4a
                     else
                         Message="Login ou mot de passe erroné";
                         
