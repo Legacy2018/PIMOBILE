@@ -7,8 +7,8 @@ package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
+import com.codename1.components.ToastBar;
 import com.codename1.io.ConnectionRequest;
-import com.codename1.messaging.Message;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
@@ -40,6 +40,8 @@ import com.mycompany.Entite.Ticket;
 import com.mycompany.Entite.match;
 import java.io.IOException;
 import com.codename1.messaging.Message;
+import com.codename1.ui.Dialog;
+import com.mycompagny.Service.AbonnementService;
 
 /**
  *
@@ -94,14 +96,24 @@ public class AffichageTicket {
         Image icon = theme.getImage("icon.png");
         Container topBar = BorderLayout.east(new Label(icon));
         
-        tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+        tb.addMaterialCommandToSideMenu("Tickets", FontImage.MATERIAL_SHOPPING_CART, e -> {
+              AffichageTicket a=new AffichageTicket();
+        a.getF().show();
+            
         });
-        tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {
+        tb.addMaterialCommandToSideMenu("Abonnements", FontImage.MATERIAL_SHOPPING_CART, e -> {
+               ajouterAbonnement a=new ajouterAbonnement();
+        a.getF().show();
         });
-        tb.addMaterialCommandToSideMenu("Settings", FontImage.MATERIAL_SETTINGS, e -> {
+        tb.addMaterialCommandToSideMenu("Mes Tickets", FontImage.MATERIAL_TOC, e -> {
+              mesTicket a=new mesTicket();
         });
-        tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {
-        });
+        tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
+               mesabonnement a=new mesabonnement();
+        });    
+          Style s1 = UIManager.getInstance().getComponentStyle("Title");
+         FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
+          FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s1);
 
         lb = new SpanLabel("");
         lb1 = new SpanLabel("");
@@ -110,7 +122,7 @@ public class AffichageTicket {
         UIBuilder ui = new UIBuilder();
         //  Form f = new Form("russie2019", BoxLayout.y());
         for (Ticket t : tickets) {
-   Style s1 = UIManager.getInstance().getComponentStyle("Title");
+ 
          FontImage info = FontImage.createMaterial(FontImage.MATERIAL_SEARCH, s1);
            FontImage res = FontImage.createMaterial(FontImage.MATERIAL_LIBRARY_ADD, s1);
            FontImage prix = FontImage.createMaterial(FontImage.MATERIAL_ATTACH_MONEY, s1);
@@ -141,6 +153,7 @@ public class AffichageTicket {
 
             Label l = new Label(t.getCategories(),cat);
             Label l1 = new Label("Prix: "+t.getPrix().toString() +"$");
+            
             Label l2 = new Label(String.valueOf(t.getNbrTicket()) ,ticket);
             //  Label l3 =new Label(String.valueOf(t.getIdMatch().getIdMatch()));
                  float mt=Float.parseFloat(String.valueOf(t.getIdMatch()));
@@ -160,9 +173,14 @@ public class AffichageTicket {
             
     
   
-                    
+                                if(t.getNbrTicket()==0){
+                               
+            bt.setEnabled(true);
+                    Dialog.show("error", "nombre de tickets  epuisé", "ok", null);
+            }else{
+                                  //   bt.setEnabled(false);
             
-            
+           
 
             ConnectionRequest req = new ConnectionRequest();
             req.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/ticket/find?idTicket=" + t.getIdTicket());
@@ -193,9 +211,10 @@ public class AffichageTicket {
                     //+ "VS" + String.valueOf(t.getIdMatch().getEquipe2()));
                     //  Label l5 =new Label(String.valueOf(t.getIdMatch().getEquipe2()));
                     Label l = new Label(t.getCategories(),cat);
+                    l.setWidth(100);
                    Label l1 = new Label("Parix:" + t.getPrix().toString(),prix);
                    l1.setWidth(100);
-                   Label l2 = new Label("Nombre de Tickets Disponible: "+String.valueOf(t.getNbrTicket()),ticket);
+                   Label l2 = new Label("Nombre de Tickets Dispo: "+String.valueOf(t.getNbrTicket()),ticket);
                  l2.setWidth(100);
          
 
@@ -205,17 +224,21 @@ public class AffichageTicket {
                     } catch (IOException ex) {
 
                     }
-                    image = URLImage.createToStorage(enc, "img6", "http://localhost:8082/seance7mobil/1521036388563701528_1000x669.jpeg", URLImage.RESIZE_SCALE);
+                    image = URLImage.createToStorage(enc, "im5", "http://localhost:8082/seance7mobil/59b8043afc7e93361e8b4570.jpg", URLImage.RESIZE_SCALE);
                     imgv = new ImageViewer(image);
                     C2.add(image);
                     
                           Button bton = new Button("reserver",res);
+                          
+              
                      bton.addActionListener((e) -> {
+                         
+                           
+                         if (VerifInt(nbrticket.getText())&&(Float.valueOf(nbrticket.getText())<=t.getNbrTicket()) ){
                          TicketService ser = new TicketService();
-                      
+                       float nbr = t.getNbrTicket();
                        //  match tmpMatch = new match((int) Float.parseFloat(String.valueOf(t.getIdMatch())));
                   
-                            float nbr = t.getNbrTicket();
                              //  float id = Float.parseFloat(String.valueOf(t.getIdTicket()));
 float resu = nbr-Integer.parseInt(nbrticket.getText());
  
@@ -223,7 +246,12 @@ float resu = nbr-Integer.parseInt(nbrticket.getText());
             Ticket tick = new Ticket(t.getIdTicket(),(int) resu);
               ser.reserverticket(tick);
  
-        for (match o:matchs){
+      
+                            
+                
+          AffichageTicket b=new AffichageTicket();
+        b.getF().show();
+          for (match o:matchs){
                      if (t.getIdMatch()==o.getIdMatch()){
                      
 
@@ -239,12 +267,9 @@ float resu = nbr-Integer.parseInt(nbrticket.getText());
               
                 }
                      }
-                            
-                
-          AffichageTicket b=new AffichageTicket();
-        b.getF().show();
                         
-                     
+                      }else {ToastBar.showMessage("le nombre de ticket incorrect", FontImage.MATERIAL_WARNING, 5000);
+                    }
                     });
                      Slider starRank = new Slider();
     starRank.setEditable(true);
@@ -293,36 +318,41 @@ float resu = nbr-Integer.parseInt(nbrticket.getText());
                     
                     
                     
-  C3.add(nbrticket);
+
                  //   C3.add(l4);
                     // C3.add(l5);
                     C3.add(l);
                     C3.add(l1);
                     C3.add(l2);
-                    C3.add(bton);
-                    C1.add(C2);
-                   
+                 
+                     C3.add(FlowLayout.encloseCenter(starRank)); 
+                      C3.add(nbrticket);
+                C1.add(C2);
+                         C3.add(bton);
                                     
-                    f2.add(C1);
+                   f2.add(C1);
                     f2.add(C3);
                       
  
  
-  f2.add(FlowLayout.encloseCenter(starRank));
-                  
+
+               
 
                   Toolbar tb = f2.getToolbar();
                             tb.addCommandToLeftBar("back", null, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent evt) {
-                                  C1.removeAll();
-                                    C2.removeAll();
-                                    C3.removeAll();
+                              /* C1.removeAll();
+                                   C2.removeAll();
+                                   C3.removeAll();
                                     starRank.remove();
-                                    //C4.removeAll();
-                                   // C5.removeAll();
-                                    f.show();
-                                
+                                  C4.removeAll();
+                                    C5.removeAll();*/
+                                AbonnementService ser = new AbonnementService();
+           
+            
+          AfficherAbonnement b=new AfficherAbonnement();
+        b.getF().show();
                        
                                 }
                             });
@@ -330,6 +360,7 @@ float resu = nbr-Integer.parseInt(nbrticket.getText());
                             
                 }
             });
+            }
 
             //    C2.add(l3);
             //  C2.add(l5);
@@ -402,7 +433,12 @@ float resu = nbr-Integer.parseInt(nbrticket.getText());
         // lb.setText(serviceTask.getList2().get(9).getIdMatch().getDateMatch().toString());
 
     }
-
+  public boolean VerifInt(String Aux){
+        try {int f=Integer.parseInt(Aux);
+        return true;}
+        catch(Exception e){return false;}
+        
+    }
     public Form getF() {
         return f;
     }

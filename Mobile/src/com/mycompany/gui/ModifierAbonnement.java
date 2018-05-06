@@ -6,12 +6,22 @@
 package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.components.ToastBar;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
+import com.codename1.ui.Component;
+import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
+import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompagny.Service.AbonnementService;
@@ -34,7 +44,9 @@ public class ModifierAbonnement {
     Button btnajout, btnaff;
 
  
-  
+   static public Login y;
+
+   int x=y.u.getId();
 
  
 
@@ -44,9 +56,42 @@ public class ModifierAbonnement {
     public ModifierAbonnement(){
      theme = UIManager.initFirstTheme("/theme");
        
-        f = new Form("Abonnement");
+        f = new Form(" Modifier Abonnement");
                 f1 = new Form();
-    AfficherAbonnement o=new AfficherAbonnement();
+                f.setUIID("AbonnementsForm");
+f1.setUIID("AbonnementsForm");
+                    Toolbar tb = f.getToolbar();
+        Image icon = theme.getImage("icon.png");
+        Container topBar = BorderLayout.east(new Label(icon));
+        
+        tb.addMaterialCommandToSideMenu("Tickets", FontImage.MATERIAL_SHOPPING_CART, e -> {
+              AffichageTicket a=new AffichageTicket();
+        a.getF().show();
+            
+        });
+        tb.addMaterialCommandToSideMenu("Abonnements", FontImage.MATERIAL_SHOPPING_CART, e -> {
+               ajouterAbonnement a=new ajouterAbonnement();
+        a.getF().show();
+        });
+        tb.addMaterialCommandToSideMenu("Mes Tickets", FontImage.MATERIAL_TOC, e -> {
+              mesTicket a=new mesTicket();
+        });
+        tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
+               mesabonnement a=new mesabonnement();
+        });    
+          Style s1 = UIManager.getInstance().getComponentStyle("Title");
+         FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
+         
+  Style s = UIManager.getInstance().getComponentStyle("Title");
+         FontImage ajo = FontImage.createMaterial(FontImage.MATERIAL_LIBRARY_ADD, s);
+                  FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s);
+
+        Container c = new Container(new FlowLayout(Component.CENTER));
+                Container c1 = new Container(new FlowLayout(Component.CENTER));
+                    Container c3 = new Container(new FlowLayout(Component.CENTER));
+                                        Container c2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+
+    mesabonnement o=new mesabonnement();
    
     
         prix = new TextField();
@@ -62,28 +107,29 @@ public class ModifierAbonnement {
         b1.addItem("virage");
         b1.addItem("peluse");
         b1.addItem("gradin");
-        f.add(b1);
+        c2.add(b1);
 
         b2.addItem("phase eliminatoire");
         b2.addItem("phase de poule");
-        f.add(b2);
+        c2.add(b2);
 
-        f.add(prix);
-        f.add(nbrabonnement);
-        f.add(btnajout);
-        f.add(btnaff);
+       
 
         btnajout.addActionListener((e) -> {
+              if ( VerifFloat(prix.getText())&&VerifInt(nbrabonnement.getText())){
             AbonnementService ser = new AbonnementService();
             float nbr = Float.parseFloat(nbrabonnement.getText().toString());
                      float id = Float.parseFloat(String.valueOf(o.getT().getId()));
-            System.out.println("aaaaaaaa"+id);
-            Abonnement t = new Abonnement((int)id,b2.getSelectedItem().toString(), Float.parseFloat(prix.getText()), b1.getSelectedItem().toString(), (int) nbr);
+         
+            Abonnement t = new Abonnement((int)id,b2.getSelectedItem().toString(), Float.parseFloat(prix.getText()), b1.getSelectedItem().toString(), (int) nbr,x);
 
             ser.ModifierAb(t);
             System.out.println(t);
+             }else {ToastBar.showMessage("le nombre de ticket ou prix incorrect", FontImage.MATERIAL_WARNING, 5000);
+                    }
     AfficherAbonnement b=new AfficherAbonnement();
       b.getF1().show();
+       
 
         });
          btnaff.addActionListener((e) -> {
@@ -94,6 +140,13 @@ public class ModifierAbonnement {
         b.getF1().show();
 
         });
+          c2.add(prix);
+        c2.add(nbrabonnement);
+        c3.add(btnajout);
+        c.add(btnaff);
+        c2.add(c3);
+        c2.add(c);
+        f.add(c2);
 }
     public Form getF() {
         return f;
@@ -112,7 +165,18 @@ public class ModifierAbonnement {
     }
     
     
- 
+  public boolean VerifFloat(String Aux){
+        try {Float f=Float.parseFloat(Aux);
+        return true;}
+        catch(Exception e){return false;}
+        
+    }
+        public boolean VerifInt(String Aux){
+        try {int f=Integer.parseInt(Aux);
+        return true;}
+        catch(Exception e){return false;}
+        
+    }
 
    
     

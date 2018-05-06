@@ -14,6 +14,8 @@ import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 
@@ -21,7 +23,7 @@ import com.codename1.ui.util.Resources;
  *
  * @author sana
  */
-public class homeFormTicket {
+public class HomeFormTicket {
    
     
     Form f,f1,f2;
@@ -29,16 +31,21 @@ public class homeFormTicket {
     TextField prix;
     Button btnajout,btnaff,btnaff1,mesticket,mesabonnement;
   private Resources theme;
-    public homeFormTicket() {
+    public HomeFormTicket() {
         f = new Form("home");
             f.setUIID("AbonnementsForm");
      theme = UIManager.initFirstTheme("/theme");
-                 
+                  Container C0 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+                       Style s = UIManager.getInstance().getComponentStyle("Title");
+         FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s);
+          FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s);
                             Toolbar tb = f.getToolbar();
         Image icon = theme.getImage("icon.png");
         Container topBar = BorderLayout.east(new Label(icon));
         
         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            
+            
         });
         tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {
         });
@@ -46,16 +53,16 @@ public class homeFormTicket {
         });
         tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {
         });
-        btnaff=new Button("Ticket");
-         btnaff1=new Button("Abonnement");
-          mesticket=new Button("Mes Ticket");
-         mesabonnement=new Button("Mes Abonnement");
-       f.add(mesticket);
-       f.add(mesabonnement);
-          f.add(btnaff);
-
-        f.add(btnaff1);
+        btnaff=new Button("Ticket",chariiot);
+         btnaff1=new Button("Abonnement",chariiot);
+          mesticket=new Button("Mes Ticket",aff);
+         mesabonnement=new Button("Mes Abonnement",aff);
       
+          C0.add(btnaff);
+
+        C0.add(btnaff1);
+       C0.add(mesticket);
+       C0.add(mesabonnement);
         btnaff.addActionListener((e)->{
         AffichageTicket a=new AffichageTicket();
         a.getF().show();
@@ -78,7 +85,7 @@ public class homeFormTicket {
         });
    
 
-     
+     f.add(C0);
         
     }
 

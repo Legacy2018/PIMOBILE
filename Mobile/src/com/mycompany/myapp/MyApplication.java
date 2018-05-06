@@ -14,7 +14,6 @@ import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.gui.afficherequipeGUI;
 import com.mycompany.Entite.DataBaseMobile;
 import com.mycompany.Entite.Utilisateur;
-import com.mycompany.gui.homeFormTicket;
 import com.mycompany.gui.HomeAdminForm;
 import com.mycompany.gui.Login;
 import java.io.IOException;
@@ -74,7 +73,7 @@ boolean created =false;
 
         Login l=new Login();
     // HomeAdminForm Admin = new HomeAdminForm();
-    //  Admin.getF().show();
+    l.getF().show();
 
       // HomeAdminForm Admin = new HomeAdminForm();
       // Admin.getF().show();

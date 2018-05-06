@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package com.mycompany.Entite;
-
-<<<<<<< HEAD
 import com.mycompany.Entite.*;
-=======
->>>>>>> 3c9bedef4e4af5af26ac93139b208db45ed03d64
+
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;

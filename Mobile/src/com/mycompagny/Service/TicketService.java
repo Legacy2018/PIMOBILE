@@ -13,6 +13,7 @@ import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.Entite.Equipe;
 import com.mycompany.Entite.Ticket;
+import com.mycompany.Entite.Utilisateur;
 import com.mycompany.Entite.match;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,7 +66,11 @@ public class TicketService {
                 int debut = obj.get("idmatch").toString().indexOf("=");
                 int fin = obj.get("idmatch").toString().indexOf(",");
                 String tmp = obj.get("idmatch").toString().substring(debut + 1, fin );
+                int debut1 = obj.get("idAnnonceur").toString().indexOf("=");
+                int fin1 = obj.get("idAnnonceur").toString().indexOf(",");
+                String tmp1 = obj.get("idAnnonceur").toString().substring(debut1 + 1, fin1 );
                 match tmpMatch = new match((int) Float.parseFloat(tmp));
+                Utilisateur uti=new Utilisateur((int) Float.parseFloat(tmp1));
             /*  int debut1 = obj.get("idmatch").toString().indexOf("=", 42);
                 int fin1 = obj.get("idmatch").toString().indexOf(",", 42);
                 String tmp1 = obj.get("idmatch").toString().substring(debut1 + 1, (fin1) );
@@ -78,7 +83,7 @@ public class TicketService {
     float id = Float.parseFloat(obj.get("idTicket").toString());
                   // match mt=new match(obj.get("idmatch").toString());
                 // obj.get("date").toString();
-                listTicket.add(new Ticket((int)id,(int) nbr,obj.get("categories").toString(), Float.parseFloat(obj.get("prix").toString()),tmpMatch.getIdMatch() ,Float.parseFloat(obj.get("moyenne").toString())));
+                listTicket.add(new Ticket((int)id,(int) nbr,obj.get("categories").toString(), Float.parseFloat(obj.get("prix").toString()),uti.getId(),tmpMatch.getIdMatch() ,Float.parseFloat(obj.get("moyenne").toString())));
 
             }
 
