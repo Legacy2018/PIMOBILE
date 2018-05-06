@@ -14,6 +14,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.Entite.Utilisateur;
+import java.io.IOException;
 
 /**
  *
@@ -37,7 +38,10 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
-                       new homeFormTicket().getF().show();
+                       try {
+                           new afficherequipeGUI().getF().show();
+                    } catch (IOException ex) {
+                    }
                     else
                         Message="Login ou mot de passe erroné";
                         

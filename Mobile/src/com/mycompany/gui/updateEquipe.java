@@ -52,7 +52,7 @@ public class updateEquipe {
 
         TextField pays = new TextField(equ.getPays());
         TextField selec = new TextField(equ.getSelecteur());
-        TextField point = new TextField(equ.getPoint());
+        TextField point = new TextField(String.valueOf(equ.getPoint()));
         ComboBox<String> cb= new ComboBox(
                 "A","B","C","D","E","F","G","H"
         ) ;
@@ -70,34 +70,33 @@ public class updateEquipe {
         c.add(c1);
         if(equ.getEtat()==1)
         
-        {genre.isValue();
+        {
+            genre.setValue(true);
         etat=1;
         }
         else 
-        {genre.invalidate();
+        {genre.setValue(false);
         etat=0;
         }
         
-        pays.addPointerPressedListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                System.err.println("click");
-            }
-        });
-        
+       
        Button aj = new Button("Modifier");
-
+       c.add(aj);
+       f.add(c);
      
         aj.addActionListener((e) -> {
             ServiceEquipe ser = new ServiceEquipe();
            // Equipe eq = new Equipe(pays.getText(), etat, "phase", cb.getSelectedItem().toString() ,"aa", 5
               //      , null);
             String s=cb.getSelectedItem().charAt(0)+"";
-             System.out.print("aa cb sb : "+s);
-            equ.setEtat(etat);
+           //  System.out.print("aa cb sb : "+s);
+            
             equ.setGroupe(s);
-           
+           if (genre.isValue())
+                equ.setEtat(1);
+           else 
+            equ.setEtat(0);
+          
             equ.setPays(pays.getText());
             equ.setPoint(Integer.parseInt(point.getText()));
             equ.setSelecteur(selec.getText());
@@ -105,8 +104,7 @@ public class updateEquipe {
             HomeAdminForm h= new HomeAdminForm();
             h.getF().show();
         });
-        c.add(aj);
-      f.add(c);
+   
         
     }
 
