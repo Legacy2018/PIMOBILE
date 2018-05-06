@@ -42,7 +42,7 @@ public class ServiceEquipe {
     public void ajouterEquipe(Equipe eq) {
         ConnectionRequest con = new ConnectionRequest();
 
-        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/addEq?"
+        String Url = "http://localhost/emel/PiWeb1/web/app_dev.php/api/addEq?"
                 + "pays=" + eq.getPays()
                 + "&etat=" + eq.getEtat()
                 + "&groupe=" + eq.getGroupe()
@@ -64,7 +64,7 @@ public class ServiceEquipe {
 
     public void UpdateEquipe(Equipe eq) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/EdittEq/" + eq.getIdEquipe()
+        String Url = "http://localhost/emel/PiWeb1/web/app_dev.php/api/EdittEq/" + eq.getIdEquipe()
                 + "?pays=" + eq.getPays()
                 + "&etat=" + eq.getEtat()
                 + "&groupe=" + eq.getGroupe()
@@ -87,7 +87,7 @@ public class ServiceEquipe {
     public void DeleteEquipe(Equipe eq) {
         ConnectionRequest con = new ConnectionRequest();
 
-        String Url = "http://localhost/PiWeb1/web/app_dev.php/api/DeleteEq/"
+        String Url = "http://localhost/emel/PiWeb1/web/app_dev.php/api/DeleteEq/"
                 + eq.getIdEquipe();
 
         con.setUrl(Url);
@@ -107,7 +107,7 @@ public class ServiceEquipe {
 
     public ArrayList<Equipe> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/showall");
+        con.setUrl("http://localhost/emel/PiWeb1/web/app_dev.php/api/showall");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -127,7 +127,7 @@ public class ServiceEquipe {
         // String  pourcentage = null;
         ConnectionRequest con = new ConnectionRequest();
         stat = new HashMap<>();
-        con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/chartEq/" + e.getIdEquipe());
+        con.setUrl("http://localhost/emel/PiWeb1/web/app_dev.php/api/chartEq/" + e.getIdEquipe());
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

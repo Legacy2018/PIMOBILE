@@ -29,6 +29,7 @@ public class HomeForm {
 
     public HomeForm() {
         f = new Form("Russie 2018");
+                 f.setUIID("AbonnementsForm");
      
         btnajout = new Button("Affichage Matchs");
         FontImage.setMaterialIcon(btnajout, FontImage.MATERIAL_HOME);

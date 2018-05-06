@@ -24,6 +24,7 @@ public class gererEquipe {
     public gererEquipe() {
 
         f = new Form();
+                 f.setUIID("AbonnementsForm");
 
        
 

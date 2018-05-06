@@ -50,7 +50,8 @@ public class AffichageStade {
       
       
                    form = new Form();
-                   
+                                    form.setUIID("AbonnementsForm");
+
                    
                    cont = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                    StadeService serviceTask=new StadeService();

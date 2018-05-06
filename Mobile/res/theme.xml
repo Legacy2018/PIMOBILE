@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<resource majorVersion="1" minorVersion="7" useXmlUI="false">
+<resource majorVersion="1" minorVersion="9" useXmlUI="false">
     <image name="animal.png"  />
     <ui name="AnnonceView" />
     <image name="back.jpg"  />
     <image name="car.png"  />
     <image name="chat.png"  />
+    <image name="emptylike.png"  />
     <image name="FABNormal.png"  />
     <image name="facebook-share-button.png"  />
     <image name="fun_talking.png"  />
@@ -19,13 +20,14 @@
             <entry key="Calendar.Thursday" value="Thu" />
             <entry key="ok" value="OK" />
             <entry key="Calendar.Saturday" value="Sat" />
-            <entry key="Calendar.Friday" value="Fri" />
             <entry key="select" value="Select" />
+            <entry key="Calendar.Friday" value="Fri" />
             <entry key="edit" value="Edit" />
             <entry key="Calendar.Monday" value="Mon" />
             <entry key="cancel" value="Cancel" />
         </lang>
     </l10n>
+    <image name="like.png"  />
     <image name="littletalking.png"  />
     <image name="Loginbutton.png"  />
     <image name="logoCovTN.png"  />

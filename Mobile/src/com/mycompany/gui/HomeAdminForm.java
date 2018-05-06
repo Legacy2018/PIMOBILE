@@ -57,7 +57,7 @@ public class HomeAdminForm {
            ServiceEquipe ser = new ServiceEquipe();
             EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);     
             System.err.println("drapea " + e.getDrapeau());
-            img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+            img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/emel/PiWeb1/TeamFlags/" + e.getDrapeau());
             imgv1 = new ImageViewer(img1);
 
             c3.add(imgv1);

@@ -32,11 +32,12 @@ public class detailEquipe {
  private Resources theme;
     public detailEquipe(Equipe e) {
         f = new Form();
+                 f.setUIID("AbonnementsForm");
                 theme = UIManager.initFirstTheme("/theme");
 
-        EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+        EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapeau " + e.getDrapeau());
-        URLImage img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
+        URLImage img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/emel/PiWeb1/TeamFlags/" + e.getDrapeau());
         ImageViewer imgv1 = new ImageViewer(img1);
         Container i = new Container(new LayeredLayout());
         i.add(imgv1);

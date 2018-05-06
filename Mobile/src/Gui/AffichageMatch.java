@@ -42,6 +42,7 @@ n.setId("ok");
 n.setAlertBody("It's time to take a break and look at me");
 n.setAlertTitle("Break Time!");
         form = new Form();
+                 form.setUIID("AbonnementsForm");
     
     
      cont = new Container(new BoxLayout(BoxLayout.Y_AXIS));

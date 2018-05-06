@@ -27,7 +27,7 @@ public class Login {
     Form f;
     static public Utilisateur u=null;
     public Login() {
-        f=new Form(BoxLayout.y());
+        f=new Form("Login",BoxLayout.y());
         
         TextField Login=new TextField(null, "Login");
         TextField Password=new TextField(null, "Password");

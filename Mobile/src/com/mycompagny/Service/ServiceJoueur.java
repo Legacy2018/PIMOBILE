@@ -25,7 +25,7 @@ import java.util.Map;
 public class ServiceJoueur {
  public ArrayList<Joueur> getList2(int id) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/JoueurParEquipe/" + id);
+        con.setUrl("http://localhost/emel/PiWeb1/web/app_dev.php/api/JoueurParEquipe/" + id);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -82,7 +82,7 @@ public class ServiceJoueur {
     ///
     public ArrayList<Joueur> getList2All() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PiWeb1/web/app_dev.php/api/showallj");
+        con.setUrl("http://localhost/emel/PiWeb1/web/app_dev.php/api/showallj");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

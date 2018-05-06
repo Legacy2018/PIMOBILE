@@ -49,12 +49,13 @@ public class affichjoueur {
         ArrayList<Joueur> list = sj.getList2(e.getIdEquipe());       
         System.out.println("liste des jouers    : "+list);
          f = new Form();
+                  f.setUIID("AbonnementsForm");
          for (Joueur jr : list)
          {
         Container m = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapea " + jr.getImg());
-                    URLImage img1 = URLImage.createToStorage(encImg, "CacheJ" + jr.getIdJoueur(), "http://localhost/PiWeb1/joueur/" + jr.getImg());
+                    URLImage img1 = URLImage.createToStorage(encImg, "CacheJ" + jr.getIdJoueur(), "http://localhost/emel/PiWeb1/joueur/" + jr.getImg());
                     ImageViewer imgv1 = new ImageViewer(img1);
                     // c3.add(imgv1);
         cgx = new Container(new BoxLayout(BoxLayout.X_AXIS));
