@@ -52,17 +52,24 @@ public class afficherequipeGUI {
     EncodedImage encImg;
     Button fav, nofav;
     ServiceEquipe se = new ServiceEquipe();
-    Fos_User u = new Fos_User(954);
+  //  Fos_User u = new Fos_User(954);
+    int id ;
     // setLayout(new BorderLayout());
     Container cn;
     Cursor c;
     Container c3;
-
+Container m ;
+Container m1;
+Container m2;
     Form f;
     SpanLabel lb;
     ServiceJoueur sj =new ServiceJoueur();
+    Login l;
     public afficherequipeGUI() throws IOException {
-        se.getChar();
+      // l = new Login();
+        id=l.u.getId();
+        System.out.println("id  :"+id);
+      //  se.getChar();
         sj.getList2(63);
         theme = UIManager.initFirstTheme("/theme");
 
@@ -73,18 +80,18 @@ public class afficherequipeGUI {
         ArrayList<Equipe> list2 = se.getList2();
             cn = new Container();
         Button chart = new Button("stat");
-         cn.add(chart);
+        // cn.add(chart);
          f.add(cn);
         chart.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                se.createPieChartForm().show();
+            //    se.createPieChartForm().show();
             }
         });
 
         db = Database.openOrCreate("dbRussia2018");
-        Cursor cr = db.executeQuery("Select * from favoris where usr=" + u.getId() + ";");
+        Cursor cr = db.executeQuery("Select * from favoris where usr=" +id + ";");
         ArrayList<Integer> EqL = new ArrayList();
         while (cr.next()) {
             Row r = cr.getRow();
@@ -115,9 +122,11 @@ public class afficherequipeGUI {
                 c3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
                 if (e.getIdEquipe() == i) {
-                    
+                    //    m=new Container(new Layout);
                     Container c1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-                    Container c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+                    Container c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));   
+                    Container c5 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+
                     Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                     System.out.println("eq sans like = " + e);
                     db = Database.openOrCreate("dbRussia2018");
@@ -142,9 +151,11 @@ public class afficherequipeGUI {
                     s.clearStorage();
                     fav = new Button(theme.getImage("emptylike.png"));
 
-                  //  nofav = new Button(theme.getImage("like.png"));
+                    nofav = new Button("Details");
 
-                   c2.add(fav);
+                   c5.add(fav);
+                   c5.add(nofav);
+                           
                     fav.addActionListener(new ActionListener() {
 
                         @Override
@@ -152,7 +163,7 @@ public class afficherequipeGUI {
                             Dialog.show("Favoris", "A present l'equipe : " + e.getPays()
                                     + " Fait partie de vos coup de coeurs de la coupe du monde", "OK", null);
                             System.out.println("here fav");
-                            se.fav(e, u);
+                            se.fav(e, Login.u);
 
                             try {
                                 afficherequipeGUI af = new afficherequipeGUI();
@@ -161,6 +172,15 @@ public class afficherequipeGUI {
                             }
                         }
                     });
+                    nofav.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent evt) {
+                            detailEquipe dt= new detailEquipe(e);
+                            dt.getF().show();
+                        }
+                    });
+                    c3.add(c5);
                                          f.add(c3);
 
 
@@ -209,7 +229,7 @@ public class afficherequipeGUI {
                         public void actionPerformed(ActionEvent evt) {
                             Dialog.show("Favoris", "A present l'equipe : " + e.getPays() + " a été retiré de votre liste de favoris !", "OK", null);
 
-                            se.nofav(e, u);
+                            se.nofav(e, Login.u);
                                                         System.out.println("here no fav");
 
                             try {

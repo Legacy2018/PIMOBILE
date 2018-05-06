@@ -20,6 +20,26 @@ public class Joueur implements Comparable<Joueur>{
     String position;
     int cartr;
     int cartj;
+    String img;
+
+    public Joueur(String nomJoueur, String nationalite, int nbrBut, String position, int cartr, int cartj, String img, Equipe idEquipe) {
+        this.nomJoueur = nomJoueur;
+        this.nationalite = nationalite;
+        this.nbrBut = nbrBut;
+        this.position = position;
+        this.cartr = cartr;
+        this.cartj = cartj;
+        this.img = img;
+        this.idEquipe = idEquipe;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public int getIdJoueur() {
         return idJoueur;
