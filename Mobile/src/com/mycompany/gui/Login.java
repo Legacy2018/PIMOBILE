@@ -16,6 +16,7 @@ import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.Entite.Utilisateur;
 import java.io.IOException;
 
+
 /**
  *
  * @author Katouchi
@@ -38,30 +39,25 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
-<<<<<<< HEAD
-                       try {
-                           new afficherequipeGUI().getF().show();
-                    } catch (IOException ex) {
-                    }
-=======
-<<<<<<< HEAD
-                    {
-                        
-                        if(u.getRole().equals("user"))
-                            new Messagerie().getF().show();
-                        else
+                     {
+                         //System.out.println(u.getRole());
+                        if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
+                        {
+                             try {
+                                new afficherequipeGUI().getF().show();
+                        } catch (IOException ex) {
+                           
+                        }
+                        }
+                           
+                        else//Houni el admin
+                        {
                             new HomeAdminForm().getF().show();
-//==================Houni t7el el page================================>
-                        //new HomeForm().getF().show();
+                        }
                         
                        
                     }
-                       
-=======
-                       new homeFormTicket().getF().show();
->>>>>>> 3f6d73b81cc43a58ea1c6020a59844de36220e4a
->>>>>>> 16a38b4d341af142b05fea448e539c24eb2a5185
-                    else
+                     else
                         Message="Login ou mot de passe erroné";
                         
                 }

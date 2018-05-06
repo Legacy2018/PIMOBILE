@@ -72,13 +72,9 @@ boolean created =false;
         } catch (IOException ex) {
         }*/
          
-<<<<<<< HEAD
+
 
       Login l=new Login();
-=======
-      
-        Login l=new Login();
->>>>>>> 16a38b4d341af142b05fea448e539c24eb2a5185
     // HomeAdminForm Admin = new HomeAdminForm();
     //  Admin.getF().show();
 
