@@ -14,6 +14,8 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.Entite.Utilisateur;
+import java.io.IOException;
+
 
 /**
  *
@@ -37,8 +39,30 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
+<<<<<<< HEAD
                        new HomeFormTicket().getF().show();
                     else
+=======
+                     {
+                         //System.out.println(u.getRole());
+                        if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
+                        {
+                             try {
+                                new afficherequipeGUI().getF().show();
+                        } catch (IOException ex) {
+                           
+                        }
+                        }
+                           
+                        else//Houni el admin
+                        {
+                            new HomeAdminForm().getF().show();
+                        }
+                        
+                       
+                    }
+                     else
+>>>>>>> 6b870e68021f9d3ee9c30d6d9be392f20d16e31f
                         Message="Login ou mot de passe erroné";
                         
                 }

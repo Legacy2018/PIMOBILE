@@ -9,6 +9,7 @@
     <image name="FABNormal.png"  />
     <image name="facebook-share-button.png"  />
     <image name="fun_talking.png"  />
+    <image name="giphy.gif"  />
     <l10n name="l1">
         <lang name="en">
             <entry key="menu" value="Menu" />

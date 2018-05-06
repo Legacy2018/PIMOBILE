@@ -35,10 +35,11 @@ public class UtilisateurServices extends Fos_UserServices {
     }
     public static Utilisateur ParsingUser(Map<String, Object> user)
     {
-        return new Utilisateur(new Fos_User(Integer.parseInt(user.get("id").toString()) , user.get("username").toString(), user.get("email").toString(), user.get("password").toString(), true, true, "user"));
+        return new Utilisateur(new Fos_User(Integer.parseInt(user.get("id").toString()) , user.get("username").toString(), user.get("email").toString(), user.get("password").toString(), true, true, user.get("roles").toString()));
     }
     public static ArrayList<Utilisateur> ParsingUsers(String JsonArray)
     {    ArrayList<Utilisateur> AllUsers=new ArrayList<>();
+            System.out.println("JsonArray====>"+JsonArray);
         try {
         JSONParser j=new JSONParser();
             System.out.println("JsonArray" + JsonArray);
