@@ -39,19 +39,13 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
-<<<<<<< HEAD
-                       new HomeFormTicket().getF().show();
-                    else
-=======
-                     {
+                       {
                          //System.out.println(u.getRole());
                         if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
                         {
-                             try {
-                                new afficherequipeGUI().getF().show();
-                        } catch (IOException ex) {
-                           
-                        }
+                             
+                                new HomeFormTicket().getF().show();
+                        
                         }
                            
                         else//Houni el admin
@@ -62,7 +56,6 @@ public class Login {
                        
                     }
                      else
->>>>>>> 6b870e68021f9d3ee9c30d6d9be392f20d16e31f
                         Message="Login ou mot de passe erroné";
                         
                 }
