@@ -42,8 +42,9 @@ public class UtilisateurServices extends Fos_UserServices {
             System.out.println("JsonArray====>"+JsonArray);
         try {
         JSONParser j=new JSONParser();
+            System.out.println("JsonArray" + JsonArray);
         Map<String, Object> AllUsersInMap = j.parseJSON(new CharArrayReader(JsonArray.toCharArray()));
-        
+        System.out.println("AllUsersInMap" + AllUsersInMap);
         for (Iterator<Map<String, Object>> iterator = ( (List<Map<String, Object>>) AllUsersInMap.get("root")).iterator(); iterator.hasNext();) {
             Map<String, Object> next = iterator.next();
             AllUsers.add(ParsingUser(next));

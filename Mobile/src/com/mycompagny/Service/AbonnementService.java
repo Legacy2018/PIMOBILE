@@ -26,7 +26,7 @@ import com.mycompany.Entite.Ticket;
 public class AbonnementService {
       public void ajoutTask(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/abonnement/newAb?type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement();
+        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/abonnement/newAb?type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
         con.setUrl(Url);
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
@@ -75,13 +75,15 @@ public class AbonnementService {
             List<Map<String, Object>> list = (List<Map<String, Object>>) etudiants.get("root");
 
             for (Map<String, Object> obj : list) {
-                Abonnement e = new Abonnement();
+              //  Abonnement e = new Abonnement();
                 
-                
-              int debut = obj.get("iduser").toString().indexOf("=");
+               System.out.println("ba"+obj.get("iduser").toString());
+           int debut = obj.get("iduser").toString().indexOf("=");
                 int fin = obj.get("iduser").toString().indexOf(",");
-                String tmp = obj.get("iduser").toString().substring(debut + 1, fin );
-                Abonnement tmpUser = new Abonnement((int) Float.parseFloat(tmp));
+                String tmp = obj.get("iduser").toString().substring(debut+1 , fin );
+               // float iduser=Float.parseFloat(tmp);
+               Abonnement tmpUser = new Abonnement((int)Float.parseFloat(tmp));
+               System.out.println("pppp"+tmpUser.getIduser());
              /*   // System.out.println(obj.get("id"));
                 float id = Float.parseFloat(obj.get("id").toString());
                 System.out.println(id);
@@ -93,13 +95,14 @@ public class AbonnementService {
                 listEtudiants.add(e);*/
               float id = Float.parseFloat(obj.get("id").toString());
                float nbr = Float.parseFloat(obj.get("nbrabonnement").toString());
-                          /*   float iduser = Float.parseFloat(obj.get("iduser").toString());
+                           /* float iduser = Float.parseFloat(obj.get("iduser").toString());
                              Abonnement aa=new Abonnement((int)iduser);
+                             System.out.println("vvvvvvvvvvvvvv"+aa.getIduser());
                             */
-
-               Abonnement a = new Abonnement((int)id,obj.get("type").toString(),Float.parseFloat(obj.get("prix").toString()), obj.get("categorie").toString(), (int)nbr, tmpUser.getIduser());
+//  Abonnement tmpUser = new Abonnement((int) Float.parseFloat(obj.get("iduser").toString()));
+               Abonnement a = new Abonnement((int)id,obj.get("type").toString(),Float.parseFloat(obj.get("prix").toString()), obj.get("categorie").toString(), (int)nbr,tmpUser.getIduser());
                    listAbonnement.add(a);
-
+                System.out.println(a);
 
             }
 
@@ -118,6 +121,8 @@ public class AbonnementService {
             public void actionPerformed(NetworkEvent evt) {
                 AbonnementService ser = new AbonnementService();
                 listTasks = ser.getListAbonneent(new String(con.getResponseData()));
+                                System.out.println("***********************"+listTasks);
+
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
@@ -144,7 +149,7 @@ public class AbonnementService {
     }
   public void ModifierAb(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/modifierAb?id="+ta.getId()+"&type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement();
+        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/modifierAb?id="+ta.getId()+"&type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
         con.setUrl(Url);
 
     

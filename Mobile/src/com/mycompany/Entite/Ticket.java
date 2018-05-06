@@ -14,7 +14,7 @@ public class Ticket {
     private int nbrTicket;
     private String categories;
     private Float prix;
-    private Fos_User idUser;
+    private int idUser;
     private int idMatch;
     private Date heurAjout;
     private float moyenne;
@@ -34,6 +34,8 @@ public class Ticket {
         this.categories = categories;
         this.prix = prix;
     }
+
+  
     
 
     public float getMoyenne() {
@@ -53,13 +55,25 @@ public class Ticket {
         this.idTicket = idTicket;
     }
 
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, int idUser, int idMatch, float moyenne) {
+        this.idTicket = idTicket;
+        this.nbrTicket = nbrTicket;
+        this.categories = categories;
+        this.prix = prix;
+        this.idUser = idUser;
+        this.idMatch = idMatch;
+        this.moyenne = moyenne;
+    }
+
+  
+
  
 
  
 
    
 
-    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, int idMatch, Date heurAjout) {
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, int idUser, int idMatch, Date heurAjout) {
         this.idTicket = idTicket;
         this.nbrTicket = nbrTicket;
         this.categories = categories;
@@ -69,7 +83,7 @@ public class Ticket {
         this.heurAjout = heurAjout;
     }
 
-    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, Fos_User idUser, int idMatch) {
+    public Ticket(int idTicket, int nbrTicket, String categories, Float prix, int idUser, int idMatch) {
         this.idTicket = idTicket;
         this.nbrTicket = nbrTicket;
         this.categories = categories;
@@ -127,11 +141,11 @@ public class Ticket {
         this.prix = prix;
     }
 
-    public Fos_User getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Fos_User idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

@@ -323,7 +323,6 @@
         <val key="StatsLabel.padding" value="1,1,1,1" />
         <val key="StatsLabel.transparency" value="0" />
         <val key="StausBar.transparency" value="0" />
-        <val key="TextField.fgColor" value="ffffff" />
         <val key="TinyBoldLabel.fgColor" value="3c4f5e" />
         <font key="TinyBoldLabel.font" type="ttf" face="0" style="0" size="0" name="native:MainBold" family="native:MainBold" sizeSettings="3" actualSize="1.5" />
         <val key="TinyBoldLabel.margin" value="0,0,0,0" />

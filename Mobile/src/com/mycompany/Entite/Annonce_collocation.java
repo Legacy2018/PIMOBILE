@@ -5,8 +5,14 @@
  */
 package com.mycompany.Entite;
 
+import com.mycompany.Entite.*;
+
+
+
+
 
 import com.mycompany.Entite.*;
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;

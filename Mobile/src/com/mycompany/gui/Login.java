@@ -41,15 +41,21 @@ public class Login {
                 if(u!=null)
                 {
                     if(u.getPassword().equals(Password.getText()))
-                     {
+                       {
                          //System.out.println(u.getRole());
                         if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
                         {
+<<<<<<< HEAD
                              try {
                                 new AffichageUserMatch().getF().show();
                         }   catch (ParseException ex) {
                                
                             }
+=======
+                             
+                                new HomeFormTicket().getF().show();
+                        
+>>>>>>> 18da5cb6e3747aaeae86e99948da18cafc1a8b0a
                         }
                            
                         else//Houni el admin
