@@ -98,7 +98,7 @@ public class TicketService {
 
     public ArrayList<Ticket> getList2() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/afficher");
+        con.setUrl("http://localhost/sarra/piWeb1/web/app_dev.php/api/afficher");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -165,7 +165,7 @@ public class TicketService {
 
     public ArrayList<match> getList22() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/afficher1");
+        con.setUrl("http://localhost/sarra/piWeb1/web/app_dev.php/api/afficher1");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -184,7 +184,7 @@ public class TicketService {
     
       public void ajoutTask(Ticket ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/ticket/new" + ta.getPrix() + "/" + ta.getCategories();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/ticket/new" + ta.getPrix() + "/" + ta.getCategories();
         con.setUrl(Url);
 
        // System.out.println("tt");
@@ -205,7 +205,7 @@ public class TicketService {
 
  public void reserverticket(Ticket ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/reserverTicket?idTicket="+ta.getIdTicket()+"&nbticket="+ta.getNbrTicket();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/reserverTicket?idTicket="+ta.getIdTicket()+"&nbticket="+ta.getNbrTicket();
         con.setUrl(Url);
 
     
@@ -225,7 +225,7 @@ public class TicketService {
 
  public void moyenneticket(Ticket ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/moyenneTicket?idTicket="+ta.getIdTicket()+"&moyenne="+ta.getMoyenne();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/moyenneTicket?idTicket="+ta.getIdTicket()+"&moyenne="+ta.getMoyenne();
         con.setUrl(Url);
 
     

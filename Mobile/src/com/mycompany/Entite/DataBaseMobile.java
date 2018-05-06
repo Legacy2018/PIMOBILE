@@ -78,7 +78,7 @@ public class DataBaseMobile {
     }
     
     public static boolean Execute(String query) {
-        ConnectionRequest cr = new ConnectionRequest("http://localhost:8082/mobile/PiServices/Request.php");
+        ConnectionRequest cr = new ConnectionRequest("http://localhost/mobile/PiServices/Request.php");
         cr.setPost(false);
         cr.addArgument("Query", query);
         NetworkManager.getInstance().addToQueue(cr);
@@ -105,7 +105,7 @@ public class DataBaseMobile {
             Query = Query + where;
         }
         Query = Query + " ;";
-        ConnectionRequest cr = new ConnectionRequest("http://localhost:8082/mobile/PiServices/Select.php");
+        ConnectionRequest cr = new ConnectionRequest("http://localhost/mobile/PiServices/Select.php");
         cr.setPost(false);
         cr.addArgument("Query", Query);
         cr.setPriority(ConnectionRequest.PRIORITY_CRITICAL);

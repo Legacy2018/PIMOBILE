@@ -26,7 +26,7 @@ import com.mycompany.Entite.Ticket;
 public class AbonnementService {
       public void ajoutTask(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/abonnement/newAb?type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/abonnement/newAb?type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
         con.setUrl(Url);
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());
@@ -43,7 +43,7 @@ public class AbonnementService {
     }
           public void reserverab(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/reserverAb?id="+ta.getId()+"&nbrabonnement=" +ta.getNbrabonnement();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/reserverAb?id="+ta.getId()+"&nbrabonnement=" +ta.getNbrabonnement();
         con.setUrl(Url);
 
     
@@ -115,7 +115,7 @@ public class AbonnementService {
     
     public ArrayList<Abonnement> getList2(){       
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/afficherAb");  
+        con.setUrl("http://localhost/sarra/piWeb1/web/app_dev.php/api/afficherAb");  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -130,7 +130,7 @@ public class AbonnementService {
     }
      public void supprimerAb(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/supprimerAb?id="+ta.getId();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/supprimerAb?id="+ta.getId();
         con.setUrl(Url);
 
     
@@ -149,7 +149,7 @@ public class AbonnementService {
     }
   public void ModifierAb(Abonnement ta) {
         ConnectionRequest con = new ConnectionRequest();
-        String Url = "http://localhost:8082/piWeb1/web/app_dev.php/api/modifierAb?id="+ta.getId()+"&type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
+        String Url = "http://localhost/sarra/piWeb1/web/app_dev.php/api/modifierAb?id="+ta.getId()+"&type=" +ta.getType()+"&prix="+ta.getPrix()+"&categorie="+ ta.getCategorie()+"&nbrabonnement=" +ta.getNbrabonnement()+"&iduser="+ta.getIduser();
         con.setUrl(Url);
 
     

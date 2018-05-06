@@ -41,18 +41,20 @@ public class HomeFormTicket {
           FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s);
                             Toolbar tb = f.getToolbar();
         Image icon = theme.getImage("icon.png");
-        Container topBar = BorderLayout.east(new Label(icon));
+     Container topBar = BorderLayout.east(new Label(icon));
         
         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
             
             
         });
-        tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {
+       /* tb.addMaterialCommandToSideMenu("Website", FontImage.MATERIAL_WEB, e -> {
         });
         tb.addMaterialCommandToSideMenu("Settings", FontImage.MATERIAL_SETTINGS, e -> {
         });
         tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {
-        });
+        });*/
         btnaff=new Button("Ticket",chariiot);
          btnaff1=new Button("Abonnement",chariiot);
           mesticket=new Button("Mes Ticket",aff);

@@ -93,10 +93,18 @@ f1.setUIID("AbonnementsForm");
         });
         tb.addMaterialCommandToSideMenu("Mes Tickets", FontImage.MATERIAL_TOC, e -> {
               mesTicket a=new mesTicket();
+               a.getF().show();
         });
         tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
                mesabonnement a=new mesabonnement();
-        });    
+                a.getF().show();
+        }); 
+         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
+            
+            
+        });
           Style s1 = UIManager.getInstance().getComponentStyle("Title");
          FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
          

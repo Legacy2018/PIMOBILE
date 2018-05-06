@@ -78,7 +78,13 @@ f1.setUIID("AbonnementsForm");
         });
         tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
                mesabonnement a=new mesabonnement();
-        });    
+        }); 
+         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
+            
+            
+        });
           Style s1 = UIManager.getInstance().getComponentStyle("Title");
          FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
          

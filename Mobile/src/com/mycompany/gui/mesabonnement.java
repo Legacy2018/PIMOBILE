@@ -73,10 +73,18 @@ public class mesabonnement {
         });
         tb.addMaterialCommandToSideMenu("Mes Tickets", FontImage.MATERIAL_TOC, e -> {
               mesTicket a=new mesTicket();
+               a.getF().show();
         });
         tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
                mesabonnement a=new mesabonnement();
+                a.getF().show();
         });    
+         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
+            
+            
+        });
           Style s1 = UIManager.getInstance().getComponentStyle("Title");
          FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
           FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s1);
@@ -108,21 +116,21 @@ public class mesabonnement {
                     if (ab.getCategorie().equals("virage")) {
 
                         URLImage imgUrl
-                                = URLImage.createToStorage(encImg, "cache0", "http://localhost:8082/seance7mobil/medailbronze.png");
+                                = URLImage.createToStorage(encImg, "cache0", "http://localhost/sarra/seance7mobil/medailbronze.png");
                         imgUrl.fetch();
                         ImageViewer img = new ImageViewer(imgUrl);
                         C5.add(img);
                     }
                     if (ab.getCategorie().equals("peluse")) {
                         URLImage imgUrl
-                                = URLImage.createToStorage(encImg, "cache33", "http://localhost:8082/seance7mobil/gold.png");
+                                = URLImage.createToStorage(encImg, "cache33", "http://localhost/sarra/seance7mobil/gold.png");
                         imgUrl.fetch();
                         ImageViewer img = new ImageViewer(imgUrl);
                         C5.add(img);
                     }
                     if (ab.getCategorie().equals("gradin")) {
                         URLImage imgUrl
-                                = URLImage.createToStorage(encImg, "cac0", "http://localhost:8082/seance7mobil/silvrmedail.png");
+                                = URLImage.createToStorage(encImg, "cac0", "http://localhost/sarra/seance7mobil/silvrmedail.png");
                         imgUrl.fetch();
                         ImageViewer img = new ImageViewer(imgUrl);
                         C5.add(img);
@@ -164,20 +172,20 @@ public class mesabonnement {
 
                             if (ab.getCategorie().equals("virage")) {
 
-                                image = URLImage.createToStorage(enc, "yyyy", "http://localhost:8082/seance7mobil/bronzeepng.png", URLImage.RESIZE_SCALE);
+                                image = URLImage.createToStorage(enc, "yyyy", "http://localhost/sarra/seance7mobil/bronzeepng.png", URLImage.RESIZE_SCALE);
                                 imgv = new ImageViewer(image);
                                 C2.add(image);
 
                             }
                             if (ab.getCategorie().equals("peluse")) {
 
-                                image = URLImage.createToStorage(enc, "mmm", "http://localhost:8082/seance7mobil/Sans titre.png", URLImage.RESIZE_SCALE);
+                                image = URLImage.createToStorage(enc, "mmm", "http://localhost/sarra/seance7mobil/Sans titre.png", URLImage.RESIZE_SCALE);
                                 imgv = new ImageViewer(image);
                                 C2.add(image);
 
                             }
                             if (ab.getCategorie().equals("gradin")) {
-                                image = URLImage.createToStorage(enc, "ooo", "http://localhost:8082/seance7mobil/silveer1.png", URLImage.RESIZE_SCALE);
+                                image = URLImage.createToStorage(enc, "ooo", "http://localhost/sarra/seance7mobil/silveer1.png", URLImage.RESIZE_SCALE);
                                 imgv = new ImageViewer(image);
                                 C2.add(image);
 

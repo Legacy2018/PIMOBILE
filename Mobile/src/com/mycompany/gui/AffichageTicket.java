@@ -110,7 +110,13 @@ public class AffichageTicket {
         });
         tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
                mesabonnement a=new mesabonnement();
-        });    
+        }); 
+         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
+            
+            
+        });
           Style s1 = UIManager.getInstance().getComponentStyle("Title");
          FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
           FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s1);
@@ -147,7 +153,7 @@ public class AffichageTicket {
             EncodedImage encImg
                     = EncodedImage.createFromImage(theme.getImage("music.png"), false);
             URLImage imgUrl
-                    = URLImage.createToStorage(encImg, "cache7", "http://localhost:8082/seance7mobil/ssss.jpeg");
+                    = URLImage.createToStorage(encImg, "cache7", "http://localhost/sarra/seance7mobil/ssss.jpeg");
             imgUrl.fetch();
             ImageViewer img = new ImageViewer(imgUrl);
 
@@ -183,7 +189,7 @@ public class AffichageTicket {
            
 
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl("http://localhost:8082/piWeb1/web/app_dev.php/api/ticket/find?idTicket=" + t.getIdTicket());
+            req.setUrl("http://localhost/sarra/piWeb1/web/app_dev.php/api/ticket/find?idTicket=" + t.getIdTicket());
 
             bt.addActionListener(new ActionListener() {
            
@@ -224,7 +230,7 @@ public class AffichageTicket {
                     } catch (IOException ex) {
 
                     }
-                    image = URLImage.createToStorage(enc, "im5", "http://localhost:8082/seance7mobil/59b8043afc7e93361e8b4570.jpg", URLImage.RESIZE_SCALE);
+                    image = URLImage.createToStorage(enc, "im5", "http://localhost/sarra/seance7mobil/59b8043afc7e93361e8b4570.jpg", URLImage.RESIZE_SCALE);
                     imgv = new ImageViewer(image);
                     C2.add(image);
                     

@@ -102,10 +102,18 @@ public class mesTicket {
         });
         tb.addMaterialCommandToSideMenu("Mes Tickets", FontImage.MATERIAL_TOC, e -> {
               mesTicket a=new mesTicket();
+               a.getF().show();
         });
         tb.addMaterialCommandToSideMenu("Mes Abonnements", FontImage.MATERIAL_TOC, e -> {
                mesabonnement a=new mesabonnement();
+                a.getF().show();
         });    
+         tb.addMaterialCommandToSideMenu("Home", FontImage.MATERIAL_HOME, e -> {
+            HomeRussie2018 a=new HomeRussie2018();
+            a.getF().show();
+            
+            
+        });
           Style s1 = UIManager.getInstance().getComponentStyle("Title");
          FontImage chariiot = FontImage.createMaterial(FontImage.MATERIAL_SHOPPING_CART, s1);
           FontImage aff = FontImage.createMaterial(FontImage.MATERIAL_TOC, s1);
@@ -141,7 +149,7 @@ public class mesTicket {
             EncodedImage encImg
                     = EncodedImage.createFromImage(theme.getImage("music.png"), false);
             URLImage imgUrl
-                    = URLImage.createToStorage(encImg, "cache7", "http://localhost:8082/seance7mobil/ssss.jpeg");
+                    = URLImage.createToStorage(encImg, "cache7", "http://localhost/sarra/seance7mobil/ssss.jpeg");
             imgUrl.fetch();
             ImageViewer img = new ImageViewer(imgUrl);
 

@@ -15,15 +15,13 @@ import com.codename1.ui.Toolbar;
 
 import java.text.ParseException;
 
-<<<<<<< HEAD
-=======
-=======
+
 import com.mycompagny.Service.UtilisateurServices;
 import com.mycompany.gui.afficherequipeGUI;
 import com.mycompany.Entite.DataBaseMobile;
 import com.mycompany.Entite.Utilisateur;
 import com.mycompany.gui.HomeAdminForm;
->>>>>>> 18da5cb6e3747aaeae86e99948da18cafc1a8b0a
+
 import com.mycompany.gui.Login;
 import java.io.IOException;
 /**
