@@ -34,7 +34,7 @@ public class MyApplication{
     private Form current;
     private static Resources theme;
 
-     Database db;
+     public static Database db;
 boolean created =false;
 boolean created2 =false;
 
@@ -73,7 +73,23 @@ boolean created2 =false;
         } catch (IOException ex) {
          
         }
+<<<<<<< HEAD
        
+=======
+        created =Database.exists("dbRussia2018Ali");
+        try {
+            db= Database.openOrCreate("dbRussia2018Ali");
+            if (created ==false)
+            {
+            
+            db.execute("create table Utilisateurs (id int, username varchar , email varchar);");
+            System.out.println("ok  ahahaha     ");
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+>>>>>>> f1e82ea2183695dc7410467895976cd6e91cae5f
         
        if(current != null){
             current.show();
