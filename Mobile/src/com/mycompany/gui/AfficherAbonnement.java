@@ -115,7 +115,7 @@ String textAttachmentUri;
                      Container C6 = new Container(new BoxLayout(BoxLayout.X_AXIS));
                        Button Details=new Button("Voir Abonnement",info);
                     EncodedImage encImg
-                            = EncodedImage.createFromImage(theme.getImage("music.png"), false);
+                            = EncodedImage.createFromImage(theme.getImage("smoking.png"), false);
                     if (ab.getCategorie().equals("virage")) {
 
                         URLImage imgUrl
@@ -182,7 +182,7 @@ String textAttachmentUri;
 
 
                             try {
-                                enc = EncodedImage.create("/giphy.gif");
+                                enc = EncodedImage.create("/giphy1.gif");
                             } catch (IOException ex) {
 
                             }

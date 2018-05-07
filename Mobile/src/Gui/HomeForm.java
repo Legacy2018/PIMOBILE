@@ -44,7 +44,7 @@ public class HomeForm {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try {
-                    AffichageMatch m = new AffichageMatch();
+                    AffichageUserMatch m = new AffichageUserMatch();
                     m.getF().show();
                 } catch (ParseException ex) {
                    

@@ -2,6 +2,7 @@ package com.mycompany.myapp;
 
 
 
+import Gui.AjouterMatch;
 import Gui.HomeForm;
 
 import com.codename1.db.Database;
@@ -31,10 +32,12 @@ import java.io.IOException;
 public class MyApplication{
 
     private Form current;
-    private Resources theme;
+    private static Resources theme;
 
      Database db;
 boolean created =false;
+boolean created2 =false;
+
     public void init(Object context) {
         theme = UIManager.initFirstTheme("/theme");
 
@@ -63,12 +66,14 @@ boolean created =false;
             {
             
             db.execute("create table favoris (id int, usr int , eq int,  PRIMARY KEY (id,usr,eq));");
-            System.out.println("ok  ahahaha     ");
+         
             }
+            
             
         } catch (IOException ex) {
          
         }
+       
         
        if(current != null){
             current.show();
@@ -84,7 +89,7 @@ boolean created =false;
          
 
 
-      Login l=new Login();
+       Login l=new Login();
     // HomeAdminForm Admin = new HomeAdminForm();
     l.getF().show();
 

@@ -99,21 +99,13 @@ public class AffichageStade {
                            }
                        }));
             
-                       Button btn1 = new Button("Meteo");
-                       btn1.addActionListener((new ActionListener() {
-
-            public void actionPerformed(ActionEvent evt) {
-               googlemapsearch ha = new googlemapsearch();
-               ha.start();
-            }
-        }));
                        
                        c1.add(nom);
                        c1.add(capacite);
                        
                        c1.add(Ville);
                        c1.add(btn);
-                       c1.add(btn1);
+                       
                        
                        
                        

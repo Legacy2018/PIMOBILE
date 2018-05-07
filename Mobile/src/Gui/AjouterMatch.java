@@ -11,12 +11,12 @@ import Entities.stade;
 import Services.MatchService;
 import Services.ServiceEquipe;
 import Services.StadeService;
+import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.spinner.Picker;
-import com.codename1.ui.spinner.TimeSpinner;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,9 +29,10 @@ import java.util.Date;
 public class AjouterMatch {
     
         Form    f = new Form();
+        
         Container    c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
       public AjouterMatch(){
-          
+           f.setUIID("AbonnementsForm");
           MatchService ms = new MatchService();
           StadeService sa = new StadeService();
           ServiceEquipe a = new ServiceEquipe();
@@ -40,6 +41,7 @@ public class AjouterMatch {
             Picker stade= new  Picker();
             Picker pays1 = new Picker();
             Picker pays2 = new Picker();
+               Date datenow=new Date();
             String[] phases = {"premier phase ","1/8","1/4","1/2","Final"};
              ComboBox phase = new ComboBox("premier phase ","1/8","1/4","1/2","Final");
              ComboBox<String> group= new ComboBox(
@@ -47,6 +49,8 @@ public class AjouterMatch {
                   ) ;
               Button ajouterM = new Button("Ajouter Match");
                   Picker date = new Picker();
+                  date.setType(Display.PICKER_TYPE_DATE);
+                  
                   Picker heure = new Picker();
                   heure.setType(Display.PICKER_TYPE_TIME);
             java.util.List<String> paysNames = new ArrayList<>(); 
@@ -81,14 +85,21 @@ public class AjouterMatch {
                         int id1 = li.get(paysNames.indexOf(pays1.getSelectedString())).getIdEquipe();
                         int id2 = li.get(paysNames.indexOf(pays2.getSelectedString())).getIdEquipe();
                         int id3 = lis.get(stadesNames.indexOf(stade.getSelectedString())).getId_stade();
+                         Date dateMatch = date.getDate();
+                        if (id1==id2){
+                            Dialog.show("erreur", "c impossible !! ", "ok", "cancel");
+                        }
+                     
+                        else  if (dateMatch.getTime()-datenow.getTime()<0){ToastBar.showMessage("Date Antérieure à La Date Actuelle ", FontImage.MATERIAL_DATE_RANGE, 5000);}
+                        else{
                         p1.setIdEquipe(id1);  
                         p2.setIdEquipe(id2);
                         s.setId_stade(id3);
-                        m.setEquipe1(p1)
-                                ;
+                        m.setEquipe1(p1);
+                                
                         m.setEquipe2(p2);
                         m.setStade(s);
-                        Date dateMatch = date.getDate();
+                       
                         String heureMatch ="";
                         int heures = heure.getTime() / 60;
                         int min = heure.getTime() % 60;
@@ -101,7 +112,9 @@ public class AjouterMatch {
                         }
                         heureMatch+=min;
                         m.setHeureMatch(heureMatch);
-                        m.setDateMatch(dateMatch);
+                        
+                       
+                         m.setDateMatch(dateMatch);
                         m.setPhase(phases[phase.getSelectedIndex()]);
                         ms.ajouterMatch(m);
                           try {
@@ -111,7 +124,7 @@ public class AjouterMatch {
                           } catch (ParseException ex) {
                               
                           }
-                      }
+                      }}
                   });  
              
                   c.add(phase);

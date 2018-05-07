@@ -147,7 +147,7 @@ public class mesTicket {
                
             
             EncodedImage encImg
-                    = EncodedImage.createFromImage(theme.getImage("music.png"), false);
+                    = EncodedImage.createFromImage(theme.getImage("smoking.png"), false);
             URLImage imgUrl
                     = URLImage.createToStorage(encImg, "cache7", "http://localhost/sarra/seance7mobil/ssss.jpeg");
             imgUrl.fetch();
