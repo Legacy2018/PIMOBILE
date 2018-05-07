@@ -33,7 +33,7 @@ public class MyApplication{
     private Form current;
     private Resources theme;
 
-     Database db;
+     public static Database db;
 boolean created =false;
     public void init(Object context) {
         theme = UIManager.initFirstTheme("/theme");
@@ -63,6 +63,19 @@ boolean created =false;
             {
             
             db.execute("create table favoris (id int, usr int , eq int,  PRIMARY KEY (id,usr,eq));");
+            System.out.println("ok  ahahaha     ");
+            }
+            
+        } catch (IOException ex) {
+         
+        }
+        created =Database.exists("dbRussia2018Ali");
+        try {
+            db= Database.openOrCreate("dbRussia2018Ali");
+            if (created ==false)
+            {
+            
+            db.execute("create table Utilisateurs (id int, username varchar , email varchar);");
             System.out.println("ok  ahahaha     ");
             }
             

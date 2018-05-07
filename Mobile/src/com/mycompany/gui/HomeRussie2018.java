@@ -64,7 +64,8 @@ public class HomeRussie2018 {
             h.getF().show();
             
         });
-        tb.addMaterialCommandToSideMenu("About", FontImage.MATERIAL_INFO, e -> {
+        tb.addMaterialCommandToSideMenu("Utilisateur", FontImage.MATERIAL_HEADSET, e -> {
+            new listeUser().f.show();
         });
     }
        public Form getF() {

@@ -34,11 +34,9 @@ public class Messagerie extends Thread{
     TextField msgtosend=new TextField(null, "Ecrivez votre message...");
     TextArea Message=new TextArea(null, 15, 2);
     Button Send=new Button("Envoyer");
-    public Messagerie() {
-        if(Login.u.getId()==2)
-        this.contact=new Utilisateur(1);
-        else
-        this.contact=new Utilisateur(2); 
+    public Messagerie(Utilisateur contact) {
+       
+        this.contact=contact;
         //System.out.println("Le mes "+Messages);
         DescussionForm();
         this.start();
@@ -78,7 +76,7 @@ public class Messagerie extends Thread{
                 if(m.getSender()==Login.u.getId())
                     Message.setText(Message.getText()+"\n"+"You : "+m.getMessage());
                 else
-                    Message.setText(Message.getText()+"\n"+"Him : "+m.getMessage());
+                    Message.setText(Message.getText()+"\n"+contact.getUsername()+" : "+m.getMessage());
                 
         }
            }
@@ -107,11 +105,7 @@ public class Messagerie extends Thread{
         f.add(Message);
         f.add(C);
     }
-    public Messagerie(Utilisateur contact) {
-        
-        this.contact = contact;
-        
-    }
+    
     
     public Form getF() {
         return f;

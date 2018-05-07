@@ -44,19 +44,9 @@ public class Login {
                        {
                          //System.out.println(u.getRole());
                         if(u.getRole().equals("a:0:{}"))//Houni el user chneya i7el
-                        {
-
-                             try {
-                                new AffichageUserMatch().getF().show();
-                        }   catch (ParseException ex) {
-                               
+                        {   
+                            new HomeRussie2018().getF().show();
                             }
-
-                             
-                                new HomeRussie2018().getF().show();
-                        
-
-                        }
                            
                         else//Houni el admin
                         {
