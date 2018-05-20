@@ -54,7 +54,10 @@ public class MessagerieService {
         ArrayList<Messages> Messages=new ArrayList<>();
         try {
             JSONParser j=new JSONParser();
+            ;
             Map<String, Object> AllUsersInMap = j.parseJSON(new CharArrayReader(JsonArray.toCharArray()));
+           
+                
             
             for (Iterator<Map<String, Object>> iterator = ( (List<Map<String, Object>>) AllUsersInMap.get("root")).iterator(); iterator.hasNext();) {
             Map<String, Object> next = iterator.next();

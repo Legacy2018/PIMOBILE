@@ -64,8 +64,8 @@ public class AffichageStade {
                        Label nom = new Label("Nom de stade: "+next.getNom_Stade());
                        Label capacite = new Label("Capacite du stade : "+next.getCapacité());
                        Label Ville = new Label("La ville : "+next.getVille());
-                       Button btn = new Button("Map");
-                  /*       btn.addActionListener((new ActionListener() {
+                   
+                  /*     btn.addActionListener((new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
               
@@ -104,7 +104,7 @@ public class AffichageStade {
                        c1.add(capacite);
                        
                        c1.add(Ville);
-                       c1.add(btn);
+                       
                        
                        
                        

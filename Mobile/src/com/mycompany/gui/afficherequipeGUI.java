@@ -200,7 +200,7 @@ Container m2;
                     Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                     System.out.println("eq sans like = " + e);
                     db = Database.openOrCreate("dbRussia2018");
-                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapea " + e.getDrapeau());
                     img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/emel/PiWeb1/TeamFlags/" + e.getDrapeau());
                     imgv1 = new ImageViewer(img1);

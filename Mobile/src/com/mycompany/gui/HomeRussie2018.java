@@ -72,8 +72,9 @@ public class HomeRussie2018 {
             
         });
         tb.addMaterialCommandToSideMenu("Utilisateur", FontImage.MATERIAL_HEADSET, e -> {
-            new listeUser().f.show();
+            new listeUser(null).f.show();
         });
+        
     }
        public Form getF() {
         return f;

@@ -73,9 +73,7 @@ boolean created2 =false;
         } catch (IOException ex) {
          
         }
-<<<<<<< HEAD
-       
-=======
+
         created =Database.exists("dbRussia2018Ali");
         try {
             db= Database.openOrCreate("dbRussia2018Ali");
@@ -89,7 +87,7 @@ boolean created2 =false;
         } catch (IOException ex) {
          
         }
->>>>>>> f1e82ea2183695dc7410467895976cd6e91cae5f
+
         
        if(current != null){
             current.show();

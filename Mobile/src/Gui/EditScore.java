@@ -27,7 +27,7 @@ public class EditScore {
 
         Container    c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         public EditScore(match m) throws ParseException{
-             f.setUIID("AbonnementsForm");
+             
               LocalNotification n = new LocalNotification();
 n.setId("demo-notification");
 n.setAlertBody("It's time to take a break and look at me");

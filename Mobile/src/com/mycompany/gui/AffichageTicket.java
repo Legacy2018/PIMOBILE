@@ -151,7 +151,7 @@ public class AffichageTicket {
                
             
             EncodedImage encImg
-                    = EncodedImage.createFromImage(theme.getImage("smoking.png"), false);
+                    = EncodedImage.createFromImage(theme.getImage("music.png"), false);
             URLImage imgUrl
                     = URLImage.createToStorage(encImg, "cache7", "http://localhost/sarra/seance7mobil/ssss.jpeg");
             imgUrl.fetch();

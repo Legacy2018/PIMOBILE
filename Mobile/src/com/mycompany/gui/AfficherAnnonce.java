@@ -134,20 +134,20 @@ public class AfficherAnnonce {
             }
             System.out.println("faouzi"+Login.u.getId());
             //changer par id annonceur connecté
-            Cursor c = db.executeQuery("select * FROM Favoris where utilisateurid=" + Login.u.getId());
-            while (c.next()) {System.out.println("la");
-                System.out.println("samiiiirrrr");
-                Row r = c.getRow();
-                String idannonce = r.getString(0);
-                String idannonceur = r.getString(1);
-
-                if (String.valueOf(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonce()).equals(idannonce)) {
-                    System.out.println("blablabla");
-                    res.setVisible(false);
-                    CancelFavoris.setVisible(true);
-                }
-
-            }
+          //  Cursor c = db.executeQuery("select * FROM Favoris where utilisateurid=" + Login.u.getId());
+//            while (c.next()) {System.out.println("la");
+//                System.out.println("samiiiirrrr");
+//                Row r = c.getRow();
+//                String idannonce = r.getString(0);
+//                String idannonceur = r.getString(1);
+//
+//                if (String.valueOf(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonce()).equals(idannonce)) {
+//                    System.out.println("blablabla");
+//                    res.setVisible(false);
+//                    CancelFavoris.setVisible(true);
+//                }
+//
+//            }
 
             res.addActionListener(new ActionListener() {
 
@@ -272,14 +272,14 @@ System.out.println("m");
             C0.add(C3);
             C0.add(sldr);
           if(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonceur()==Login.u.getId())  
-          {C0.add(Supprimer);
-            C0.add(Modifier);}
-if(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonceur()!=Login.u.getId())
-{ C0.add(Reserver);
+          {//C0.add(Supprimer);
+          //  C0.add(Modifier);
+          }
+ C0.add(Reserver);
 
             C0.add(res);
-            C0.add(CancelFavoris);}
-           // C0.add(cnt);
+            C0.add(CancelFavoris);
+           C0.add(cnt);
 
             //
             f.add(C0);

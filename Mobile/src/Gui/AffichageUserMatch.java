@@ -85,13 +85,13 @@ n.setAlertTitle("Break Time!");
            Label date = new Label("Date : "+ next.getDateMatch());
            Label heure = new Label("heure : "+ next.getHeureMatch());
            Button partager = new Button("Paratager Match");
-                      Button favoris = new Button("senda");
+                      Button favoris = new Button("ajouter favoris");
 
          partager.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-               String accessToken = "EAACEdEose0cBADocLYpKayqH6idA71AuARInZCYsFkHYrjSF34jHqaKIFZC62hXlOlmedROVOqXUFaReitAyeEjivWf7AWeGOFvJeDk95riuD96mEbXyCvZBvgOOJvbp9gRlFoP7J60KN1PM5ba9ZC392qFHoQTfLbe2rDIKmO4eJrrxkE5NNrpVigm4GDcZD";
+               String accessToken = "EAACEdEose0cBAGchyRcCcSHpVhILT5OMzq73xPlQXuE3ioKGk01UEuTInqTSyD1XRScqZBQe5WcSxRAVDvXVEz8TAseVoMGeYX8FKZABUHZAVZCERmrZBnDr3tFyMrCswFaSLnmeTXkYbDWlxfv8iDqlUOa9RKgurRy7HoKJuZBgTyHz86wXmcZAJYvWZBJu76MZD";
                FacebookClient fbClient = new DefaultFacebookClient(accessToken,Version.VERSION_2_6);
                /*FacebookType responce = fbClient.publish("me/feed",FacebookType.class,Parameter.with("message", "Java Graph API Test"));
                System.err.println("fb.com/"+responce.getId());*/
