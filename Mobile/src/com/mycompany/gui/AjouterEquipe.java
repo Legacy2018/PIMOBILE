@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class AjouterEquipe {
 
-    // setLayout(new BorderLayout());
+     // setLayout(new BorderLayout());
     Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
     Form f;

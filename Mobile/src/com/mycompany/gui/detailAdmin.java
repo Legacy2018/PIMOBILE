@@ -29,14 +29,15 @@ import java.io.IOException;
  */
 public class detailAdmin {
 
-    Form f;
+ Form f;
     Container c, c1,c2, c3,c4,c5, m;
  private Resources theme;
     public detailAdmin(Equipe e) {
         f = new Form();
                 theme = UIManager.initFirstTheme("/theme");
+  f.setUIID("AbonnementsForm");
 
-        EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+        EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapeau " + e.getDrapeau());
         URLImage img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
         ImageViewer imgv1 = new ImageViewer(img1);
