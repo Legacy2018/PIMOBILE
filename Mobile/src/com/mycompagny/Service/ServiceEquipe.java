@@ -86,7 +86,14 @@ public class ServiceEquipe {
          });*/
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
-
+//here service 
+    
+    public int a(){
+    
+    return 1;
+    }
+    
+   
     public void DeleteEquipe(Equipe eq) {
         ConnectionRequest con = new ConnectionRequest();
 
