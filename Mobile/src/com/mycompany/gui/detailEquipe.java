@@ -11,6 +11,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -20,6 +21,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompagny.Service.ServiceEquipe;
 import com.mycompany.Entite.Equipe;
+import java.io.IOException;
 
 /**
  *
@@ -32,12 +34,13 @@ public class detailEquipe {
  private Resources theme;
     public detailEquipe(Equipe e) {
         f = new Form();
-                 f.setUIID("AbonnementsForm");
+          f.setUIID("AbonnementsForm");
+
                 theme = UIManager.initFirstTheme("/theme");
 
         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapeau " + e.getDrapeau());
-        URLImage img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/emel/PiWeb1/TeamFlags/" + e.getDrapeau());
+        URLImage img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
         ImageViewer imgv1 = new ImageViewer(img1);
         Container i = new Container(new LayeredLayout());
         i.add(imgv1);
@@ -109,6 +112,21 @@ public class detailEquipe {
         m.add(c5);
         
         f.add(m);
+        Toolbar tb = f.getToolbar();
+                       tb.addCommandToLeftBar("Retour",null , new ActionListener() {
+
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                           
+                           try {
+                               afficherequipeGUI af;
+                               af = new afficherequipeGUI();
+                                 af.getF().show();
+                           } catch (IOException ex) {
+                           }
+                         
+                       }
+                   });
     }
 
     public Form getF() {
@@ -118,4 +136,5 @@ public class detailEquipe {
     public void setF(Form f) {
         this.f = f;
     }
+   //aaa 
 }

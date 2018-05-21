@@ -14,6 +14,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.events.FocusListener;
@@ -36,6 +37,8 @@ public class updateEquipe {
         System.out.print("equipe "+equ);
                 
         f = new Form();
+          f.setUIID("AbonnementsForm");
+
         c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
       Container  c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
@@ -48,8 +51,13 @@ public class updateEquipe {
           OnOffSwitch genre= new OnOffSwitch();
         genre.setOff("IN");
         genre.setOn("OUT");
-      
-
+        
+      Label lbeq= new Label("Equipe");
+      Label lbSel= new Label("Selecetionneur");
+            Label lbpt= new Label("Point");
+      Label lbetat= new Label("Etat");
+     // Label lbeq= new Label("Equipe");
+            Label lbgr= new Label("Groupe");
         TextField pays = new TextField(equ.getPays());
         TextField selec = new TextField(equ.getSelecteur());
         TextField point = new TextField(String.valueOf(equ.getPoint()));
@@ -57,9 +65,13 @@ public class updateEquipe {
                 "A","B","C","D","E","F","G","H"
         ) ;
         cb.setSelectedIndex(4);
+        c.add(lbeq);
         c.add(pays);
+         c.add(lbSel);
         c.add(selec);
+         c.add(lbpt);
         c.add(point);
+        c.add(lbgr);
         c.add(cb);
         
            //c.add(selec);
@@ -104,7 +116,18 @@ public class updateEquipe {
             HomeAdminForm h= new HomeAdminForm();
             h.getF().show();
         });
-   
+    Toolbar tb = f.getToolbar();
+                       tb.addCommandToLeftBar("Retour",null , new ActionListener() {
+
+                       @Override
+                       public void actionPerformed(ActionEvent evt) {
+                           
+                           HomeAdminForm af;
+                           af = new HomeAdminForm();
+                           af.getF().show();
+                         
+                       }
+                   });
         
     }
 

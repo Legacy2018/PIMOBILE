@@ -21,11 +21,14 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.mycompany.Entite.Equipe;
 import com.mycompany.Entite.Fos_User;
 import com.mycompany.Entite.Joueur;
+import com.mycompany.gui.detailEquipe;
 import java.io.*;
 
 import java.util.ArrayList;
@@ -318,15 +321,28 @@ public class ServiceEquipe {
         r.setHighlighted(true);
 
         // Create the chart ... pass the values and renderer to the chart object.
-        PieChart chart = new PieChart(buildCategoryDataset("C   arton rouge et jaune", values), renderer);
+        PieChart chart = new PieChart(buildCategoryDataset("Carton rouge et jaune", values), renderer);
 
         // Wrap the chart in a Component so we can add it to a form
         ChartComponent c = new ChartComponent(chart);
 
         // Create a form and show it.
         Form f = new Form("Carton", new BorderLayout());
-        f.add(BorderLayout.CENTER, c);
+                  f.setUIID("AbonnementsForm");
 
+        f.add(BorderLayout.CENTER, c);
+         Toolbar tb = f.getToolbar();
+            tb.addCommandToLeftBar("Retour", null, new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    detailEquipe af;
+                    af = new detailEquipe(e);
+                    af.getF().show();
+
+                }
+            }); 
         return f;
 
     }

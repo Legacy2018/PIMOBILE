@@ -11,7 +11,10 @@ import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
@@ -26,8 +29,7 @@ import java.util.List;
  * @author Emel
  */
 public class affichjoueur {
-
-    Form f;
+  Form f;
 
     public Form getF() {
         return f;
@@ -42,46 +44,55 @@ public class affichjoueur {
     Container m;
     ServiceJoueur sj;
     Resources theme;
+
     public affichjoueur(Equipe e) {
-                theme = UIManager.initFirstTheme("/theme");
+        theme = UIManager.initFirstTheme("/theme");
 
-        sj= new ServiceJoueur();
-        ArrayList<Joueur> list = sj.getList2(e.getIdEquipe());       
-        System.out.println("liste des jouers    : "+list);
-         f = new Form();
-                  f.setUIID("AbonnementsForm");
-         for (Joueur jr : list)
-         {
-        Container m = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-         EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
-                    System.err.println("drapea " + jr.getImg());
-                    URLImage img1 = URLImage.createToStorage(encImg, "CacheJ" + jr.getIdJoueur(), "http://localhost/emel/PiWeb1/joueur/" + jr.getImg());
-                    ImageViewer imgv1 = new ImageViewer(img1);
-                    // c3.add(imgv1);
-        cgx = new Container(new BoxLayout(BoxLayout.X_AXIS));
-        cgx.add(imgv1);
-        cdx = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        sj = new ServiceJoueur();
+        ArrayList<Joueur> list = sj.getList2(e.getIdEquipe());
+        System.out.println("liste des jouers    : " + list);
+        f = new Form();
+          f.setUIID("AbonnementsForm");
 
-        chd = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-             Label nom = new Label(jr.getNomJoueur());
-             chd.add(nom);
-        cbd = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        
-        
-             Label position = new Label(jr.getPosition());
-             cbd.add(position);
-        cdx.add(chd);
-        cdx.add(cbd);
-                 
-        
-        m.add(cgx);
-        m.add(cdx);
-        
-        f.add(m);
+        for (Joueur jr : list) {
+            Container m = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+            EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
+            System.err.println("drapea " + jr.getImg());
+            URLImage img1 = URLImage.createToStorage(encImg, "CacheJ" + jr.getIdJoueur(), "http://localhost/PiWeb1/joueur/" + jr.getImg());
+            ImageViewer imgv1 = new ImageViewer(img1);
+            // c3.add(imgv1);
+            cgx = new Container(new BoxLayout(BoxLayout.X_AXIS));
+            cgx.add(imgv1);
+            cdx = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
-         }
+            chd = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+            Label nom = new Label(jr.getNomJoueur());
+            chd.add(nom);
+            cbd = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
-        
+            Label position = new Label(jr.getPosition());
+            cbd.add(position);
+            cdx.add(chd);
+            cdx.add(cbd);
+
+            m.add(cgx);
+            m.add(cdx);
+
+            f.add(m);
+           
+        }
+            Toolbar tb = f.getToolbar();
+            tb.addCommandToLeftBar("Retour", null, new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    detailEquipe af;
+                    af = new detailEquipe(e);
+                    af.getF().show();
+
+                }
+            });
     }
 
 }

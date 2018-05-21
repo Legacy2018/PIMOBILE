@@ -73,9 +73,10 @@ public class afficherequipeAdmin {
         System.out.println("id  :" + id);
         //  se.getChar();
         sj.getList2(63);
-        theme = UIManager.initFirstTheme("/themeEmel");
+        theme = UIManager.initFirstTheme("/theme");
 
         f = new Form(BoxLayout.y());
+  f.setUIID("AbonnementsForm");
 
         ServiceEquipe se = new ServiceEquipe();
         ArrayList<Equipe> list = se.getList2();
@@ -115,7 +116,7 @@ public class afficherequipeAdmin {
                     Container c3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                     System.out.println("eq sans like = " + e);
                     db = Database.openOrCreate("dbRussia2018");
-                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);
+                    EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);
                     System.err.println("drapea " + e.getDrapeau());
                     img1 = URLImage.createToStorage(encImg, "Cache" + e.getPays(), "http://localhost/PiWeb1/TeamFlags/" + e.getDrapeau());
                     imgv1 = new ImageViewer(img1);
