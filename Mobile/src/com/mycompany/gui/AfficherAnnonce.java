@@ -272,8 +272,14 @@ System.out.println("m");
             C0.add(C3);
             C0.add(sldr);
           if(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonceur()==Login.u.getId())  
-          {//C0.add(Supprimer);
-          //  C0.add(Modifier);
+          {C0.add(Supprimer);
+            C0.add(Modifier);
+          }
+           if(AfficherAnnoncesCovoiturage.AnnonceCovoiturage.getId_annonceur()!=Login.u.getId())  
+          { C0.add(Reserver);
+
+            C0.add(res);
+            C0.add(CancelFavoris);
           }
  C0.add(Reserver);
 
