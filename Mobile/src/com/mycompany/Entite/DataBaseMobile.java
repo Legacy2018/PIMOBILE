@@ -101,6 +101,7 @@ public class DataBaseMobile {
         
         
         Query = "Select * from " + table + " ";
+        
         if (where != null) {
             Query = Query + where;
         }

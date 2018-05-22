@@ -30,11 +30,11 @@ public class MessagerieService {
     }
     public static void updateStat(Messages messages)
     {
-        DataBaseMobile.Execute("update Messages set afficher=1 where id="+messages.getId());
+        DataBaseMobile.Execute("update Messages set afficher=0 where id="+messages.getId());
     }
     public static Messages IsNewMessage(int recever,int sender)
     {
-        ArrayList<Messages> messages=ParsingMessages(DataBaseMobile.Executeselect("messages", " where afficher=0 and id_recever="+recever+" and id_sender="+sender));
+        ArrayList<Messages> messages=ParsingMessages(DataBaseMobile.Executeselect("messages", " where afficher=1 and id_recever="+recever+" and id_sender="+sender));
         if(!messages.isEmpty())
         {
             
@@ -52,7 +52,7 @@ public class MessagerieService {
     public static ArrayList<Messages> ParsingMessages(String JsonArray)
     {
         ArrayList<Messages> Messages=new ArrayList<>();
-        try {
+        try {System.out.println("houni====> "+JsonArray);
             JSONParser j=new JSONParser();
             ;
             Map<String, Object> AllUsersInMap = j.parseJSON(new CharArrayReader(JsonArray.toCharArray()));
