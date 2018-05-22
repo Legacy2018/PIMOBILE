@@ -92,7 +92,7 @@ public class Messagerie extends Thread{
         Send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                DataBaseMobile.Execute("INSERT INTO `messages` (`id`, `id_sender`, `id_recever`, `msg`, `afficher`, `datemsg`) VALUES (NULL, "+Login.u.getId()+", "+contact.getId()+", '"+msgtosend.getText()+"', 0, '2018-05-03 00:00:00');");
+                DataBaseMobile.Execute("INSERT INTO `messages` (`id`, `id_sender`, `id_recever`, `msg`, `afficher`, `datemsg`) VALUES (NULL, "+Login.u.getId()+", "+contact.getId()+", '"+msgtosend.getText()+"', 1, '2018-05-03 00:00:00');");
                 updateMessages();
             }
         });
