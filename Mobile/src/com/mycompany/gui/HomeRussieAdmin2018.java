@@ -5,6 +5,7 @@
  */
 package com.mycompany.gui;
 
+import Gui.AjouterMatch;
 import Gui.HomeForm;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -35,18 +36,14 @@ public class HomeRussieAdmin2018 {
         Container topBar = BorderLayout.east(new Label(icon));
        
         tb.addMaterialCommandToSideMenu("Equipe", FontImage.MATERIAL_WEB, e -> {
-              try {
-                  afficherequipeGUI a=new afficherequipeGUI();
-                  a.getF().show();
-              } catch (IOException ex) {
-                
-              }
+            HomeAdminForm a=new HomeAdminForm();
+            a.getF().show();
              
             
         });
        
         tb.addMaterialCommandToSideMenu("Matchs", FontImage.MATERIAL_INFO, e -> {
-            HomeForm h = new HomeForm();
+            AjouterMatch h = new AjouterMatch();
             h.getF().show();
             
         });

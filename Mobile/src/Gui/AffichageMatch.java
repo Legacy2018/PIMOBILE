@@ -10,15 +10,11 @@ import Services.MatchService;
 import com.codename1.notifications.LocalNotification;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
-import com.codename1.ui.Dialog;
-import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
-import com.restfb.*;
-import com.restfb.types.FacebookType;
 
 
 import java.text.ParseException;
@@ -63,25 +59,8 @@ n.setAlertTitle("Break Time!");
            Label stade = new Label("Stade : "+next.getStade().nom_Stade);
            Label date = new Label("Date : "+ next.getDateMatch());
            Label heure = new Label("heure : "+ next.getHeureMatch());
-           Button partager = new Button("Paratager Match");
-         partager.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-               String accessToken = "EAACEdEose0cBADocLYpKayqH6idA71AuARInZCYsFkHYrjSF34jHqaKIFZC62hXlOlmedROVOqXUFaReitAyeEjivWf7AWeGOFvJeDk95riuD96mEbXyCvZBvgOOJvbp9gRlFoP7J60KN1PM5ba9ZC392qFHoQTfLbe2rDIKmO4eJrrxkE5NNrpVigm4GDcZD";
-               FacebookClient fbClient = new DefaultFacebookClient(accessToken,Version.VERSION_2_6);
-               /*FacebookType responce = fbClient.publish("me/feed",FacebookType.class,Parameter.with("message", "Java Graph API Test"));
-               System.err.println("fb.com/"+responce.getId());*/
-                
-                    
-
-               FacebookType response = fbClient.publish("me/feed",
-                       FacebookType.class,
-                       Parameter.with("message",next.getEquipe1().pays+" "+next.getScore()+ " - "+next.getScore2()+" "+next.getEquipe2().pays
-                       ));
-               System.out.println("fb.com/"+response.getId());
-               Dialog.show("Succes", "Votre Evenement à été partagé sur facebook", "Fermer", null);
-           }});
+        
+     
            Button Edit = new Button("Edit score ");
            Edit.addActionListener(new ActionListener() {
                @Override
@@ -104,7 +83,7 @@ n.setAlertTitle("Break Time!");
            c1.add(phase);
            c1.add(date);
            c1.add(heure);
-           c1.add(partager);
+         
            c1.add(Edit);
          
            
@@ -116,8 +95,11 @@ n.setAlertTitle("Break Time!");
         
        
        form.add(cont);
-          form.getToolbar().addCommandToRightBar("back", null, (ev)->{HomeForm h=new HomeForm();
-          h.getF().show();
+          form.getToolbar().addCommandToRightBar("back", null, (ev)->{try {
+              AffichageMatch h=new AffichageMatch();
+              h.getF().show();
+              } catch (ParseException ex) {
+              }
           });
     }
 

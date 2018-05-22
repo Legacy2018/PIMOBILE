@@ -182,7 +182,7 @@ String textAttachmentUri;
 
 
                             try {
-                                enc = EncodedImage.create("/giphy.gif");
+                                enc = EncodedImage.create("/giphy1.gif");
                             } catch (IOException ex) {
 
                             }

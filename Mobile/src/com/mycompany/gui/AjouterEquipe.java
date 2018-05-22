@@ -11,6 +11,7 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
@@ -33,50 +34,96 @@ import java.util.ArrayList;
  */
 public class AjouterEquipe {
 
-    // setLayout(new BorderLayout());
+     // setLayout(new BorderLayout());
     Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 
     Form f;
     SpanLabel lb;
     Container c;
-
     public AjouterEquipe() {
 
         f = new Form();
+          f.setUIID("AbonnementsForm");
+
         c = new Container();
         int etat;
-        TextField pays = new TextField();
-        TextField selec = new TextField();
-        TextField point = new TextField();;
+         Label lbeq= new Label("Equipe");
+      Label lbSel= new Label("Selecetionneur");
+            Label lbpt= new Label("Point");
+      Label lbetat= new Label("Etat");
+     // Label lbeq= new Label("Equipe");
+            Label lbgr= new Label("Groupe");
+        TextField pays = new TextField(null, "Pays");
+        TextField selec = new TextField(null,"Selectionneur");
+        TextField point = new TextField(null, "Nombre de points");;
         ComboBox<String> cb = new ComboBox(
                 "A", "B", "C", "D", "E", "F", "G", "H"
         );
+        c.add(lbeq);
         c.add(pays);
 
-        c.add(cb);
+
         OnOffSwitch genre = new OnOffSwitch();
         genre.setOff("IN");
         genre.setOn("OUT");
+        c.add(lbetat);
+        
         c.add(genre);
+        c.add(lbSel);
         c.add(selec);
+        c.add(lbpt);
         c.add(point);
-        if (genre.isValue()) {
+        c.add(lbgr);
+        c.add(cb);
+       /* if (genre.isValue()) {
             etat = 1;
         } else { 
             etat = 0;
-        }
+        }*/
         Button aj = new Button("Ajouter");
-
+        Button An= new Button("Annuler");
+   c.add(aj);;
+   c.add(An);
+   
+      
         aj.addActionListener((e) -> {
+            if (verifInt(point.getText())){
             ServiceEquipe ser = new ServiceEquipe();
-            Equipe eq = new Equipe(pays.getText(), etat, "phase", cb.getSelectedItem(), selec.toString(), Integer.parseInt(point.toString()), null);
+            String gnr="";
+
+           if (genre.isValue())
+           { gnr="OUT";
+         //  eq.setEtat(0);
+           }
+           else {gnr="IN";
+        //   eq.setEtat(1);
+           }
+                                   Equipe eq = new Equipe(pays.getText(), 1, "phase", cb.getSelectedItem(), selec.getText(), Integer.parseInt(point.getText()),"tn.png");
+
             ser.ajouterEquipe(eq);
+            HomeAdminForm ho =new HomeAdminForm();
+            ho.getF().show();
+            }else Dialog.show("Entrée Invalide", "Veuillez saisir un nombre de points", null, "ok");
         });
-        c.add(aj);
-        f.add(c);
+        
+        An.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                HomeAdminForm h = new HomeAdminForm();
+                h.getF().show();
+            }
+        });
+       f.add(c);
 
     }
-
+    
+   public boolean verifInt(String aux)
+   { try {Integer.parseInt(aux);
+   return true;
+   }catch(Exception e){ return false;}
+       
+       }
     public Form getF() {
         return f;
     }

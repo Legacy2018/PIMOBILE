@@ -5,6 +5,7 @@
  */
 package com.mycompany.Entite;
 
+import Entities.*;
 import java.util.Date;
 
 /**
@@ -14,11 +15,30 @@ import java.util.Date;
 public class Annonce_covoiturage {
     private int id_annonceur;
     private int id_annonce;
-    private Date date_depart;
+    private String date_depart;
     private Date Date_arrivee;
     private String adresse_depart;
     private String adresse_arrivee;
     private float tarif;
+    private int Signale;
+    private int NbrePlaces;
+
+    public int getSignale() {
+        return Signale;
+    }
+
+    public Annonce_covoiturage(int id_annonceur, int id_annonce,String date_depart, String adresse_depart, String adresse_arrivee, float tarif) {
+        this.id_annonceur = id_annonceur;
+        this.id_annonce = id_annonce;
+        this.date_depart = date_depart;
+        this.adresse_depart = adresse_depart;
+        this.adresse_arrivee = adresse_arrivee;
+        this.tarif = tarif;
+    }
+
+    public void setSignale(int Signale) {
+        this.Signale = Signale;
+    }
 
     public Annonce_covoiturage() {
     }
@@ -28,7 +48,7 @@ public class Annonce_covoiturage {
         return "Annonce_covoiturage{" + "id_annonceur=" + id_annonceur + ", id_annonce=" + id_annonce + ", date_depart=" + date_depart + ", Date_arrivee=" + Date_arrivee + ", adresse_depart=" + adresse_depart + ", adresse_arrivee=" + adresse_arrivee + ", tarif=" + tarif + '}';
     }
 
-    public Annonce_covoiturage(int id_annonce, Date date_depart, Date Date_arrivee, String adresse_depart, String adresse_arrivee, float tarif) {
+    public Annonce_covoiturage(int id_annonce, String date_depart, Date Date_arrivee, String adresse_depart, String adresse_arrivee, float tarif) {
         this.id_annonce = id_annonce;
         this.date_depart = date_depart;
         this.Date_arrivee = Date_arrivee;
@@ -37,7 +57,7 @@ public class Annonce_covoiturage {
         this.tarif = tarif;
     }
 
-    public Annonce_covoiturage(int id_annonceur, int id_annonce, Date date_depart, Date Date_arrivee, String adresse_depart, String adresse_arrivee, float tarif) {
+    public Annonce_covoiturage(int id_annonceur, int id_annonce,  String date_depart, Date Date_arrivee, String adresse_depart, String adresse_arrivee, float tarif) {
         this.id_annonceur = id_annonceur;
         this.id_annonce = id_annonce;
         this.date_depart = date_depart;
@@ -63,13 +83,24 @@ public class Annonce_covoiturage {
         this.id_annonce = id_annonce;
     }
 
-    public Date getDate_depart() {
+  
+    public int getNbrePlaces() {
+        return NbrePlaces;
+    }
+
+    public void setNbrePlaces(int NbrePlaces) {
+        this.NbrePlaces = NbrePlaces;
+    }
+
+    public String getDate_depart() {
         return date_depart;
     }
 
-    public void setDate_depart(Date date_depart) {
+    public void setDate_depart(String date_depart) {
         this.date_depart = date_depart;
     }
+
+  
 
     public Date getDate_arrivee() {
         return Date_arrivee;

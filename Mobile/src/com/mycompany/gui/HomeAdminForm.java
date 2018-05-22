@@ -43,6 +43,7 @@ public class HomeAdminForm {
          theme = UIManager.initFirstTheme("/theme");
 
         f = new Form();
+           f.setUIID("AbonnementsForm");
 
         ServiceEquipe se = new ServiceEquipe();
         // lb.setText(se.getList2().toString());
@@ -55,7 +56,7 @@ public class HomeAdminForm {
       
         for (Equipe e : list) {
            ServiceEquipe ser = new ServiceEquipe();
-            EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("round.png"), false);     
+            EncodedImage encImg = EncodedImage.createFromImage(theme.getImage("music.png"), false);     
             System.err.println("drapea " + e.getDrapeau());
             img1 = URLImage.createToStorage(encImg,"Cache"+ e.getPays(), "http://localhost/emel/PiWeb1/TeamFlags/" + e.getDrapeau());
             imgv1 = new ImageViewer(img1);

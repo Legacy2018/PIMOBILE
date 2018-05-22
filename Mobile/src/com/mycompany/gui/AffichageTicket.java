@@ -226,12 +226,13 @@ public class AffichageTicket {
 
               
                     try {
-                        enc = EncodedImage.create("/giphy.gif");
+                        enc = EncodedImage.create("/giphy1.gif");
                     } catch (IOException ex) {
 
                     }
                     image = URLImage.createToStorage(enc, "im5", "http://localhost/sarra/seance7mobil/59b8043afc7e93361e8b4570.jpg", URLImage.RESIZE_SCALE);
                     imgv = new ImageViewer(image);
+                    
                     C2.add(image);
                     
                           Button bton = new Button("reserver",res);

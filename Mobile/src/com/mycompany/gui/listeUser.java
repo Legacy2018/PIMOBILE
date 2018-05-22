@@ -34,15 +34,16 @@ public class listeUser {
     Form f=new Form(BoxLayout.y());;
     ArrayList<Utilisateur> Users=new ArrayList<>();
     TextField recherche=new TextField(null, "Username");
-    public listeUser() {
+    public listeUser(String sort) {
+        f.setScrollableY(true);
+        f.add(recherche);
         recherche.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                try {
-                    afficher(" where username like '%"+recherche.getText()+"%' ");
-                } catch (IOException ex) {
+               
                     
-                }
+                    new listeUser(" where username like '%"+recherche.getText()+"%' ");
+                
             }
         });
         
@@ -60,10 +61,11 @@ public class listeUser {
             
         }
         try {
-            afficher(null);
-        } catch (IOException ex) {
+          //
+           afficher(sort);
+       } catch (IOException ex) {
            
-        }
+       }
         }
        
         
@@ -72,7 +74,6 @@ public class listeUser {
     public void afficher(String sorted) throws IOException
     {
         
-         f=new Form(BoxLayout.y());
          
              Cursor c;
              if(sorted==null)
@@ -92,6 +93,7 @@ public class listeUser {
                      
                  }
              });
+             con.setScrollableY(true);
              con.setLeadComponent(l1);
              Label l2=new Label(r.getString(2));
              Label l3=new Label("----------------------");

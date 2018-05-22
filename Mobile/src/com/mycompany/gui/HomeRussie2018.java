@@ -17,6 +17,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompany.gui.afficherequipeGUI;
 import com.mycompany.gui.HomeFormTicket;
+import com.mycompany.myapp.MyApplication;
 import java.io.IOException;
 
 
@@ -39,10 +40,16 @@ public class HomeRussie2018 {
         Image icon = theme.getImage("icon.png");
         Container topBar = BorderLayout.east(new Label(icon));
         
-        tb.addMaterialCommandToSideMenu("Covoiturage", FontImage.MATERIAL_HOME, e -> {
+        tb.addMaterialCommandToSideMenu("Covoiturage", FontImage.MATERIAL_LIST, e -> {
+           
             
+            AfficherAnnoncesCovoiturage a=new AfficherAnnoncesCovoiturage();
+           
+            a.getF().show();
             
         });
+        
+        
         tb.addMaterialCommandToSideMenu("Equipe", FontImage.MATERIAL_WEB, e -> {
               try {
                   afficherequipeGUI a=new afficherequipeGUI();
@@ -65,8 +72,9 @@ public class HomeRussie2018 {
             
         });
         tb.addMaterialCommandToSideMenu("Utilisateur", FontImage.MATERIAL_HEADSET, e -> {
-            new listeUser().f.show();
+            new listeUser(null).f.show();
         });
+        
     }
        public Form getF() {
         return f;

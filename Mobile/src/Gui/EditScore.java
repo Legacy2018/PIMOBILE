@@ -27,6 +27,7 @@ public class EditScore {
 
         Container    c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         public EditScore(match m) throws ParseException{
+             
               LocalNotification n = new LocalNotification();
 n.setId("demo-notification");
 n.setAlertBody("It's time to take a break and look at me");
@@ -49,23 +50,16 @@ n.setAlertTitle("Break Time!");
 
      
         aj.addActionListener((e) -> {
-                try {
-                    m.setScore(Integer.parseInt(sc.getText()));
-                    m.setScore2(Integer.parseInt(sc2.getText()));
-                    ms.editMatch(m);
-                    AffichageMatch h= new AffichageMatch();
-                    
-                    h.getF().show();
-                               Display.getInstance().scheduleLocalNotification(
-        n,
-        System.currentTimeMillis() + 10 * 1000, // fire date/time
-        LocalNotification.REPEAT_MINUTE  // Whether to repeat and what frequency
-);
-
-                    
-                } catch (ParseException ex) {
-                    System.out.println("no");
-                }
+            m.setScore(Integer.parseInt(sc.getText()));
+            m.setScore2(Integer.parseInt(sc2.getText()));
+            ms.editMatch(m);
+            AjouterMatch h= new AjouterMatch();
+            h.getF().show();
+            Display.getInstance().scheduleLocalNotification(
+                    n,
+                    System.currentTimeMillis() + 10 * 1000, // fire date/time
+                    LocalNotification.REPEAT_MINUTE  // Whether to repeat and what frequency
+            );
         });
     
         f.add(c);

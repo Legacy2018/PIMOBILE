@@ -50,11 +50,7 @@ public class Login {
                            
                         else//Houni el admin
                         {
-                            try {
-                                new AffichageMatch().getF().show();
-                            } catch (ParseException ex) {
-                               
-                            }
+                            new HomeRussieAdmin2018().getF().show();
                         }
                         
                        
